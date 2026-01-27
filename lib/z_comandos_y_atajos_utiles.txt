@@ -1,0 +1,47 @@
+
+dart run build_runner build --delete-conflicting-outputs
+
+shift + alt + f para formatear el codigo
+
+flutter emulators --launch flutter_emulator
+flutter emulators --launch apple_ios_simulator
+
+Borrar todos los imports no usados:
+        dart fix --apply --code=unused_import
+
+Corre tests 
+        flutter test test/tests_widgets/ --reporter=expanded
+
+alt + shift + r para correr tests en vscode
+alt + shift + flecha abajo para copiar línea actual abajo
+
+
+
+
+
+feat: add ImagePicker service implementation
+
+Si es parcial:
+WIP: implement ImagePicker service
+
+Si refactorizas algo existente:
+refactor: replace image handling with ImagePicker service
+
+Formato común:
+<tipo>: <descripción concisa>
+
+Tipos comunes: feat, fix, refactor, docs, chore.
+¿qué es wip?
+WIP = Work In Progress
+
+
+TIPO	        DEFINICIÓN	                EJEMPLO
+feat	        Nueva funcionalidad	        feat: add user login
+fix	        Corrección de bug	        fix: resolve crash on save
+refactor	Cambios que no añaden ni corrigen	refactor: simplify auth logic
+docs	        Documentación	                docs: update API README
+chore	        Tareas de mantenimiento	        chore: update dependencies
+test	        Pruebas	                        test: add unit tests for service
+style	        Formato (sin cambio lógico)	style: fix code formatting
+perf	        Mejora rendimiento	        perf: optimize image loading
+wip

@@ -1,0 +1,11 @@
+
+Hecho: 
+
+En: 
+ - Leer a Gemini para reestructurar los límites de cada capa. El firebaseDatasource no debe devolver un fb.user
+
+Seguir: 
+
+Por hacer: 
+
+También: 
