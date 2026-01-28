@@ -9,6 +9,7 @@ class User with _$User {
 
   const User({
     required this.uid,
+    this.name,
     this.email,
     this.profileImageLocalPath,
   });
@@ -19,4 +20,6 @@ class User with _$User {
   final String? email;
   @override
   final String? profileImageLocalPath;
+  @override
+  final String? name;
 }

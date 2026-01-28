@@ -1,29 +1,42 @@
 import 'package:firebase_auth/firebase_auth.dart' as fb;
 import 'package:mercado_v2/core/result/failure.dart';
 import 'package:mercado_v2/features/auth/data/datasources/iauth_remote_data_source.dart';
-import 'package:mercado_v2/features/auth/data/models/user_model.dart';
+import 'package:mercado_v2/features/auth/data/mappers/user_mapper.dart';
+
+import '../../domain/entities/user.dart';
 
 class FirebaseAuthDataSourceImpl implements AuthRemoteDataSource {
   final fb.FirebaseAuth _firebaseAuth;
+  final UserMapper _mapper;
 
-  FirebaseAuthDataSourceImpl({required fb.FirebaseAuth firebaseAuth})
-    : _firebaseAuth = firebaseAuth;
+  FirebaseAuthDataSourceImpl({
+    required fb.FirebaseAuth firebaseAuth,
+    required UserMapper mapper,
+  }) : _mapper = mapper,
+       _firebaseAuth = firebaseAuth;
 
   @override
-  Future<UserModel> signInWithEmailAndPassword({
+  Future<User> signInWithEmailAndPassword({
     required String email,
     required String password,
   }) async {
-    final userCredential = await _firebaseAuth.signInWithEmailAndPassword(
-      email: email,
-      password: password,
-    );
+    try {
+      final userCredential = await _firebaseAuth.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
 
-    final user = userCredential.user;
-    if (user == null) {
-      throw AuthException('User is null after signIn');
+      final user = userCredential.user;
+      if (user == null) {
+        throw AuthException('User is null after signIn');
+      }
+      return _mapper.fromFirebase(user);
+    } catch (e) {
+      // TODO crashlytics
+      throw AuthException(
+        'Ha ocurrido un error iniciando sesión. Por favor inténtalo otra vez',
+      );
     }
-    return UserModel.fromFirebaseUser(user);
   }
 
   @override
@@ -32,49 +45,76 @@ class FirebaseAuthDataSourceImpl implements AuthRemoteDataSource {
   }
 
   @override
-  Future<UserModel> createUserWithEmailAndPassword({
+  Future<User> createUserWithEmailAndPassword({
     required String email,
     required String password,
   }) async {
-    final userCredential = await _firebaseAuth.createUserWithEmailAndPassword(
-      email: email,
-      password: password,
-    );
-     final user = userCredential.user;
-    if (user == null) {
-      throw AuthException('User is null after signIn');
+    try {
+      final userCredential = await _firebaseAuth.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      final user = userCredential.user;
+      if (user == null) {
+        throw AuthException('User is null after creating account.');
+      }
+      return _mapper.fromFirebase(user);
+    } catch (e) {
+      throw AuthException(
+        'Ha ocurrido un error creando la cuenta. Por favor inténtalo otra vez',
+      );
     }
-    return UserModel.fromFirebaseUser(user);
   }
 
   @override
   Future<void> sendEmailVerification() async {
-    await _firebaseAuth.currentUser?.sendEmailVerification();
+    try {
+      await _firebaseAuth.currentUser?.sendEmailVerification();
+    } catch (e) {
+      throw AuthException(
+        'Ha ocurrido un error en el envío del correo de verificación. Por favor inténtalo otra vez',
+      );
+    }
   }
 
   @override
   Future<bool> isEmailVerified() async {
-    await _firebaseAuth.currentUser?.reload();
-    return _firebaseAuth.currentUser?.emailVerified ?? false;
+    try {
+      await _firebaseAuth.currentUser?.reload();
+      return _firebaseAuth.currentUser?.emailVerified ?? false;
+    } catch (e) {
+      throw AuthException('Error verifying email');
+    }
   }
 
   @override
-  UserModel getCurrentUser() {
-    final firebaseUser = _firebaseAuth.currentUser;
-    if (firebaseUser == null) {
-      throw AuthException('Error recuperando user');
+  User getCurrentUser() {
+    final user = _firebaseAuth.currentUser;
+    try {
+      if (user == null) {
+        throw AuthException('Error retrieving user');
+      }
+      return _mapper.fromFirebase(user);
+    } catch (e) {
+      throw AuthException('Error retrieving user');
     }
-    return UserModel.fromFirebaseUser(firebaseUser);
-    
   }
 
   @override
   Future<void> refreshCurrentUser() async {
-    await _firebaseAuth.currentUser?.getIdToken(true);
+    try {
+      await _firebaseAuth.currentUser?.getIdToken(true);
+    } catch (e) {
+      throw AuthException('Error refreshing current user');
+    }
   }
 
   @override
   Future<void> signOut() async {
-    await _firebaseAuth.signOut();
+    try {
+      await _firebaseAuth.signOut();
+    } catch (e) {
+      throw AuthException('Error signing out');
+    }
   }
 }

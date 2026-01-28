@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$User {
 
- String get uid; String? get email; String? get profileImageLocalPath;
+ String get uid; String? get email; String? get profileImageLocalPath; String? get name;
 /// Create a copy of User
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +25,16 @@ $UserCopyWith<User> get copyWith => _$UserCopyWithImpl<User>(this as User, _$ide
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is User&&(identical(other.uid, uid) || other.uid == uid)&&(identical(other.email, email) || other.email == email)&&(identical(other.profileImageLocalPath, profileImageLocalPath) || other.profileImageLocalPath == profileImageLocalPath));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is User&&(identical(other.uid, uid) || other.uid == uid)&&(identical(other.email, email) || other.email == email)&&(identical(other.profileImageLocalPath, profileImageLocalPath) || other.profileImageLocalPath == profileImageLocalPath)&&(identical(other.name, name) || other.name == name));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,uid,email,profileImageLocalPath);
+int get hashCode => Object.hash(runtimeType,uid,email,profileImageLocalPath,name);
 
 @override
 String toString() {
-  return 'User(uid: $uid, email: $email, profileImageLocalPath: $profileImageLocalPath)';
+  return 'User(uid: $uid, email: $email, profileImageLocalPath: $profileImageLocalPath, name: $name)';
 }
 
 
@@ -45,7 +45,7 @@ abstract mixin class $UserCopyWith<$Res>  {
   factory $UserCopyWith(User value, $Res Function(User) _then) = _$UserCopyWithImpl;
 @useResult
 $Res call({
- String uid, String? email, String? profileImageLocalPath
+ String uid, String? name, String? email, String? profileImageLocalPath
 });
 
 
@@ -62,10 +62,11 @@ class _$UserCopyWithImpl<$Res>
 
 /// Create a copy of User
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? uid = null,Object? email = freezed,Object? profileImageLocalPath = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? uid = null,Object? name = freezed,Object? email = freezed,Object? profileImageLocalPath = freezed,}) {
   return _then(User(
 uid: null == uid ? _self.uid : uid // ignore: cast_nullable_to_non_nullable
-as String,email: freezed == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
+as String,name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as String?,email: freezed == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
 as String?,profileImageLocalPath: freezed == profileImageLocalPath ? _self.profileImageLocalPath : profileImageLocalPath // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
