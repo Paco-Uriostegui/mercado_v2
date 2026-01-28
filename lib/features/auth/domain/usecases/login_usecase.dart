@@ -14,15 +14,14 @@ class LoginUsecase {
     required String password,
   }) async {
     if (_areEmailAndPassValids(email: email, password: password)) {
-      return Failure(
+      return Result.failure(
         AuthException(
           'El correo o la contraseña son inválidos. Por favor verifica y vuelve a intentarlo.',
         ),
       );
     }
 
-    return _authRepository
-        .trySignInWithEmailAndPassword(email, password);
+    return _authRepository.trySignInWithEmailAndPassword(email, password);
   }
 
   bool _areEmailAndPassValids({
