@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart' as fb;
 import 'package:mercado_v2/core/result/failure.dart';
-import 'package:mercado_v2/features/auth/data/datasources/auth_remote_data_source.dart';
+import 'package:mercado_v2/features/auth/data/datasources/iauth_remote_data_source.dart';
 import 'package:mercado_v2/features/auth/data/models/user_model.dart';
 
 class FirebaseAuthDataSourceImpl implements AuthRemoteDataSource {
@@ -59,8 +59,13 @@ class FirebaseAuthDataSourceImpl implements AuthRemoteDataSource {
   }
 
   @override
-  fb.User? getCurrentUser() {
-    return _firebaseAuth.currentUser;
+  UserModel getCurrentUser() {
+    final firebaseUser = _firebaseAuth.currentUser;
+    if (firebaseUser == null) {
+      throw AuthException('Error recuperando user');
+    }
+    return UserModel.fromFirebaseUser(firebaseUser);
+    
   }
 
   @override

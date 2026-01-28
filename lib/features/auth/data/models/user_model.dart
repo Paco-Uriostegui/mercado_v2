@@ -7,4 +7,8 @@ class UserModel extends User {
   factory UserModel.fromFirebaseUser(fb.User firebaseUser) {
     return UserModel(uid: firebaseUser.uid);
   }
+
+  factory UserModel.fromEntity(User user) {
+    return UserModel(uid: user.uid);
+  }
 }

@@ -1,6 +1,6 @@
 import 'package:mercado_v2/features/auth/data/models/user_model.dart';
 
-abstract class AuthRemoteDataSource<T> {
+abstract class AuthRemoteDataSource {
 
   Future<UserModel> signInWithEmailAndPassword({
     required String email,
@@ -13,7 +13,7 @@ abstract class AuthRemoteDataSource<T> {
   });
   Future<void> sendEmailVerification();
   Future<bool> isEmailVerified();
-  T? getCurrentUser();
+  UserModel getCurrentUser();
   Future<void> refreshCurrentUser();
   Future<void> signOut();
 }
