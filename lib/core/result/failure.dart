@@ -18,3 +18,7 @@ class AuthException extends Failure {
   final String errorMessage;
   const AuthException(this.errorMessage);
 }
+
+class InvalidEmail extends Failure {
+  const InvalidEmail();
+}
