@@ -14,6 +14,8 @@ Corre tests
 
 alt + shift + r para correr tests en vscode
 alt + shift + flecha abajo para copiar línea actual abajo
+command + shift + l para seleccionar todas las palabras iguales
+ctrl + c para salir del freezed en terminal
 
 
 

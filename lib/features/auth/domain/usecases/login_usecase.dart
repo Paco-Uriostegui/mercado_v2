@@ -13,7 +13,7 @@ class LoginUsecase {
     required String email,
     required String password,
   }) async {
-    if (_areEmailAndPassValids(email: email, password: password)) {
+    if (!_areEmailAndPassValids(email: email, password: password)) {
       return Result.failure(
         AuthException(
           'El correo o la contraseña son inválidos. Por favor verifica y vuelve a intentarlo.',
@@ -25,6 +25,7 @@ class LoginUsecase {
   }
 
   bool _areEmailAndPassValids({
+    // TODO crear un objectValue para Email para evitar toda esta lógica
     required String email,
     required String password,
   }) {
