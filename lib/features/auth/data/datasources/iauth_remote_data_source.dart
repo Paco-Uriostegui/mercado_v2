@@ -1,19 +1,19 @@
-import 'package:mercado_v2/features/auth/domain/entities/user.dart';
+import 'package:mercado_v2/features/auth/domain/entities/auth_user/auth_user.dart';
 
 abstract class AuthRemoteDataSource {
 
-  Future<User> signInWithEmailAndPassword({
+  Future<AuthUser> signInWithEmailAndPassword({
     required String email,
     required String password,
   });
   Future<void> sendPasswordResetEmail({required String email});
-  Future<User> createUserWithEmailAndPassword({
+  Future<AuthUser> createUserWithEmailAndPassword({
     required String email,
     required String password,
   });
   Future<void> sendEmailVerification();
   Future<bool> isEmailVerified();
-  User getCurrentUser();
+  AuthUser getCurrentUser();
   Future<void> refreshCurrentUser();
   Future<void> signOut();
 }

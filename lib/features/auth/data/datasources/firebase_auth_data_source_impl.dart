@@ -1,22 +1,21 @@
 import 'package:firebase_auth/firebase_auth.dart' as fb;
 import 'package:mercado_v2/core/result/failure.dart';
 import 'package:mercado_v2/features/auth/data/datasources/iauth_remote_data_source.dart';
-import 'package:mercado_v2/features/auth/data/mappers/user_mapper.dart';
-
-import '../../domain/entities/user.dart';
+import 'package:mercado_v2/features/auth/data/mappers/auth_user_mapper.dart';
+import 'package:mercado_v2/features/auth/domain/entities/auth_user/auth_user.dart';
 
 class FirebaseAuthDataSourceImpl implements AuthRemoteDataSource {
   final fb.FirebaseAuth _firebaseAuth;
-  final UserMapper _mapper;
+  final AuthUserMapper _mapper;
 
   FirebaseAuthDataSourceImpl({
     required fb.FirebaseAuth firebaseAuth,
-    required UserMapper mapper,
+    required AuthUserMapper mapper,
   }) : _mapper = mapper,
        _firebaseAuth = firebaseAuth;
 
   @override
-  Future<User> signInWithEmailAndPassword({
+  Future<AuthUser> signInWithEmailAndPassword({
     required String email,
     required String password,
   }) async {
@@ -28,7 +27,7 @@ class FirebaseAuthDataSourceImpl implements AuthRemoteDataSource {
 
       final user = userCredential.user;
       if (user == null) {
-        throw AuthException('User is null after signIn');
+        throw AuthException('AuthUser is null after signIn');
       }
       return _mapper.fromFirebase(user);
     } catch (e) {
@@ -45,7 +44,7 @@ class FirebaseAuthDataSourceImpl implements AuthRemoteDataSource {
   }
 
   @override
-  Future<User> createUserWithEmailAndPassword({
+  Future<AuthUser> createUserWithEmailAndPassword({
     required String email,
     required String password,
   }) async {
@@ -56,7 +55,7 @@ class FirebaseAuthDataSourceImpl implements AuthRemoteDataSource {
       );
       final user = userCredential.user;
       if (user == null) {
-        throw AuthException('User is null after creating account.');
+        throw AuthException('AuthUser is null after creating account.');
       }
       return _mapper.fromFirebase(user);
     } catch (e) {
@@ -88,7 +87,7 @@ class FirebaseAuthDataSourceImpl implements AuthRemoteDataSource {
   }
 
   @override
-  User getCurrentUser() {
+  AuthUser getCurrentUser() {
     final user = _firebaseAuth.currentUser;
     try {
       if (user == null) {

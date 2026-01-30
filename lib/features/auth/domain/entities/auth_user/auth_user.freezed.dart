@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'user.dart';
+part of 'auth_user.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -12,40 +12,40 @@ part of 'user.dart';
 // dart format off
 T _$identity<T>(T value) => value;
 /// @nodoc
-mixin _$User {
+mixin _$AuthUser {
 
- String get uid; String? get email; String? get profileImageLocalPath; String? get name;
-/// Create a copy of User
+ String get uid;
+/// Create a copy of AuthUser
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-$UserCopyWith<User> get copyWith => _$UserCopyWithImpl<User>(this as User, _$identity);
+$AuthUserCopyWith<AuthUser> get copyWith => _$AuthUserCopyWithImpl<AuthUser>(this as AuthUser, _$identity);
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is User&&(identical(other.uid, uid) || other.uid == uid)&&(identical(other.email, email) || other.email == email)&&(identical(other.profileImageLocalPath, profileImageLocalPath) || other.profileImageLocalPath == profileImageLocalPath)&&(identical(other.name, name) || other.name == name));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is AuthUser&&(identical(other.uid, uid) || other.uid == uid));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,uid,email,profileImageLocalPath,name);
+int get hashCode => Object.hash(runtimeType,uid);
 
 @override
 String toString() {
-  return 'User(uid: $uid, email: $email, profileImageLocalPath: $profileImageLocalPath, name: $name)';
+  return 'AuthUser(uid: $uid)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class $UserCopyWith<$Res>  {
-  factory $UserCopyWith(User value, $Res Function(User) _then) = _$UserCopyWithImpl;
+abstract mixin class $AuthUserCopyWith<$Res>  {
+  factory $AuthUserCopyWith(AuthUser value, $Res Function(AuthUser) _then) = _$AuthUserCopyWithImpl;
 @useResult
 $Res call({
- String uid, String? name, String? email, String? profileImageLocalPath
+ String uid
 });
 
 
@@ -53,30 +53,27 @@ $Res call({
 
 }
 /// @nodoc
-class _$UserCopyWithImpl<$Res>
-    implements $UserCopyWith<$Res> {
-  _$UserCopyWithImpl(this._self, this._then);
+class _$AuthUserCopyWithImpl<$Res>
+    implements $AuthUserCopyWith<$Res> {
+  _$AuthUserCopyWithImpl(this._self, this._then);
 
-  final User _self;
-  final $Res Function(User) _then;
+  final AuthUser _self;
+  final $Res Function(AuthUser) _then;
 
-/// Create a copy of User
+/// Create a copy of AuthUser
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? uid = null,Object? name = freezed,Object? email = freezed,Object? profileImageLocalPath = freezed,}) {
-  return _then(User(
+@pragma('vm:prefer-inline') @override $Res call({Object? uid = null,}) {
+  return _then(AuthUser(
 uid: null == uid ? _self.uid : uid // ignore: cast_nullable_to_non_nullable
-as String,name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
-as String?,email: freezed == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
-as String?,profileImageLocalPath: freezed == profileImageLocalPath ? _self.profileImageLocalPath : profileImageLocalPath // ignore: cast_nullable_to_non_nullable
-as String?,
+as String,
   ));
 }
 
 }
 
 
-/// Adds pattern-matching-related methods to [User].
-extension UserPatterns on User {
+/// Adds pattern-matching-related methods to [AuthUser].
+extension AuthUserPatterns on AuthUser {
 /// A variant of `map` that fallback to returning `orElse`.
 ///
 /// It is equivalent to doing:

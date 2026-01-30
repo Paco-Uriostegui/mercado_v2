@@ -1,7 +1,7 @@
 import 'package:mercado_v2/core/result/failure.dart';
 import 'package:mercado_v2/core/result/result.dart';
 import 'package:mercado_v2/features/auth/data/datasources/iauth_remote_data_source.dart';
-import 'package:mercado_v2/features/auth/domain/entities/user.dart';
+import 'package:mercado_v2/features/auth/domain/entities/auth_user/auth_user.dart';
 import 'package:mercado_v2/features/auth/domain/repositories/iauth_repository.dart';
 
 class FirebaseAuthRepositoryImpl implements IAuthRepository {
@@ -12,7 +12,7 @@ class FirebaseAuthRepositoryImpl implements IAuthRepository {
   }) : _authRemoteDataSource = authRemoteDataSource;
 
   @override
-  Future<Result<User>> tryCreateUserWithEmailAndPassword(
+  Future<Result<AuthUser>> tryCreateUserWithEmailAndPassword(
     String email,
     String password,
   ) {
@@ -21,7 +21,7 @@ class FirebaseAuthRepositoryImpl implements IAuthRepository {
   }
 
   @override
-  Future<User?> tryGetCurrentUser() {
+  Future<AuthUser?> tryGetCurrentUser() {
     // TODO: implement tryGetCurrentUser
     throw UnimplementedError();
   }
@@ -45,17 +45,17 @@ class FirebaseAuthRepositoryImpl implements IAuthRepository {
   }
 
   @override
-  Future<Result<User>> trySignInWithEmailAndPassword(
+  Future<Result<AuthUser>> trySignInWithEmailAndPassword(
     String email,
     String password,
   ) async {
     try {
-      final user = await _authRemoteDataSource.signInWithEmailAndPassword(
+      final authUser = await _authRemoteDataSource.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
 
-      return Result.success(user);
+      return Result.success(authUser);
     } on AuthException catch (e) {
       return Result.failure(e);
     } catch (e) {

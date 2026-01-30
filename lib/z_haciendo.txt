@@ -2,10 +2,10 @@
 Hecho: 
 - 
 En: 
-- 
+- Terminar implementación de user repository.
 
 Seguir:
-- Entender perfectamente la necesidad de operador == y freezed. Hay muchas dudas.
+
 
 Por hacer: 
 
