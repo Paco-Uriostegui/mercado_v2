@@ -22,3 +22,9 @@ class AuthException extends Failure {
 class InvalidEmail extends Failure {
   const InvalidEmail();
 }
+class InvalidPassword extends Failure {
+  const InvalidPassword();
+}
+class UnknownException extends Failure {
+  const UnknownException();
+}

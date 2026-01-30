@@ -1,10 +1,11 @@
 
 Hecho: 
-- Implementación para que los dataSource no devuelvan nada de dominio externo
+- 
 En: 
-- Entendiendo en el video, la función y los métodos de UserModel.
+- 
 
-Seguir: 
+Seguir:
+- Entender perfectamente la necesidad de operador == y freezed. Hay muchas dudas.
 
 Por hacer: 
 
