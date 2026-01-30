@@ -1,13 +1,14 @@
+import 'package:equatable/equatable.dart';
 import 'package:mercado_v2/core/result/failure.dart';
 
-class Email {
+class Email extends Equatable {
   final String value;
 
-  Email._(this.value);
+  const Email._(this.value);
 
   factory Email(String value) {
     final e = value.trim();
-    if (_isValid(e)) {
+    if (!_isValid(e)) {
       throw InvalidEmail();
     }
     return Email._(e);
@@ -21,4 +22,8 @@ class Email {
         e.indexOf('@') > 0 &&
         e.indexOf('@') < e.length - 1;
   }
+  
+  @override
+
+  List<Object?> get props => [value];
 }
