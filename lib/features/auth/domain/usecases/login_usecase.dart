@@ -1,43 +1,29 @@
-// import 'package:mercado_v2/core/result/failure.dart';
-// import 'package:mercado_v2/core/result/result.dart';
-// import 'package:mercado_v2/features/auth/domain/entities/user/user.dart';
-// import 'package:mercado_v2/features/auth/domain/repositories/iauth_repository.dart';
+import 'package:mercado_v2/core/result/result.dart';
+import 'package:mercado_v2/core/result/result_extensions.dart';
+import 'package:mercado_v2/features/auth/domain/entities/auth_user/auth_user.dart';
+import 'package:mercado_v2/features/auth/domain/repositories/iauth_repository.dart';
+import 'package:mercado_v2/features/auth/domain/repositories/iuser_repository.dart';
+import 'package:mercado_v2/features/auth/domain/value_objects/user/email.dart';
+import 'package:mercado_v2/features/auth/domain/value_objects/user/password.dart';
 
-// class LoginUsecase {
-//   final IAuthRepository _authRepository;
+class LoginUsecase {
+  final IAuthRepository _authRepository;
 
-//   LoginUsecase({required IAuthRepository authRepository})
-//     : _authRepository = authRepository;
+  LoginUsecase({
+    required IAuthRepository authRepository,
+    required IUserRepository iuserRepository,
+  }) : _authRepository = authRepository;
 
-//   Future<Result<User>> execute({
-//     required String email,
-//     required String password,
-//   }) async {
-//     if (!_areEmailAndPassValids(email: email, password: password)) {
-//       return Result.failure(
-//         AuthException(
-//           'El correo o la contraseña son inválidos. Por favor verifica y vuelve a intentarlo.',
-//         ),
-//       );
-//     }
-
-//     return _authRepository.trySignInWithEmailAndPassword(email, password);
-//   }
-
-//   bool _areEmailAndPassValids({
-//     // TODO crear un objectValue para Email para evitar toda esta lógica
-//     required String email,
-//     required String password,
-//   }) {
-//     final e = email.trim();
-//     final p = password.trim();
-//     final hasValidFormat =
-//         e.isNotEmpty &&
-//         e.contains('@') &&
-//         e.indexOf('@') > 0 &&
-//         e.indexOf('@') < e.length - 1 &&
-//         p.length >= 8 &&
-//         e.contains('.');
-//     return hasValidFormat;
-//   }
-// }
+  Future<Result<AuthUser>> call({
+    required String email,
+    required String password,
+  }) async {
+    // --------------------------------------------------------------- flatMapAsync -------------------
+    return Email.create(email).flatMapAsync((emailVO) {
+      return Password.create(password).flatMapAsync((passVO) {
+        return _authRepository.trySignInWithEmailAndPassword(emailVO.value, passVO.value);
+      });
+    });
+    
+  }
+}

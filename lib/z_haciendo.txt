@@ -2,9 +2,10 @@
 Hecho: 
 - 
 En: 
-- Terminar implementación de user repository.
+- Corregir error en local_user_mapper.dart
 
 Seguir:
+- crear splashScreen con authBloc
 
 
 Por hacer: 

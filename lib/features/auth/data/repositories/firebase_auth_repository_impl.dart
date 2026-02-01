@@ -4,6 +4,8 @@ import 'package:mercado_v2/features/auth/data/datasources/iauth_remote_data_sour
 import 'package:mercado_v2/features/auth/domain/entities/auth_user/auth_user.dart';
 import 'package:mercado_v2/features/auth/domain/repositories/iauth_repository.dart';
 
+import '../../domain/value_objects/user/value_objects_export.dart';
+
 class FirebaseAuthRepositoryImpl implements IAuthRepository {
   final AuthRemoteDataSource _authRemoteDataSource;
 

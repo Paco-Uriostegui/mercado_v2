@@ -19,12 +19,13 @@ class AuthException extends Failure {
   const AuthException(this.errorMessage);
 }
 
-class InvalidEmail extends Failure {
-  const InvalidEmail();
+class InvalidEmailFormat extends Failure {
+  final String errorMessage = 'El formato del correo es inválido. Por favor verifícalo.';
+  
 }
 
-class InvalidPassword extends Failure {
-  const InvalidPassword();
+class InvalidPasswordFormat extends Failure {
+  final String errorMessage = 'La contraseña debe contener al menos 8 caracteres';
 }
 
 class InvalidFirstName extends Failure {
@@ -69,3 +70,23 @@ class InvalidSecondLastName extends Failure {
 class UnknownException extends Failure {
   const UnknownException();
 }
+
+class LocalUserException extends Failure {
+  final String errorMessage;
+  const LocalUserException(this.errorMessage);
+  
+  factory LocalUserException.errorWhileSavingUser() {
+    return LocalUserException('Error while saving user locally');
+  }
+
+  factory LocalUserException.errorGettingUser() {
+    return LocalUserException('Error getting user locally');
+  }
+  factory LocalUserException.errorRemovingUser() {
+    return LocalUserException('Error removing user locally');
+  }
+
+
+
+ 
+} 
