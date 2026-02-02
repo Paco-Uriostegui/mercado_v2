@@ -14,6 +14,11 @@ class Email extends Equatable {
     return Result.failure(InvalidEmailFormat());
   }
 
+  factory Email.direct(String value) {
+    final result = Email.create(value);
+    return result.map(success: (success) => success.value, failure: (failure) => throw InvalidEmailFormat());
+  }
+
 
   const Email._(this.value);
 

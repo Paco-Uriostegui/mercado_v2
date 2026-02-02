@@ -6,6 +6,8 @@ import 'package:mercado_v2/features/auth/data/models/local_user_model.dart';
 import 'package:mercado_v2/features/auth/domain/entities/user/user.dart';
 import 'package:mercado_v2/features/auth/domain/repositories/iuser_repository.dart';
 
+// TODO poner un origin a cada metodo para saber de donde vienen de DB local o remota
+
 class UserRepositoryImpl implements IUserRepository {
   final UserSharedPrefDataSourceImpl _prefDataSourceImpl;
   final LocalUserMapper _mapper;
