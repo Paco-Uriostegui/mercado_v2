@@ -86,7 +86,16 @@ class LocalUserException extends Failure {
     return LocalUserException('Error removing user locally');
   }
 
+  // ----------------------------------------------------------------
+  
 
 
  
 } 
+class RemoteAuthException extends Failure {
+  const RemoteAuthException();
+}
+
+class GetCurrentUserException extends RemoteAuthException {
+  const GetCurrentUserException();
+}

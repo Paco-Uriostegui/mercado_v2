@@ -4,7 +4,7 @@ import 'package:mercado_v2/features/auth/data/datasources/iauth_remote_data_sour
 import 'package:mercado_v2/features/auth/data/mappers/auth_user_mapper.dart';
 import 'package:mercado_v2/features/auth/domain/entities/auth_user/auth_user.dart';
 
-class FirebaseAuthDataSourceImpl implements AuthRemoteDataSource {
+class FirebaseAuthDataSourceImpl implements IAuthRemoteDataSource {
   final fb.FirebaseAuth _firebaseAuth;
   final AuthUserMapper _mapper;
 
@@ -87,11 +87,11 @@ class FirebaseAuthDataSourceImpl implements AuthRemoteDataSource {
   }
 
   @override
-  AuthUser getCurrentUser() {
+  AuthUser? getCurrentUser() {
     final user = _firebaseAuth.currentUser;
     try {
       if (user == null) {
-        throw AuthException('Error retrieving user');
+        return null;
       }
       return _mapper.fromFirebase(user);
     } catch (e) {

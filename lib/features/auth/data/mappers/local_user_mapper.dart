@@ -1,5 +1,3 @@
-import 'package:mercado_v2/core/result/result.dart';
-import 'package:mercado_v2/core/result/result_extensions.dart';
 import 'package:mercado_v2/features/auth/data/models/local_user_model.dart';
 import 'package:mercado_v2/features/auth/domain/entities/user/user.dart';
 import 'package:mercado_v2/features/auth/domain/value_objects/user/value_objects_export.dart';

@@ -22,7 +22,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     );
     result.when(
       success: (value) {
-        // TODO navegar a splash screen. La splashScreen tendrá centralizada la búsqueda del User usando el AuthUser
+        // TODO authUser válido. Guardarlo en el state global del user y navegar a splash screen. La splashScreen tendrá centralizada la búsqueda del User usando el AuthUser
         // para así no duplicar código
       },
       failure: (failure) {

@@ -2,10 +2,10 @@
 Hecho: 
 - 
 En: 
-- Corregir error en local_user_mapper.dart
+- Crear AuthUser global
 
 Seguir:
-- crear splashScreen con authBloc
+- 
 
 
 Por hacer: 

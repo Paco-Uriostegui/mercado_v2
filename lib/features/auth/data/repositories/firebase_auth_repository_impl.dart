@@ -4,13 +4,11 @@ import 'package:mercado_v2/features/auth/data/datasources/iauth_remote_data_sour
 import 'package:mercado_v2/features/auth/domain/entities/auth_user/auth_user.dart';
 import 'package:mercado_v2/features/auth/domain/repositories/iauth_repository.dart';
 
-import '../../domain/value_objects/user/value_objects_export.dart';
-
 class FirebaseAuthRepositoryImpl implements IAuthRepository {
-  final AuthRemoteDataSource _authRemoteDataSource;
+  final IAuthRemoteDataSource _authRemoteDataSource;
 
   FirebaseAuthRepositoryImpl({
-    required AuthRemoteDataSource authRemoteDataSource,
+    required IAuthRemoteDataSource authRemoteDataSource,
   }) : _authRemoteDataSource = authRemoteDataSource;
 
   @override
@@ -23,9 +21,17 @@ class FirebaseAuthRepositoryImpl implements IAuthRepository {
   }
 
   @override
-  Future<AuthUser?> tryGetCurrentUser() {
-    // TODO: implement tryGetCurrentUser
-    throw UnimplementedError();
+  Future<Result<AuthUser?>> tryGetCurrentUser() async {
+    final user = _authRemoteDataSource.getCurrentUser();
+
+    try {
+      if (user == null) {
+        return Result.success(null);
+      }
+      return Result.success(user);
+    } catch (e) {
+      return Result.failure(GetCurrentUserException());
+    }
   }
 
   @override
@@ -75,5 +81,20 @@ class FirebaseAuthRepositoryImpl implements IAuthRepository {
   Future<Result<bool>> tryVerifyEmail() {
     // TODO: implement tryVerifyEmail
     throw UnimplementedError();
+  }
+
+  @override
+  Future<Result<AuthUser?>> tryGetRefreshedCurrentUser() async {
+    try {
+      final AuthUser? authUser = _authRemoteDataSource.getCurrentUser();
+      if (authUser == null) {
+        return Result.success(null);
+      }
+      await _authRemoteDataSource.refreshCurrentUser();
+      return Result.success(authUser);
+    } catch (e) {
+      // TODO reportar a crashlytics
+      return Result.failure(GetCurrentUserException());
+    }
   }
 }

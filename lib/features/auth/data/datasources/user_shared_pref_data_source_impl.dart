@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:mercado_v2/core/result/failure.dart';
 import 'package:mercado_v2/features/auth/data/datasources/iuser_local_data_source.dart';
 import 'package:mercado_v2/features/auth/data/models/local_user_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';

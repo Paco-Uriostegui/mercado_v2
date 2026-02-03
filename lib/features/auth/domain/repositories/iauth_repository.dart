@@ -7,7 +7,8 @@ abstract class IAuthRepository {
   Future<Result<AuthUser>> tryCreateUserWithEmailAndPassword(String email, String password);
   Future<void> trySendEmailVerification();
   Future<Result<bool>> tryVerifyEmail();
-  Future<AuthUser?> tryGetCurrentUser();
+  Future<Result<AuthUser?>> tryGetCurrentUser();
   Future<Result<void>> tryRefreshCurrentUser();
+  Future<Result<AuthUser?>> tryGetRefreshedCurrentUser();
   Future<Result<void>> trySignOut();
 }
