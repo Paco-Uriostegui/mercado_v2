@@ -116,4 +116,10 @@ class FirebaseAuthDataSourceImpl implements IAuthRemoteDataSource {
       throw AuthException('Error signing out');
     }
   }
+
+  Stream<AuthUser?> authStateChanges() {
+    return _firebaseAuth.authStateChanges().map((firebaseUser) {
+      return firebaseUser == null ? null : AuthUser(uid: firebaseUser.uid);
+    });
+  }
 }

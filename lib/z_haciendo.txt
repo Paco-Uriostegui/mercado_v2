@@ -1,11 +1,10 @@
 
 Hecho: 
-- 
+- authBloc y streams
 En: 
-- Crear AuthUser global
-
+-
 Seguir:
-- 
+    - crear widget técnico authGate
 
 
 Por hacer: 

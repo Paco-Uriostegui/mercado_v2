@@ -97,4 +97,18 @@ class FirebaseAuthRepositoryImpl implements IAuthRepository {
       return Result.failure(GetCurrentUserException());
     }
   }
+
+  @override
+  Stream<AuthUser?> onStateChanges() {
+    try {
+      return _authRemoteDataSource.authStateChanges().handleError((e) {
+        // TODO reportar a crashlytics
+        // investigar si el error viaja y llega como data hasta el bloc
+        throw AuthException("");
+      });
+    } catch (e) {
+      // TODO reportar a crashlytics
+      throw AuthException("");
+    }
+  }
 }

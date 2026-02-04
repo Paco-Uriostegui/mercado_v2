@@ -11,4 +11,5 @@ abstract class IAuthRepository {
   Future<Result<void>> tryRefreshCurrentUser();
   Future<Result<AuthUser?>> tryGetRefreshedCurrentUser();
   Future<Result<void>> trySignOut();
+  Stream<AuthUser?> onStateChanges();
 }
