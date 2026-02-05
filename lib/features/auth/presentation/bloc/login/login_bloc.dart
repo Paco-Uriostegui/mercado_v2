@@ -1,5 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mercado_v2/core/result/result.dart';
+import 'package:mercado_v2/app/core/result/result.dart';
 import 'package:mercado_v2/features/auth/domain/usecases/login_usecase.dart';
 import 'package:mercado_v2/features/auth/presentation/bloc/login/login_event.dart';
 import 'package:mercado_v2/features/auth/presentation/bloc/login/login_state.dart';

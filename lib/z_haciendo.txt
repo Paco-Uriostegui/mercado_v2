@@ -1,10 +1,10 @@
 
 Hecho: 
-- authBloc y streams
+    - crear widget técnico authGate
 En: 
 -
 Seguir:
-    - crear widget técnico authGate
+    - reeler deepseek sobre metodología. Crear prueba unitaria de register y construir todo a parti de ahí 
 
 
 Por hacer: 

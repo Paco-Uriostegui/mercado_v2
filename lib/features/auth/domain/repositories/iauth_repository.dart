@@ -1,4 +1,4 @@
-import 'package:mercado_v2/core/result/result.dart';
+import 'package:mercado_v2/app/core/result/result.dart';
 import 'package:mercado_v2/features/auth/domain/entities/auth_user/auth_user.dart';
 
 abstract class IAuthRepository {

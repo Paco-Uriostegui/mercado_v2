@@ -1,5 +1,5 @@
-import 'package:mercado_v2/core/result/failure.dart';
-import 'package:mercado_v2/core/result/result.dart';
+import 'package:mercado_v2/app/core/result/failure.dart';
+import 'package:mercado_v2/app/core/result/result.dart';
 import 'package:mercado_v2/features/auth/data/datasources/user_shared_pref_data_source_impl.dart';
 import 'package:mercado_v2/features/auth/data/mappers/local_user_mapper.dart';
 import 'package:mercado_v2/features/auth/data/models/local_user_model.dart';

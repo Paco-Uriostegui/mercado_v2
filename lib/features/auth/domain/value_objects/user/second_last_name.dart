@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:mercado_v2/core/result/failure.dart';
+import 'package:mercado_v2/app/core/result/failure.dart';
 
 class SecondLastName extends Equatable {
   final String value;

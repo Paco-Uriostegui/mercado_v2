@@ -1,5 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart' as fb;
-import 'package:mercado_v2/core/result/failure.dart';
+import 'package:mercado_v2/app/core/result/failure.dart';
 import 'package:mercado_v2/features/auth/data/datasources/iauth_remote_data_source.dart';
 import 'package:mercado_v2/features/auth/data/mappers/auth_user_mapper.dart';
 import 'package:mercado_v2/features/auth/domain/entities/auth_user/auth_user.dart';
@@ -117,6 +117,7 @@ class FirebaseAuthDataSourceImpl implements IAuthRemoteDataSource {
     }
   }
 
+  @override
   Stream<AuthUser?> authStateChanges() {
     return _firebaseAuth.authStateChanges().map((firebaseUser) {
       return firebaseUser == null ? null : AuthUser(uid: firebaseUser.uid);

@@ -6,6 +6,8 @@ part 'auth_user.freezed.dart';
 class AuthUser with _$AuthUser{
   @override
   final String uid;
+  @override
+  final bool hasVerifyEmail;
 
-  AuthUser({required this.uid});
+  AuthUser({required this.uid, required this.hasVerifyEmail});
 } 

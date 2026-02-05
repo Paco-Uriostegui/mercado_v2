@@ -1,5 +1,5 @@
-import 'package:mercado_v2/core/result/result.dart';
-import 'package:mercado_v2/core/result/result_extensions.dart';
+import 'package:mercado_v2/app/core/result/result.dart';
+import 'package:mercado_v2/app/core/result/result_extensions.dart';
 import 'package:mercado_v2/features/auth/domain/entities/auth_user/auth_user.dart';
 import 'package:mercado_v2/features/auth/domain/repositories/iauth_repository.dart';
 import 'package:mercado_v2/features/auth/domain/repositories/iuser_repository.dart';

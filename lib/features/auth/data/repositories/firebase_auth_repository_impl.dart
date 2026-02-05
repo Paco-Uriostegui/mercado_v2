@@ -1,5 +1,5 @@
-import 'package:mercado_v2/core/result/failure.dart';
-import 'package:mercado_v2/core/result/result.dart';
+import 'package:mercado_v2/app/core/result/failure.dart';
+import 'package:mercado_v2/app/core/result/result.dart';
 import 'package:mercado_v2/features/auth/data/datasources/iauth_remote_data_source.dart';
 import 'package:mercado_v2/features/auth/domain/entities/auth_user/auth_user.dart';
 import 'package:mercado_v2/features/auth/domain/repositories/iauth_repository.dart';
