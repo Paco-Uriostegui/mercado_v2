@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$AuthUser {
 
- String get uid; bool get hasVerifyEmail;
+ String get uid; bool? get hasVerifyEmail;
 /// Create a copy of AuthUser
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -45,7 +45,7 @@ abstract mixin class $AuthUserCopyWith<$Res>  {
   factory $AuthUserCopyWith(AuthUser value, $Res Function(AuthUser) _then) = _$AuthUserCopyWithImpl;
 @useResult
 $Res call({
- String uid, bool hasVerifyEmail
+ String uid, bool? hasVerifyEmail
 });
 
 
@@ -62,11 +62,11 @@ class _$AuthUserCopyWithImpl<$Res>
 
 /// Create a copy of AuthUser
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? uid = null,Object? hasVerifyEmail = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? uid = null,Object? hasVerifyEmail = freezed,}) {
   return _then(AuthUser(
 uid: null == uid ? _self.uid : uid // ignore: cast_nullable_to_non_nullable
-as String,hasVerifyEmail: null == hasVerifyEmail ? _self.hasVerifyEmail : hasVerifyEmail // ignore: cast_nullable_to_non_nullable
-as bool,
+as String,hasVerifyEmail: freezed == hasVerifyEmail ? _self.hasVerifyEmail : hasVerifyEmail // ignore: cast_nullable_to_non_nullable
+as bool?,
   ));
 }
 
