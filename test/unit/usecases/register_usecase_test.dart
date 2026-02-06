@@ -24,21 +24,34 @@ que luego mostrará un snackbar para decirle al usuario que no se pudo guardar s
 - se llama a authRepository.createAccount...() de firebase (repo)
       -> si hay error, return Result.failure(AuthException)
 - se llama a authRepository.updateDisplayName(nombreCompleto)
-- se llama a authRepo.sendVerificationEmail()
-      -> si hay error, se pasa por alto ya que el usuario podrá relanzar manualmente en verifyEmailScreen
-      -> si hay error:
-          - 
-      -> si no hay error: 
-          - 
-          - return Result.success(BackendUserCreatedIncomplete()
-      // si el usuario cierra la app en este momento, siempre podrá actualizar su nombre en la profileScreen 
-      // ya que el nombre no se subirá a firestore(por ahora)
-      // lo que se puede hacer al ir a homeScreen es leer el firebaseUser, si el name es null, se mostrará un snackbar
-      // para invitarlo a agregar su nombre en la profileScreen
-
-- devuelve Result.success(BackendUserCreatedSuccesfully())
+        -> si hay error:
+            - se llama a authRepo.sendVerificationEmail()
+                -> si hay error, se pasa por alto ya que el usuario podrá relanzar manualmente en verifyEmailScreen  
+            - return Result.success(RegistrationSuccessWithIncompleteProfile()
+        -> si no hay error: 
+            - se llama a authRepo.sendVerificationEmail()
+                -> si hay error, se pasa por alto ya que el usuario podrá relanzar manualmente en verifyEmailScreen
+            - devuelve Result.success(RegistrationSuccess())
   "Fin de usecase"
 - (bloc hace when de la respuesta y emite state para que la UI reaccione)
+
+======================================
+"Inicio de register use case"
+- nombreCompleto = Validación de VO's (email, password, name, lastName, secondLastName) (crear un método privado que abra todos los results)
+        -> failure? return Result.failure(EmailInvalidException o PasswordInvalidException, etc)
+- authRepo.createAccount...() 
+        -> failure? return Result.failure(AuthException)
+- responseResult = authRepo.updateDisplayName(nombreCompleto)
+- authRepo.sendVerificationEmail()
+        -> retorna void, cualquier error ya habrá sido atrapado previamente, ya que el usuario podrá relanzar manualmente en verifyEmailScreen  
+- if (responseResult)
+        -> success: return Result.success(RegistrationSuccess())
+        -> failure: return Result.success(RegistrationSuccessWithIncompleteProfile()
+"Fin de register use case"
+
+
+
+
 */ 
 // test('Test 2: ')
 
