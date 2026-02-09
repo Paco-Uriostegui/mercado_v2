@@ -7,7 +7,9 @@ class AuthUser with _$AuthUser{
   @override
   final String uid;
   @override
-  final bool? hasVerifyEmail;
+  final bool isEmailVerified;
+  final bool? isProfileCompleted;
 
-  AuthUser({required this.uid, this.hasVerifyEmail});
+  AuthUser({required this.uid, required this.isEmailVerified, this.isProfileCompleted});
+
 } 

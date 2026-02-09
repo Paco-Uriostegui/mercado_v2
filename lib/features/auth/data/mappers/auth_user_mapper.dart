@@ -7,6 +7,6 @@ class AuthUserMapper {
     if (firebaseUser.uid.isEmpty) {
       throw AuthException();
     }
-    return AuthUser(uid: firebaseUser.uid);
+    return AuthUser(uid: firebaseUser.uid, isEmailVerified: firebaseUser.emailVerified);
   }
 }

@@ -114,7 +114,7 @@ class FirebaseAuthDataSourceImpl implements IAuthRemoteDataSource {
   @override
   Stream<AuthUser?> authStateChanges() {
     return _firebaseAuth.authStateChanges().map((firebaseUser) {
-      return firebaseUser == null ? null : AuthUser(uid: firebaseUser.uid);
+      return firebaseUser == null ? null : AuthUser(uid: firebaseUser.uid, isEmailVerified: firebaseUser.emailVerified);
     });
   }
 
