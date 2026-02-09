@@ -5,7 +5,7 @@ import 'package:mercado_v2/features/auth/domain/entities/auth_user/auth_user.dar
 class AuthUserMapper {
   AuthUser fromFirebase(fb.User firebaseUser) {
     if (firebaseUser.uid.isEmpty) {
-      throw AuthException('firebaseUser id is empty');
+      throw AuthException();
     }
     return AuthUser(uid: firebaseUser.uid);
   }

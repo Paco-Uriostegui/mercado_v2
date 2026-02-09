@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mercado_v2/features/auth/presentation/bloc/auth/auth_bloc.dart';
 import 'package:mercado_v2/features/auth/presentation/bloc/auth/auth_state.dart';
+import 'package:mercado_v2/features/auth/presentation/screens/app_shell_prov.dart';
 import 'package:mercado_v2/features/auth/presentation/screens/login_screen.dart';
 import 'package:mercado_v2/features/auth/presentation/screens/splash_screen.dart';
 
@@ -13,7 +14,7 @@ class AuthGate extends StatelessWidget {
     return BlocBuilder<AuthBloc, AuthState>(
       builder: (context, state) {
         return state.when(
-          authenticated: (authUser) => AppShell(),
+          authenticated: (authUser) => AppShellProv(),
           notAuthenticated: () => LoginScreen(),
           loading: () => SplashScreen(),
         );

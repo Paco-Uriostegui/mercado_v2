@@ -3,6 +3,8 @@ import 'package:mercado_v2/app/core/result/result.dart';
 import 'package:mercado_v2/features/auth/data/datasources/iauth_remote_data_source.dart';
 import 'package:mercado_v2/features/auth/domain/entities/auth_user/auth_user.dart';
 import 'package:mercado_v2/features/auth/domain/repositories/iauth_repository.dart';
+import 'package:mercado_v2/features/auth/domain/value_objects/user/email.dart';
+import 'package:mercado_v2/features/auth/domain/value_objects/user/value_objects_export.dart';
 
 class FirebaseAuthRepositoryImpl implements IAuthRepository {
   final IAuthRemoteDataSource _authRemoteDataSource;
@@ -12,9 +14,9 @@ class FirebaseAuthRepositoryImpl implements IAuthRepository {
   }) : _authRemoteDataSource = authRemoteDataSource;
 
   @override
-  Future<Result<AuthUser>> tryCreateUserWithEmailAndPassword(
-    String email,
-    String password,
+  Future<Result<void>> tryCreateUserWithEmailAndPassword(
+    Email email,
+    Password password,
   ) {
     // TODO: implement tryCreateUserWithEmailAndPassword
     throw UnimplementedError();
@@ -41,9 +43,8 @@ class FirebaseAuthRepositoryImpl implements IAuthRepository {
   }
 
   @override
-  Future<void> trySendEmailVerification() {
-    // TODO: implement trySendEmailVerification
-    throw UnimplementedError();
+  Future<void> trySendEmailVerification() async {
+    await _authRemoteDataSource.sendEmailVerification();
   }
 
   @override
@@ -104,11 +105,24 @@ class FirebaseAuthRepositoryImpl implements IAuthRepository {
       return _authRemoteDataSource.authStateChanges().handleError((e) {
         // TODO reportar a crashlytics
         // investigar si el error viaja y llega como data hasta el bloc
-        throw AuthException("");
+        throw AuthException();
       });
     } catch (e) {
       // TODO reportar a crashlytics
-      throw AuthException("");
+      throw AuthException();
     }
   }
+
+  @override
+  Future<Result<void>> tryUpdateDisplayName(String firstName,String lastName, String secondLastName) async {
+    try {
+      final String name = "$firstName $lastName $secondLastName";
+      await _authRemoteDataSource.updateDisplayName(name);
+      return Result.success(null);
+    } catch (e) {
+      return Result.failure(UpdateDisplayNameException());
+    }
+  }
+
+
 }

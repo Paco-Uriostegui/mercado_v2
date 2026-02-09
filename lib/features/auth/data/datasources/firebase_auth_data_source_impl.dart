@@ -27,14 +27,12 @@ class FirebaseAuthDataSourceImpl implements IAuthRemoteDataSource {
 
       final user = userCredential.user;
       if (user == null) {
-        throw AuthException('AuthUser is null after signIn');
+        throw AuthException();
       }
       return _mapper.fromFirebase(user);
     } catch (e) {
       // TODO crashlytics
-      throw AuthException(
-        'Ha ocurrido un error iniciando sesión. Por favor inténtalo otra vez',
-      );
+      throw AuthException();
     }
   }
 
@@ -55,13 +53,11 @@ class FirebaseAuthDataSourceImpl implements IAuthRemoteDataSource {
       );
       final user = userCredential.user;
       if (user == null) {
-        throw AuthException('AuthUser is null after creating account.');
+        throw AuthException();
       }
       return _mapper.fromFirebase(user);
     } catch (e) {
-      throw AuthException(
-        'Ha ocurrido un error creando la cuenta. Por favor inténtalo otra vez',
-      );
+      throw AuthException();
     }
   }
 
@@ -70,9 +66,7 @@ class FirebaseAuthDataSourceImpl implements IAuthRemoteDataSource {
     try {
       await _firebaseAuth.currentUser?.sendEmailVerification();
     } catch (e) {
-      throw AuthException(
-        'Ha ocurrido un error en el envío del correo de verificación. Por favor inténtalo otra vez',
-      );
+      // TODO reportar a crashlytics  
     }
   }
 
@@ -82,7 +76,7 @@ class FirebaseAuthDataSourceImpl implements IAuthRemoteDataSource {
       await _firebaseAuth.currentUser?.reload();
       return _firebaseAuth.currentUser?.emailVerified ?? false;
     } catch (e) {
-      throw AuthException('Error verifying email');
+      throw AuthException();
     }
   }
 
@@ -95,7 +89,7 @@ class FirebaseAuthDataSourceImpl implements IAuthRemoteDataSource {
       }
       return _mapper.fromFirebase(user);
     } catch (e) {
-      throw AuthException('Error retrieving user');
+      throw AuthException();
     }
   }
 
@@ -104,7 +98,7 @@ class FirebaseAuthDataSourceImpl implements IAuthRemoteDataSource {
     try {
       await _firebaseAuth.currentUser?.getIdToken(true);
     } catch (e) {
-      throw AuthException('Error refreshing current user');
+      throw AuthException();
     }
   }
 
@@ -113,7 +107,7 @@ class FirebaseAuthDataSourceImpl implements IAuthRemoteDataSource {
     try {
       await _firebaseAuth.signOut();
     } catch (e) {
-      throw AuthException('Error signing out');
+      throw AuthException();
     }
   }
 
@@ -123,4 +117,15 @@ class FirebaseAuthDataSourceImpl implements IAuthRemoteDataSource {
       return firebaseUser == null ? null : AuthUser(uid: firebaseUser.uid);
     });
   }
+
+  @override
+  Future<void> updateDisplayName(String name) async {
+    try {
+      await _firebaseAuth.currentUser?.updateDisplayName(name);
+    } catch (e) {
+      // TODO reportar a crashlytics
+      throw UpdateDisplayNameException();      
+    }
+  }
+
 }

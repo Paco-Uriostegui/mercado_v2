@@ -17,6 +17,7 @@ abstract class IAuthRemoteDataSource {
   Future<void> refreshCurrentUser();
   Future<void> signOut();
   Stream<AuthUser?> authStateChanges();
+  Future<void> updateDisplayName(String name);
 
 
 }
