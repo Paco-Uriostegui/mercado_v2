@@ -55,12 +55,13 @@ extension CreateAccountEventPatterns on CreateAccountEvent {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( CreateAccountSubmitted value)?  createAccountSubmitted,TResult Function( LoginButtonPressed value)?  loginButtonPressed,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( CreateAccountSubmitted value)?  createAccountSubmitted,TResult Function( LoginButtonPressed value)?  loginButtonPressed,TResult Function( RestorePasswordButtonPressed value)?  restorePasswordButtonPressed,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case CreateAccountSubmitted() when createAccountSubmitted != null:
 return createAccountSubmitted(_that);case LoginButtonPressed() when loginButtonPressed != null:
-return loginButtonPressed(_that);case _:
+return loginButtonPressed(_that);case RestorePasswordButtonPressed() when restorePasswordButtonPressed != null:
+return restorePasswordButtonPressed(_that);case _:
   return orElse();
 
 }
@@ -78,12 +79,13 @@ return loginButtonPressed(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( CreateAccountSubmitted value)  createAccountSubmitted,required TResult Function( LoginButtonPressed value)  loginButtonPressed,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( CreateAccountSubmitted value)  createAccountSubmitted,required TResult Function( LoginButtonPressed value)  loginButtonPressed,required TResult Function( RestorePasswordButtonPressed value)  restorePasswordButtonPressed,}){
 final _that = this;
 switch (_that) {
 case CreateAccountSubmitted():
 return createAccountSubmitted(_that);case LoginButtonPressed():
-return loginButtonPressed(_that);}
+return loginButtonPressed(_that);case RestorePasswordButtonPressed():
+return restorePasswordButtonPressed(_that);}
 }
 /// A variant of `map` that fallback to returning `null`.
 ///
@@ -97,12 +99,13 @@ return loginButtonPressed(_that);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( CreateAccountSubmitted value)?  createAccountSubmitted,TResult? Function( LoginButtonPressed value)?  loginButtonPressed,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( CreateAccountSubmitted value)?  createAccountSubmitted,TResult? Function( LoginButtonPressed value)?  loginButtonPressed,TResult? Function( RestorePasswordButtonPressed value)?  restorePasswordButtonPressed,}){
 final _that = this;
 switch (_that) {
 case CreateAccountSubmitted() when createAccountSubmitted != null:
 return createAccountSubmitted(_that);case LoginButtonPressed() when loginButtonPressed != null:
-return loginButtonPressed(_that);case _:
+return loginButtonPressed(_that);case RestorePasswordButtonPressed() when restorePasswordButtonPressed != null:
+return restorePasswordButtonPressed(_that);case _:
   return null;
 
 }
@@ -119,11 +122,12 @@ return loginButtonPressed(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( String email,  String password,  String firstName,  String lastName,  String secondLastName)?  createAccountSubmitted,TResult Function()?  loginButtonPressed,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( String email,  String password,  String firstName,  String lastName,  String secondLastName)?  createAccountSubmitted,TResult Function()?  loginButtonPressed,TResult Function()?  restorePasswordButtonPressed,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case CreateAccountSubmitted() when createAccountSubmitted != null:
 return createAccountSubmitted(_that.email,_that.password,_that.firstName,_that.lastName,_that.secondLastName);case LoginButtonPressed() when loginButtonPressed != null:
-return loginButtonPressed();case _:
+return loginButtonPressed();case RestorePasswordButtonPressed() when restorePasswordButtonPressed != null:
+return restorePasswordButtonPressed();case _:
   return orElse();
 
 }
@@ -141,11 +145,12 @@ return loginButtonPressed();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( String email,  String password,  String firstName,  String lastName,  String secondLastName)  createAccountSubmitted,required TResult Function()  loginButtonPressed,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( String email,  String password,  String firstName,  String lastName,  String secondLastName)  createAccountSubmitted,required TResult Function()  loginButtonPressed,required TResult Function()  restorePasswordButtonPressed,}) {final _that = this;
 switch (_that) {
 case CreateAccountSubmitted():
 return createAccountSubmitted(_that.email,_that.password,_that.firstName,_that.lastName,_that.secondLastName);case LoginButtonPressed():
-return loginButtonPressed();}
+return loginButtonPressed();case RestorePasswordButtonPressed():
+return restorePasswordButtonPressed();}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -159,11 +164,12 @@ return loginButtonPressed();}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( String email,  String password,  String firstName,  String lastName,  String secondLastName)?  createAccountSubmitted,TResult? Function()?  loginButtonPressed,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( String email,  String password,  String firstName,  String lastName,  String secondLastName)?  createAccountSubmitted,TResult? Function()?  loginButtonPressed,TResult? Function()?  restorePasswordButtonPressed,}) {final _that = this;
 switch (_that) {
 case CreateAccountSubmitted() when createAccountSubmitted != null:
 return createAccountSubmitted(_that.email,_that.password,_that.firstName,_that.lastName,_that.secondLastName);case LoginButtonPressed() when loginButtonPressed != null:
-return loginButtonPressed();case _:
+return loginButtonPressed();case RestorePasswordButtonPressed() when restorePasswordButtonPressed != null:
+return restorePasswordButtonPressed();case _:
   return null;
 
 }
@@ -269,6 +275,38 @@ int get hashCode => runtimeType.hashCode;
 @override
 String toString() {
   return 'CreateAccountEvent.loginButtonPressed()';
+}
+
+
+}
+
+
+
+
+/// @nodoc
+
+
+class RestorePasswordButtonPressed implements CreateAccountEvent {
+  const RestorePasswordButtonPressed();
+  
+
+
+
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is RestorePasswordButtonPressed);
+}
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'CreateAccountEvent.restorePasswordButtonPressed()';
 }
 
 

@@ -55,11 +55,12 @@ extension AuthStatePatterns on AuthState {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Authorized value)?  authenticated,TResult Function( _NotAuthorized value)?  notAuthenticated,TResult Function( _Loading value)?  loading,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Authenticated value)?  authenticated,TResult Function( _AuthenticatedWithNoVerification value)?  authenticatedWithNoVerification,TResult Function( _NotAuthenticated value)?  notAuthenticated,TResult Function( _Loading value)?  loading,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
-case _Authorized() when authenticated != null:
-return authenticated(_that);case _NotAuthorized() when notAuthenticated != null:
+case _Authenticated() when authenticated != null:
+return authenticated(_that);case _AuthenticatedWithNoVerification() when authenticatedWithNoVerification != null:
+return authenticatedWithNoVerification(_that);case _NotAuthenticated() when notAuthenticated != null:
 return notAuthenticated(_that);case _Loading() when loading != null:
 return loading(_that);case _:
   return orElse();
@@ -79,11 +80,12 @@ return loading(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Authorized value)  authenticated,required TResult Function( _NotAuthorized value)  notAuthenticated,required TResult Function( _Loading value)  loading,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Authenticated value)  authenticated,required TResult Function( _AuthenticatedWithNoVerification value)  authenticatedWithNoVerification,required TResult Function( _NotAuthenticated value)  notAuthenticated,required TResult Function( _Loading value)  loading,}){
 final _that = this;
 switch (_that) {
-case _Authorized():
-return authenticated(_that);case _NotAuthorized():
+case _Authenticated():
+return authenticated(_that);case _AuthenticatedWithNoVerification():
+return authenticatedWithNoVerification(_that);case _NotAuthenticated():
 return notAuthenticated(_that);case _Loading():
 return loading(_that);}
 }
@@ -99,11 +101,12 @@ return loading(_that);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Authorized value)?  authenticated,TResult? Function( _NotAuthorized value)?  notAuthenticated,TResult? Function( _Loading value)?  loading,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Authenticated value)?  authenticated,TResult? Function( _AuthenticatedWithNoVerification value)?  authenticatedWithNoVerification,TResult? Function( _NotAuthenticated value)?  notAuthenticated,TResult? Function( _Loading value)?  loading,}){
 final _that = this;
 switch (_that) {
-case _Authorized() when authenticated != null:
-return authenticated(_that);case _NotAuthorized() when notAuthenticated != null:
+case _Authenticated() when authenticated != null:
+return authenticated(_that);case _AuthenticatedWithNoVerification() when authenticatedWithNoVerification != null:
+return authenticatedWithNoVerification(_that);case _NotAuthenticated() when notAuthenticated != null:
 return notAuthenticated(_that);case _Loading() when loading != null:
 return loading(_that);case _:
   return null;
@@ -122,10 +125,11 @@ return loading(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( AuthUser authUser)?  authenticated,TResult Function()?  notAuthenticated,TResult Function()?  loading,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( AuthUser authUser)?  authenticated,TResult Function( AuthUser authUser)?  authenticatedWithNoVerification,TResult Function()?  notAuthenticated,TResult Function()?  loading,required TResult orElse(),}) {final _that = this;
 switch (_that) {
-case _Authorized() when authenticated != null:
-return authenticated(_that.authUser);case _NotAuthorized() when notAuthenticated != null:
+case _Authenticated() when authenticated != null:
+return authenticated(_that.authUser);case _AuthenticatedWithNoVerification() when authenticatedWithNoVerification != null:
+return authenticatedWithNoVerification(_that.authUser);case _NotAuthenticated() when notAuthenticated != null:
 return notAuthenticated();case _Loading() when loading != null:
 return loading();case _:
   return orElse();
@@ -145,10 +149,11 @@ return loading();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( AuthUser authUser)  authenticated,required TResult Function()  notAuthenticated,required TResult Function()  loading,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( AuthUser authUser)  authenticated,required TResult Function( AuthUser authUser)  authenticatedWithNoVerification,required TResult Function()  notAuthenticated,required TResult Function()  loading,}) {final _that = this;
 switch (_that) {
-case _Authorized():
-return authenticated(_that.authUser);case _NotAuthorized():
+case _Authenticated():
+return authenticated(_that.authUser);case _AuthenticatedWithNoVerification():
+return authenticatedWithNoVerification(_that.authUser);case _NotAuthenticated():
 return notAuthenticated();case _Loading():
 return loading();}
 }
@@ -164,10 +169,11 @@ return loading();}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( AuthUser authUser)?  authenticated,TResult? Function()?  notAuthenticated,TResult? Function()?  loading,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( AuthUser authUser)?  authenticated,TResult? Function( AuthUser authUser)?  authenticatedWithNoVerification,TResult? Function()?  notAuthenticated,TResult? Function()?  loading,}) {final _that = this;
 switch (_that) {
-case _Authorized() when authenticated != null:
-return authenticated(_that.authUser);case _NotAuthorized() when notAuthenticated != null:
+case _Authenticated() when authenticated != null:
+return authenticated(_that.authUser);case _AuthenticatedWithNoVerification() when authenticatedWithNoVerification != null:
+return authenticatedWithNoVerification(_that.authUser);case _NotAuthenticated() when notAuthenticated != null:
 return notAuthenticated();case _Loading() when loading != null:
 return loading();case _:
   return null;
@@ -180,8 +186,8 @@ return loading();case _:
 /// @nodoc
 
 
-class _Authorized implements AuthState {
-  const _Authorized(this.authUser);
+class _Authenticated implements AuthState {
+  const _Authenticated(this.authUser);
   
 
  final  AuthUser authUser;
@@ -190,13 +196,13 @@ class _Authorized implements AuthState {
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-_$AuthorizedCopyWith<_Authorized> get copyWith => __$AuthorizedCopyWithImpl<_Authorized>(this, _$identity);
+_$AuthenticatedCopyWith<_Authenticated> get copyWith => __$AuthenticatedCopyWithImpl<_Authenticated>(this, _$identity);
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Authorized&&(identical(other.authUser, authUser) || other.authUser == authUser));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Authenticated&&(identical(other.authUser, authUser) || other.authUser == authUser));
 }
 
 
@@ -212,8 +218,8 @@ String toString() {
 }
 
 /// @nodoc
-abstract mixin class _$AuthorizedCopyWith<$Res> implements $AuthStateCopyWith<$Res> {
-  factory _$AuthorizedCopyWith(_Authorized value, $Res Function(_Authorized) _then) = __$AuthorizedCopyWithImpl;
+abstract mixin class _$AuthenticatedCopyWith<$Res> implements $AuthStateCopyWith<$Res> {
+  factory _$AuthenticatedCopyWith(_Authenticated value, $Res Function(_Authenticated) _then) = __$AuthenticatedCopyWithImpl;
 @useResult
 $Res call({
  AuthUser authUser
@@ -224,17 +230,17 @@ $AuthUserCopyWith<$Res> get authUser;
 
 }
 /// @nodoc
-class __$AuthorizedCopyWithImpl<$Res>
-    implements _$AuthorizedCopyWith<$Res> {
-  __$AuthorizedCopyWithImpl(this._self, this._then);
+class __$AuthenticatedCopyWithImpl<$Res>
+    implements _$AuthenticatedCopyWith<$Res> {
+  __$AuthenticatedCopyWithImpl(this._self, this._then);
 
-  final _Authorized _self;
-  final $Res Function(_Authorized) _then;
+  final _Authenticated _self;
+  final $Res Function(_Authenticated) _then;
 
 /// Create a copy of AuthState
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') $Res call({Object? authUser = null,}) {
-  return _then(_Authorized(
+  return _then(_Authenticated(
 null == authUser ? _self.authUser : authUser // ignore: cast_nullable_to_non_nullable
 as AuthUser,
   ));
@@ -255,8 +261,83 @@ $AuthUserCopyWith<$Res> get authUser {
 /// @nodoc
 
 
-class _NotAuthorized implements AuthState {
-  const _NotAuthorized();
+class _AuthenticatedWithNoVerification implements AuthState {
+  const _AuthenticatedWithNoVerification(this.authUser);
+  
+
+ final  AuthUser authUser;
+
+/// Create a copy of AuthState
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$AuthenticatedWithNoVerificationCopyWith<_AuthenticatedWithNoVerification> get copyWith => __$AuthenticatedWithNoVerificationCopyWithImpl<_AuthenticatedWithNoVerification>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AuthenticatedWithNoVerification&&(identical(other.authUser, authUser) || other.authUser == authUser));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,authUser);
+
+@override
+String toString() {
+  return 'AuthState.authenticatedWithNoVerification(authUser: $authUser)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$AuthenticatedWithNoVerificationCopyWith<$Res> implements $AuthStateCopyWith<$Res> {
+  factory _$AuthenticatedWithNoVerificationCopyWith(_AuthenticatedWithNoVerification value, $Res Function(_AuthenticatedWithNoVerification) _then) = __$AuthenticatedWithNoVerificationCopyWithImpl;
+@useResult
+$Res call({
+ AuthUser authUser
+});
+
+
+$AuthUserCopyWith<$Res> get authUser;
+
+}
+/// @nodoc
+class __$AuthenticatedWithNoVerificationCopyWithImpl<$Res>
+    implements _$AuthenticatedWithNoVerificationCopyWith<$Res> {
+  __$AuthenticatedWithNoVerificationCopyWithImpl(this._self, this._then);
+
+  final _AuthenticatedWithNoVerification _self;
+  final $Res Function(_AuthenticatedWithNoVerification) _then;
+
+/// Create a copy of AuthState
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? authUser = null,}) {
+  return _then(_AuthenticatedWithNoVerification(
+null == authUser ? _self.authUser : authUser // ignore: cast_nullable_to_non_nullable
+as AuthUser,
+  ));
+}
+
+/// Create a copy of AuthState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$AuthUserCopyWith<$Res> get authUser {
+  
+  return $AuthUserCopyWith<$Res>(_self.authUser, (value) {
+    return _then(_self.copyWith(authUser: value));
+  });
+}
+}
+
+/// @nodoc
+
+
+class _NotAuthenticated implements AuthState {
+  const _NotAuthenticated();
   
 
 
@@ -266,7 +347,7 @@ class _NotAuthorized implements AuthState {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _NotAuthorized);
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _NotAuthenticated);
 }
 
 

@@ -6,7 +6,8 @@ part 'auth_state.freezed.dart';
 
 @freezed 
 sealed class AuthState with _$AuthState{
-  const factory AuthState.authenticated(AuthUser authUser) = _Authorized;
-  const factory AuthState.notAuthenticated() = _NotAuthorized;
+  const factory AuthState.authenticated(AuthUser authUser) = _Authenticated;
+  const factory AuthState.authenticatedWithNoVerification(AuthUser authUser) = _AuthenticatedWithNoVerification;
+  const factory AuthState.notAuthenticated() = _NotAuthenticated;
   const factory AuthState.loading() = _Loading;
 }

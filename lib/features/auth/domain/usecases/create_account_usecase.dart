@@ -9,18 +9,18 @@ class CreateAccountUsecase {
   CreateAccountUsecase({required IAuthRepository authRepository})
     : _authRepository = authRepository;
 
-  Future<Result<Registration>> call({
+  Future<Result<void>> call({
     required String emailString,
     required String passwordString,
-    required String firstNameString,
-    required String lastNameString,
-    required String secondLastNameString,
+    // required String firstNameString,
+    // required String lastNameString,
+    // required String secondLastNameString,
   }) async {
     late final Email email;
     late final Password pass;
-    late final FirstName firstName;
-    late final LastName lastName;
-    late final SecondLastName secondLastName;
+    // late final FirstName firstName;
+    // late final LastName lastName;
+    // late final SecondLastName secondLastName;
 
     final emailResult = Email.create(emailString);
     switch (emailResult) {
@@ -40,32 +40,32 @@ class CreateAccountUsecase {
         return Result.failure(failure);
     }
 
-    final firstNameResult = FirstName.create(firstNameString);
-    switch (firstNameResult) {
-      case Success(:final value):
-        firstName = value;
-        break;
-      case FailureResult(:final failure):
-        return Result.failure(failure);
-    }
+    // final firstNameResult = FirstName.create(firstNameString);
+    // switch (firstNameResult) {
+    //   case Success(:final value):
+    //     firstName = value;
+    //     break;
+    //   case FailureResult(:final failure):
+    //     return Result.failure(failure);
+    // }
 
-    final lastNameResult = LastName.create(lastNameString);
-    switch (lastNameResult) {
-      case Success(:final value):
-        lastName = value;
-        break;
-      case FailureResult(:final failure):
-        return Result.failure(failure);
-    }
+    // final lastNameResult = LastName.create(lastNameString);
+    // switch (lastNameResult) {
+    //   case Success(:final value):
+    //     lastName = value;
+    //     break;
+    //   case FailureResult(:final failure):
+    //     return Result.failure(failure);
+    // }
 
-    final secondLastNameResult = SecondLastName.create(secondLastNameString);
-    switch (secondLastNameResult) {
-      case Success(:final value):
-        secondLastName = value;
-        break;
-      case FailureResult(:final failure):
-        return Result.failure(failure);
-    } 
+    // final secondLastNameResult = SecondLastName.create(secondLastNameString);
+    // switch (secondLastNameResult) {
+    //   case Success(:final value):
+    //     secondLastName = value;
+    //     break;
+    //   case FailureResult(:final failure):
+    //     return Result.failure(failure);
+    // } 
     // ------------------------------------------------------------- Create account
 
     final Result<void> createAccountResult = await _authRepository
@@ -73,25 +73,20 @@ class CreateAccountUsecase {
     if (createAccountResult case FailureResult(failure: Failure failure)) {
       return Result.failure(failure);
     }
-
-    final Result<void> responseResult = await _authRepository
-        .tryUpdateDisplayName(
-          firstName.value,
-          lastName.value,
-          secondLastName.value,
-        );
     await _authRepository.trySendEmailVerification();
-
-    return responseResult.when(
-      success: (value) => Result.success(RegistrationSuccess()),
-      failure: (failure) =>
-          Result.success(RegistrationSuccessWithIncompleteProfile()),
-    );
+    return Result.success(null);
   }
 }
 
-sealed class Registration {}
+// sealed class Registration {}
 
-class RegistrationSuccess extends Registration {}
+// class RegistrationSuccess extends Registration {}
 
-class RegistrationSuccessWithIncompleteProfile extends Registration {}
+// class RegistrationSuccessWithIncompleteProfile extends Registration {}
+
+    // final Result<void> responseResult = await _authRepository
+    //     .tryUpdateDisplayName(
+    //       firstName.value,
+    //       lastName.value,
+    //       secondLastName.value,
+    //     );

@@ -21,18 +21,12 @@ class CreateAccountBloc extends Bloc<CreateAccountEvent, CreateAccountState> {
     final result = await _usecase(
       emailString: event.email,
       passwordString: event.password,
-      firstNameString: event.firstName,
-      lastNameString: event.lastName,
-      secondLastNameString: event.secondLastName,
+      // firstNameString: event.firstName,
+      // lastNameString: event.lastName,
+      // secondLastNameString: event.secondLastName,
     );
     result.map(
-      success: (value) {
-        if (value is RegistrationSuccess) {
-          emit(.success());
-        } else {
-          emit(.successWithIncompleteProfile());
-        }
-      },
+      success: (value) => emit(.success()),
       failure: (failure) => emit(.error(failure.failure)),
     );
   }

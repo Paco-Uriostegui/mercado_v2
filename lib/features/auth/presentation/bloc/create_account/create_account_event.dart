@@ -14,4 +14,5 @@ sealed class CreateAccountEvent with _$CreateAccountEvent {
   }) = CreateAccountSubmitted;
 
   const factory CreateAccountEvent.loginButtonPressed() = LoginButtonPressed;
+  const factory CreateAccountEvent.restorePasswordButtonPressed() = RestorePasswordButtonPressed;
 }
