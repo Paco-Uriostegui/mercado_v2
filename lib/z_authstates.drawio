@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="bdsJl6fSCzQdz5R9Nz25" name="Page-1">
-        <mxGraphModel dx="1883" dy="679" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="2953" dy="594" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -14,6 +14,18 @@
                 <mxCell id="19" value="Authenticated (!emailVerified)" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="18" vertex="1" connectable="0">
                     <mxGeometry x="0.6044" y="-1" relative="1" as="geometry">
                         <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="44" style="edgeStyle=none;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="2" target="34" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="-120" y="300"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="45" value="AuthenticatedWithoutName" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="44" vertex="1" connectable="0">
+                    <mxGeometry x="0.233" y="-2" relative="1" as="geometry">
+                        <mxPoint x="2" y="-18" as="offset"/>
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="2" value="Auth" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
@@ -94,7 +106,7 @@
                 <mxCell id="16" style="edgeStyle=none;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="15" target="2" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="15" value="&lt;div&gt;Recupera firebaseUser mapeado a AuthUser:&lt;/div&gt;&lt;ul&gt;&lt;li&gt;&lt;span style=&quot;color: rgb(63, 63, 63); background-color: transparent;&quot;&gt;Usuario autenticado (perfil completo, emailVerified)&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;color: rgb(63, 63, 63); background-color: transparent;&quot;&gt;Usuario no autenticado&lt;/span&gt;&lt;/li&gt;&lt;li&gt;Usuario autenticado pero sin verificar correo&lt;/li&gt;&lt;/ul&gt;" style="text;strokeColor=none;fillColor=none;html=1;whiteSpace=wrap;verticalAlign=middle;overflow=hidden;" parent="1" vertex="1">
+                <mxCell id="15" value="&lt;div&gt;Al crearse y suscribirse al stream, recupera firebaseUser&lt;/div&gt;&lt;ul&gt;&lt;li&gt;user != null? -&amp;gt; Authenticated&lt;/li&gt;&lt;li&gt;user == null? -&amp;gt; NotAuthenticated&lt;/li&gt;&lt;/ul&gt;" style="text;strokeColor=none;fillColor=none;html=1;whiteSpace=wrap;verticalAlign=middle;overflow=hidden;" parent="1" vertex="1">
                     <mxGeometry x="145.5" y="90" width="327" height="150" as="geometry"/>
                 </mxCell>
                 <mxCell id="32" value="" style="edgeStyle=none;html=1;" parent="1" source="17" target="31" edge="1">
@@ -147,6 +159,64 @@
                 </mxCell>
                 <mxCell id="34" value="NameTextFields" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="-180" y="640" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="48" value="" style="edgeStyle=none;html=1;" parent="1" source="46" target="47" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="46" value="&lt;div&gt;Al crearse y suscribirse al stream, recupera firebaseUser&lt;/div&gt;&lt;ul&gt;&lt;li&gt;user != null? -&amp;gt; Authenticated&lt;/li&gt;&lt;li&gt;user == null? -&amp;gt; NotAuthenticated&lt;/li&gt;&lt;li&gt;user != null &amp;amp;&amp;amp; !isEmailVerified -&amp;gt; AuthenticatedUnverified&amp;nbsp;&lt;/li&gt;&lt;/ul&gt;" style="text;strokeColor=none;fillColor=none;html=1;whiteSpace=wrap;verticalAlign=middle;overflow=hidden;" parent="1" vertex="1">
+                    <mxGeometry x="-720" y="80" width="330" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="50" value="" style="edgeStyle=none;html=1;" parent="1" source="47" target="49" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="-370" y="250"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="51" value="NotAuthenticated" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="50" vertex="1" connectable="0">
+                    <mxGeometry x="0.194" y="-2" relative="1" as="geometry">
+                        <mxPoint y="-1" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="53" value="" style="edgeStyle=none;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="47" target="57" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="-780" y="410" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="-780" y="250"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="54" value="AuthenticatedUnverified" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="53" vertex="1" connectable="0">
+                    <mxGeometry x="0.5109" y="-1" relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="65" value="" style="edgeStyle=none;html=1;" edge="1" parent="1" source="47" target="64">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="66" value="Authenticated" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="65">
+                    <mxGeometry x="-0.1321" y="-1" relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="47" value="Auth" style="whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="-615" y="220" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="49" value="Login" style="whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="-430" y="400" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="67" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="57" target="64">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="-780" y="630"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="57" value="VerifyEmail" style="whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="-840" y="390" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="64" value="home" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="-615" y="600" width="120" height="60" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>

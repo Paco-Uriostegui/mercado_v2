@@ -13,7 +13,15 @@ class AuthBloc extends Cubit<AuthState> {
     _streamSubscription = _authRepository.onStateChanges().listen(
       (authUser) {
         if (authUser != null) {
-          emit(.authenticated(authUser));
+          if (authUser.isEmailVerified) {
+            if (authUser.isProfileCompleted == true) {
+              emit(.authenticated());
+            } else {
+              emit(.authenticatedUnnamed());
+            }
+          } else {
+            emit(.authenticatedUnverified());
+          }
         } else {
           emit(.notAuthenticated());
         }

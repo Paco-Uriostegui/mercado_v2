@@ -8,5 +8,6 @@ Seguir:
 
 
 Por hacer: 
+    - Investigar diferencia entre navegar y return screen()
 
 También: 
