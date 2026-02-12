@@ -14,11 +14,7 @@ class AuthBloc extends Cubit<AuthState> {
       (authUser) {
         if (authUser != null) {
           if (authUser.isEmailVerified) {
-            if (authUser.isProfileCompleted == true) {
-              emit(.authenticated());
-            } else {
-              emit(.authenticatedUnnamed());
-            }
+            emit(.authenticated());
           } else {
             emit(.authenticatedUnverified());
           }

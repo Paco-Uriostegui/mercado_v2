@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$AuthUser {
 
- String get uid; bool get isEmailVerified; bool? get isProfileCompleted;
+ String get uid; bool get isEmailVerified; String? get name;
 /// Create a copy of AuthUser
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +25,16 @@ $AuthUserCopyWith<AuthUser> get copyWith => _$AuthUserCopyWithImpl<AuthUser>(thi
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is AuthUser&&(identical(other.uid, uid) || other.uid == uid)&&(identical(other.isEmailVerified, isEmailVerified) || other.isEmailVerified == isEmailVerified)&&(identical(other.isProfileCompleted, isProfileCompleted) || other.isProfileCompleted == isProfileCompleted));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is AuthUser&&(identical(other.uid, uid) || other.uid == uid)&&(identical(other.isEmailVerified, isEmailVerified) || other.isEmailVerified == isEmailVerified)&&(identical(other.name, name) || other.name == name));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,uid,isEmailVerified,isProfileCompleted);
+int get hashCode => Object.hash(runtimeType,uid,isEmailVerified,name);
 
 @override
 String toString() {
-  return 'AuthUser(uid: $uid, isEmailVerified: $isEmailVerified, isProfileCompleted: $isProfileCompleted)';
+  return 'AuthUser(uid: $uid, isEmailVerified: $isEmailVerified, name: $name)';
 }
 
 
@@ -45,7 +45,7 @@ abstract mixin class $AuthUserCopyWith<$Res>  {
   factory $AuthUserCopyWith(AuthUser value, $Res Function(AuthUser) _then) = _$AuthUserCopyWithImpl;
 @useResult
 $Res call({
- String uid, bool isEmailVerified, bool? isProfileCompleted
+ String uid, bool isEmailVerified, String? name
 });
 
 
@@ -62,12 +62,12 @@ class _$AuthUserCopyWithImpl<$Res>
 
 /// Create a copy of AuthUser
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? uid = null,Object? isEmailVerified = null,Object? isProfileCompleted = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? uid = null,Object? isEmailVerified = null,Object? name = freezed,}) {
   return _then(AuthUser(
 uid: null == uid ? _self.uid : uid // ignore: cast_nullable_to_non_nullable
 as String,isEmailVerified: null == isEmailVerified ? _self.isEmailVerified : isEmailVerified // ignore: cast_nullable_to_non_nullable
-as bool,isProfileCompleted: freezed == isProfileCompleted ? _self.isProfileCompleted : isProfileCompleted // ignore: cast_nullable_to_non_nullable
-as bool?,
+as bool,name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 

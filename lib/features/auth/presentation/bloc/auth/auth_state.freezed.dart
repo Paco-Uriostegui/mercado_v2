@@ -55,13 +55,12 @@ extension AuthStatePatterns on AuthState {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Authenticated value)?  authenticated,TResult Function( _AuthenticatedUnverified value)?  authenticatedUnverified,TResult Function( _AuthenticatedUnnamed value)?  authenticatedUnnamed,TResult Function( _NotAuthenticated value)?  notAuthenticated,TResult Function( _Loading value)?  loading,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Authenticated value)?  authenticated,TResult Function( _AuthenticatedUnverified value)?  authenticatedUnverified,TResult Function( _NotAuthenticated value)?  notAuthenticated,TResult Function( _Loading value)?  loading,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case _Authenticated() when authenticated != null:
 return authenticated(_that);case _AuthenticatedUnverified() when authenticatedUnverified != null:
-return authenticatedUnverified(_that);case _AuthenticatedUnnamed() when authenticatedUnnamed != null:
-return authenticatedUnnamed(_that);case _NotAuthenticated() when notAuthenticated != null:
+return authenticatedUnverified(_that);case _NotAuthenticated() when notAuthenticated != null:
 return notAuthenticated(_that);case _Loading() when loading != null:
 return loading(_that);case _:
   return orElse();
@@ -81,13 +80,12 @@ return loading(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Authenticated value)  authenticated,required TResult Function( _AuthenticatedUnverified value)  authenticatedUnverified,required TResult Function( _AuthenticatedUnnamed value)  authenticatedUnnamed,required TResult Function( _NotAuthenticated value)  notAuthenticated,required TResult Function( _Loading value)  loading,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Authenticated value)  authenticated,required TResult Function( _AuthenticatedUnverified value)  authenticatedUnverified,required TResult Function( _NotAuthenticated value)  notAuthenticated,required TResult Function( _Loading value)  loading,}){
 final _that = this;
 switch (_that) {
 case _Authenticated():
 return authenticated(_that);case _AuthenticatedUnverified():
-return authenticatedUnverified(_that);case _AuthenticatedUnnamed():
-return authenticatedUnnamed(_that);case _NotAuthenticated():
+return authenticatedUnverified(_that);case _NotAuthenticated():
 return notAuthenticated(_that);case _Loading():
 return loading(_that);}
 }
@@ -103,13 +101,12 @@ return loading(_that);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Authenticated value)?  authenticated,TResult? Function( _AuthenticatedUnverified value)?  authenticatedUnverified,TResult? Function( _AuthenticatedUnnamed value)?  authenticatedUnnamed,TResult? Function( _NotAuthenticated value)?  notAuthenticated,TResult? Function( _Loading value)?  loading,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Authenticated value)?  authenticated,TResult? Function( _AuthenticatedUnverified value)?  authenticatedUnverified,TResult? Function( _NotAuthenticated value)?  notAuthenticated,TResult? Function( _Loading value)?  loading,}){
 final _that = this;
 switch (_that) {
 case _Authenticated() when authenticated != null:
 return authenticated(_that);case _AuthenticatedUnverified() when authenticatedUnverified != null:
-return authenticatedUnverified(_that);case _AuthenticatedUnnamed() when authenticatedUnnamed != null:
-return authenticatedUnnamed(_that);case _NotAuthenticated() when notAuthenticated != null:
+return authenticatedUnverified(_that);case _NotAuthenticated() when notAuthenticated != null:
 return notAuthenticated(_that);case _Loading() when loading != null:
 return loading(_that);case _:
   return null;
@@ -128,12 +125,11 @@ return loading(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  authenticated,TResult Function()?  authenticatedUnverified,TResult Function()?  authenticatedUnnamed,TResult Function()?  notAuthenticated,TResult Function()?  loading,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  authenticated,TResult Function()?  authenticatedUnverified,TResult Function()?  notAuthenticated,TResult Function()?  loading,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Authenticated() when authenticated != null:
 return authenticated();case _AuthenticatedUnverified() when authenticatedUnverified != null:
-return authenticatedUnverified();case _AuthenticatedUnnamed() when authenticatedUnnamed != null:
-return authenticatedUnnamed();case _NotAuthenticated() when notAuthenticated != null:
+return authenticatedUnverified();case _NotAuthenticated() when notAuthenticated != null:
 return notAuthenticated();case _Loading() when loading != null:
 return loading();case _:
   return orElse();
@@ -153,12 +149,11 @@ return loading();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  authenticated,required TResult Function()  authenticatedUnverified,required TResult Function()  authenticatedUnnamed,required TResult Function()  notAuthenticated,required TResult Function()  loading,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  authenticated,required TResult Function()  authenticatedUnverified,required TResult Function()  notAuthenticated,required TResult Function()  loading,}) {final _that = this;
 switch (_that) {
 case _Authenticated():
 return authenticated();case _AuthenticatedUnverified():
-return authenticatedUnverified();case _AuthenticatedUnnamed():
-return authenticatedUnnamed();case _NotAuthenticated():
+return authenticatedUnverified();case _NotAuthenticated():
 return notAuthenticated();case _Loading():
 return loading();}
 }
@@ -174,12 +169,11 @@ return loading();}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  authenticated,TResult? Function()?  authenticatedUnverified,TResult? Function()?  authenticatedUnnamed,TResult? Function()?  notAuthenticated,TResult? Function()?  loading,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  authenticated,TResult? Function()?  authenticatedUnverified,TResult? Function()?  notAuthenticated,TResult? Function()?  loading,}) {final _that = this;
 switch (_that) {
 case _Authenticated() when authenticated != null:
 return authenticated();case _AuthenticatedUnverified() when authenticatedUnverified != null:
-return authenticatedUnverified();case _AuthenticatedUnnamed() when authenticatedUnnamed != null:
-return authenticatedUnnamed();case _NotAuthenticated() when notAuthenticated != null:
+return authenticatedUnverified();case _NotAuthenticated() when notAuthenticated != null:
 return notAuthenticated();case _Loading() when loading != null:
 return loading();case _:
   return null;
@@ -245,38 +239,6 @@ int get hashCode => runtimeType.hashCode;
 @override
 String toString() {
   return 'AuthState.authenticatedUnverified()';
-}
-
-
-}
-
-
-
-
-/// @nodoc
-
-
-class _AuthenticatedUnnamed implements AuthState {
-  const _AuthenticatedUnnamed();
-  
-
-
-
-
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AuthenticatedUnnamed);
-}
-
-
-@override
-int get hashCode => runtimeType.hashCode;
-
-@override
-String toString() {
-  return 'AuthState.authenticatedUnnamed()';
 }
 
 

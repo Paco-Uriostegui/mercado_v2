@@ -6,7 +6,6 @@ part 'auth_state.freezed.dart';
 sealed class AuthState with _$AuthState {
   const factory AuthState.authenticated() = _Authenticated;
   const factory AuthState.authenticatedUnverified() = _AuthenticatedUnverified;
-  const factory AuthState.authenticatedUnnamed() = _AuthenticatedUnnamed;
   const factory AuthState.notAuthenticated() = _NotAuthenticated;
   const factory AuthState.loading() = _Loading;
 }
