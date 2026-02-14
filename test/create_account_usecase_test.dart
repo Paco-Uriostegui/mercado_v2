@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mercado_v2/app/core/result/failure.dart';
 import 'package:mercado_v2/app/core/result/result.dart';
-import 'package:mercado_v2/features/auth/domain/usecases/create_account_usecase.dart';
+import 'package:mercado_v2/features/auth/email_fb_authentication/domain/usecases/create_account_usecase.dart';
 import 'package:mockito/mockito.dart';
 
 import 'mocks/mocks.mocks.dart';

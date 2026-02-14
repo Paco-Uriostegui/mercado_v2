@@ -6,11 +6,11 @@
 import 'dart:async' as _i4;
 
 import 'package:mercado_v2/app/core/result/result.dart' as _i2;
-import 'package:mercado_v2/features/auth/domain/entities/auth_user/auth_user.dart'
+import 'package:mercado_v2/features/auth/email_fb_authentication/domain/entities/auth_user/auth_user.dart'
     as _i5;
-import 'package:mercado_v2/features/auth/domain/repositories/iauth_repository.dart'
+import 'package:mercado_v2/features/auth/email_fb_authentication/domain/repositories/iauth_repository.dart'
     as _i3;
-import 'package:mercado_v2/features/auth/domain/value_objects/user/value_objects_export.dart'
+import 'package:mercado_v2/features/auth/email_fb_authentication/domain/value_objects/user/value_objects_export.dart'
     as _i6;
 import 'package:mockito/mockito.dart' as _i1;
 
