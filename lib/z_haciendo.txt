@@ -1,10 +1,10 @@
 
 Hecho: 
-    - crear widget técnico authGate
+    - 
 En: 
 -
 Seguir:
-    - reeler deepseek sobre metodología. Crear prueba unitaria de register y construir todo a parti de ahí 
+    - Terminar de "pasar" los blocs a new
 
 
 Por hacer: 

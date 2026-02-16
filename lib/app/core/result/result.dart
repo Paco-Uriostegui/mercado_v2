@@ -1,5 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:mercado_v2/app/core/result/failure.dart';
+export 'result_extensions.dart';
+export 'failure.dart';
 
 part 'result.freezed.dart';
 

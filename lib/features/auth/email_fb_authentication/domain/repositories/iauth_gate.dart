@@ -1,8 +1,8 @@
-abstract class IAuthGate {
+abstract class NewIAuthGate {
   //Future<AuthenticationStatus?> authenticationGate();
   final Stream<AuthenticationStatus> authenticationGateStream;
 
-  IAuthGate({required this.authenticationGateStream});
+  NewIAuthGate({required this.authenticationGateStream});
 
 }
 

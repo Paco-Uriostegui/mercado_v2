@@ -5,7 +5,7 @@ import 'package:mercado_v2/features/auth/email_fb_authentication/domain/reposito
 import 'package:mercado_v2/features/auth/email_fb_authentication/presentation/screens/login_screen.dart';
 import 'package:mercado_v2/features/auth/email_fb_authentication/presentation/screens/verify_email_screen.dart';
 
-class FirebaseEmailAuthgateImpl implements IAuthGate {
+class FirebaseEmailAuthgateImpl implements NewIAuthGate {
   final IAuthRepository _authRepository;
   late StreamController<AuthenticationStatus> _controlador;
 
