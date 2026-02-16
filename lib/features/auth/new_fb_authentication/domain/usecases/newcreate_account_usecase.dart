@@ -14,6 +14,8 @@ class NewCreateAccountUsecase {
   }) async {
     late final NewEmail email;
     late final NewPassword pass;
+
+    // --------------------------------------------------- validating params
     final emailResult = NewEmail.create(emailString);
     switch (emailResult) {
       case Success(:final value):
@@ -31,7 +33,9 @@ class NewCreateAccountUsecase {
       case FailureResult(:final failure):
         return Result.failure(failure);
     }
-        final Result<void> createAccountResult = await _authRepository
+
+    // --------------------------------------------------------------- create account
+    final Result<void> createAccountResult = await _authRepository
         .tryCreateUserWithEmailAndPassword(email, pass);
     if (createAccountResult case FailureResult(failure: Failure failure)) {
       return Result.failure(failure);

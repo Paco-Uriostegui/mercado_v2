@@ -1,14 +1,15 @@
 import 'package:mercado_v2/app/core/result/result.dart';
+import 'package:mercado_v2/features/auth/new_fb_authentication/data/datasources/newiauth_remote_datasource.dart';
 import 'package:mercado_v2/features/auth/new_fb_authentication/domain/entities/auth_user/new_auth_user.dart';
 import 'package:mercado_v2/features/auth/new_fb_authentication/domain/repositories/newiauth_repository.dart';
 import 'package:mercado_v2/features/auth/new_fb_authentication/domain/value_objects/newemail.dart';
 import 'package:mercado_v2/features/auth/new_fb_authentication/domain/value_objects/newpassword.dart';
 
 class NewFirebaseAuthRepositoryImpl implements NewIAuthRepository {
-  final IAuthRemoteDataSource _authRemoteDataSource;
+  final NewIAuthRemoteDataSource _authRemoteDataSource;
 
   NewFirebaseAuthRepositoryImpl({
-    required IAuthRemoteDataSource authRemoteDataSource,
+    required NewIAuthRemoteDataSource authRemoteDataSource,
   }) : _authRemoteDataSource = authRemoteDataSource;
 
   @override
@@ -77,9 +78,13 @@ class NewFirebaseAuthRepositoryImpl implements NewIAuthRepository {
   }
 
   @override
-  Future<Result<bool>> tryVerifyEmail() {
-    // TODO: implement tryVerifyEmail
-    throw UnimplementedError();
+  Future<Result<bool>> tryIsEmailVerified() async {
+    try {
+      final response = await _authRemoteDataSource.isEmailVerified();
+      return Result.success(response);
+    } catch (e) {
+      return Result.failure(e as Failure);
+    }
   }
 
   @override
@@ -112,7 +117,11 @@ class NewFirebaseAuthRepositoryImpl implements NewIAuthRepository {
   }
 
   @override
-  Future<Result<void>> tryUpdateDisplayName(String firstName,String lastName, String secondLastName) async {
+  Future<Result<void>> tryUpdateDisplayName(
+    String firstName,
+    String lastName,
+    String secondLastName,
+  ) async {
     try {
       final String name = "$firstName $lastName $secondLastName";
       await _authRemoteDataSource.updateDisplayName(name);
@@ -121,6 +130,4 @@ class NewFirebaseAuthRepositoryImpl implements NewIAuthRepository {
       return Result.failure(UpdateDisplayNameException());
     }
   }
-
-
 }

@@ -4,7 +4,8 @@ Hecho:
 En: 
 -
 Seguir:
-    - Terminar de "pasar" los blocs a new
+    - haciendo el event sendverificacion email. Buscar si puede devolver excepciones desde firebase
+    para saber cómo manejarlas.
 
 
 Por hacer: 

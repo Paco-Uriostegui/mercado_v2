@@ -15,16 +15,13 @@ class LocalException extends Failure {
 }
 
 class AuthException extends Failure {
- 
   const AuthException();
 }
 
 // -------------------------------------------------------- value object exceptions
 
-
 class InvalidEmailFormat extends Failure {
   const InvalidEmailFormat();
-  
 }
 
 class InvalidPasswordTooShort extends Failure {
@@ -34,10 +31,10 @@ class InvalidPasswordTooShort extends Failure {
 class InvalidFirstNameTooShort extends Failure {
   const InvalidFirstNameTooShort();
 }
+
 class InvalidFirstNameInvalidChars extends Failure {
   const InvalidFirstNameInvalidChars();
 }
-
 
 class InvalidLastNameTooShort extends Failure {
   const InvalidLastNameTooShort();
@@ -55,7 +52,6 @@ class InvalidSecondLastNameInvalidChars extends Failure {
   const InvalidSecondLastNameInvalidChars();
 }
 
-
 class UnknownException extends Failure {
   const UnknownException();
 }
@@ -63,7 +59,7 @@ class UnknownException extends Failure {
 class LocalUserException extends Failure {
   final String errorMessage;
   const LocalUserException(this.errorMessage);
-  
+
   factory LocalUserException.errorWhileSavingUser() {
     return LocalUserException('Error while saving user locally');
   }
@@ -76,11 +72,8 @@ class LocalUserException extends Failure {
   }
 
   // ----------------------------------------------------------------
-  
+}
 
-
- 
-} 
 class RemoteAuthException extends Failure {
   const RemoteAuthException();
 }
@@ -91,4 +84,9 @@ class GetCurrentUserException extends RemoteAuthException {
 
 class UpdateDisplayNameException extends RemoteAuthException {
   const UpdateDisplayNameException();
+}
+
+// ------------------------------------------------------------------------ error in tryIsEmailVerified
+class IsEmailVerifiedException extends AuthException {
+  const IsEmailVerifiedException();
 }

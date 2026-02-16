@@ -67,6 +67,7 @@ class NewFirebaseAuthDataSourceImpl implements NewIAuthRemoteDataSource {
       await _firebaseAuth.currentUser?.sendEmailVerification();
     } catch (e) {
       // TODO reportar a crashlytics  
+
     }
   }
 
@@ -76,7 +77,7 @@ class NewFirebaseAuthDataSourceImpl implements NewIAuthRemoteDataSource {
       await _firebaseAuth.currentUser?.reload();
       return _firebaseAuth.currentUser?.emailVerified ?? false;
     } catch (e) {
-      throw AuthException();
+      throw IsEmailVerifiedException();
     }
   }
 
