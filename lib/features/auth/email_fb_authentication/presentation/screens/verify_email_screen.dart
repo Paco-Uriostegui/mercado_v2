@@ -1,11 +1,10 @@
-// import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 
-// class VerifyEmailScreen extends StatelessWidget {
-//   const VerifyEmailScreen({super.key});
+class VerifyEmailScreen extends StatelessWidget {
+  const VerifyEmailScreen({super.key});
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return Container();
-//   }
-  
-// }
+  @override
+  Widget build(BuildContext context) {
+    return const Placeholder();
+  }
+}

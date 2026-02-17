@@ -1,17 +1,20 @@
-// abstract class NewIAuthGate {
+abstract class IAuthGateStream {
   //Future<AuthenticationStatus?> authenticationGate();
-//   final Stream<AuthenticationStatus> authenticationGateStream;
+  Stream<AuthenticationStatus> get authenticationGateStream;
+  void initialize();
+  void manualAuthenticationSuccessStreamSinkAdd();
 
-//   NewIAuthGate({required this.authenticationGateStream});
+  IAuthGateStream();
+}
 
-// }
+sealed class AuthenticationStatus {
+  const AuthenticationStatus();
+}
 
-// sealed class AuthenticationStatus {
-//   const AuthenticationStatus();
-// }
-// class AuthenticationSuccess extends AuthenticationStatus {
-//   const AuthenticationSuccess();
-// }
-// class AuthenticationError extends AuthenticationStatus {
-//   const AuthenticationError();
-// }
+class AuthenticationSuccess extends AuthenticationStatus {
+  const AuthenticationSuccess();
+}
+
+class AuthenticationError extends AuthenticationStatus {
+  const AuthenticationError();
+}

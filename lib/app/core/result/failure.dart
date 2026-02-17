@@ -1,4 +1,3 @@
-
 sealed class Failure {
   const Failure();
 }
@@ -94,4 +93,9 @@ class IsEmailVerifiedException extends AuthException {
 
 class SendEmailVerificationException extends AuthException {
   const SendEmailVerificationException();
+}
+
+// ---------------------------------------------------------------------- sign in
+class SignInException extends AuthException {
+  const SignInException();
 }

@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:mercado_v2/features/auth/new_fb_authentication/domain/repositories/newiauth_gate.dart';
+import 'package:mercado_v2/features/auth/email_fb_authentication/domain/repositories/iauth_gate.dart';
 import 'package:mercado_v2/features/home_app_shell/presentation/screens/home_app_shell_prov.dart';
 
 class GateKeeper extends StatefulWidget {
-  final NewIAuthGateStream _iAuthGateStream;
+  final IAuthGateStream _iAuthGateStream;
   final Widget authEntryPoint;
 
   const GateKeeper({
     super.key,
-    required NewIAuthGateStream iAuthGate,
+    required IAuthGateStream iAuthGate,
     required this.authEntryPoint,
   }) : _iAuthGateStream = iAuthGate;
 
@@ -26,7 +26,6 @@ class _GateKeeperState extends State<GateKeeper> {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(
-      
       stream: widget._iAuthGateStream.authenticationGateStream,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
