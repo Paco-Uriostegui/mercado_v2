@@ -1,11 +1,11 @@
-import 'package:flutter/widgets.dart';
+// import 'package:flutter/widgets.dart';
 
-class VerifyEmailScreen extends StatelessWidget {
-  const VerifyEmailScreen({super.key});
+// class VerifyEmailScreen extends StatelessWidget {
+//   const VerifyEmailScreen({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return Container();
-  }
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container();
+//   }
   
-}
+// }

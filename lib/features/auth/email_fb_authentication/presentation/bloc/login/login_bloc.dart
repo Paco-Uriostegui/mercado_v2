@@ -1,33 +1,33 @@
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mercado_v2/app/core/result/result.dart';
-import 'package:mercado_v2/features/auth/email_fb_authentication/domain/usecases/login_usecase.dart';
-import 'package:mercado_v2/features/auth/email_fb_authentication/presentation/bloc/login/login_event.dart';
-import 'package:mercado_v2/features/auth/email_fb_authentication/presentation/bloc/login/login_state.dart';
+// import 'package:flutter_bloc/flutter_bloc.dart';
+// import 'package:mercado_v2/app/core/result/result.dart';
+// import 'package:mercado_v2/features/auth/email_fb_authentication/domain/usecases/login_usecase.dart';
+// import 'package:mercado_v2/features/auth/email_fb_authentication/presentation/bloc/login/login_event.dart';
+// import 'package:mercado_v2/features/auth/email_fb_authentication/presentation/bloc/login/login_state.dart';
 
-class LoginBloc extends Bloc<LoginEvent, LoginState> {
-  final LoginUsecase _loginUsecase;
+// class LoginBloc extends Bloc<LoginEvent, LoginState> {
+//   final LoginUsecase _loginUsecase;
 
-  LoginBloc(this._loginUsecase) : super(LoginState.initial()) {
-    on<LoginSubmitted>(_loginSubmitted);
-  }
+//   LoginBloc(this._loginUsecase) : super(LoginState.initial()) {
+//     on<LoginSubmitted>(_loginSubmitted);
+//   }
 
-  Future<void> _loginSubmitted(
-    LoginSubmitted event,
-    Emitter<LoginState> emit,
-  ) async {
-    emit(.loading());
-    final result = await _loginUsecase(
-      email: event.email,
-      password: event.password,
-    );
-    result.when(
-      success: (value) {
+//   Future<void> _loginSubmitted(
+//     LoginSubmitted event,
+//     Emitter<LoginState> emit,
+//   ) async {
+//     emit(.loading());
+//     final result = await _loginUsecase(
+//       email: event.email,
+//       password: event.password,
+//     );
+//     result.when(
+//       success: (value) {
         // TODO authUser válido. Guardarlo en el state global del user y navegar a splash screen. La splashScreen tendrá centralizada la búsqueda del User usando el AuthUser
         // para así no duplicar código
-      },
-      failure: (failure) {
-        emit(.failure(failure));
-      },
-    );
-  }
-}
+//       },
+//       failure: (failure) {
+//         emit(.failure(failure));
+//       },
+//     );
+//   }
+// }

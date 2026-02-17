@@ -1,3 +1,4 @@
+
 sealed class Failure {
   const Failure();
 }
@@ -86,7 +87,11 @@ class UpdateDisplayNameException extends RemoteAuthException {
   const UpdateDisplayNameException();
 }
 
-// ------------------------------------------------------------------------ error in tryIsEmailVerified
+// ------------------------------------------------------------------------ EmailVerify
 class IsEmailVerifiedException extends AuthException {
   const IsEmailVerifiedException();
+}
+
+class SendEmailVerificationException extends AuthException {
+  const SendEmailVerificationException();
 }

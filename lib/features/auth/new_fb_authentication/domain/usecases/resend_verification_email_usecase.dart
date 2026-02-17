@@ -1,11 +1,11 @@
-import 'package:mercado_v2/features/auth/email_fb_authentication/domain/repositories/iauth_repository.dart';
+import 'package:mercado_v2/features/auth/new_fb_authentication/domain/repositories/newiauth_repository.dart';
 
 class ResendVerificationEmailUsecase {
-  final IAuthRepository _authRepository;
+  final NewIAuthRepository _authRepository;
 
   ResendVerificationEmailUsecase(this._authRepository);
 
-  void call() {
-    _authRepository.trySendEmailVerification();
+  Future<void> call() async {
+    await _authRepository.trySendEmailVerification();
   }
 }

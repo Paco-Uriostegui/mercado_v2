@@ -1,9 +1,9 @@
-import 'package:mercado_v2/features/auth/email_fb_authentication/domain/repositories/iauth_repository.dart';
+import 'package:mercado_v2/features/auth/new_fb_authentication/domain/repositories/newiauth_repository.dart';
 
 class AuthenticationUseCase {
-  final IAuthRepository _authRepository;
+  final NewIAuthRepository _authRepository;
 
-  AuthenticationUseCase({required IAuthRepository authRepository})
+  AuthenticationUseCase({required NewIAuthRepository authRepository})
     : _authRepository = authRepository;
 
     Stream<AuthUserStatus> execute() {

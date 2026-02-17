@@ -1,11 +1,11 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
+// import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'auth_state.freezed.dart';
+// part 'auth_state.freezed.dart';
 
-@freezed
-sealed class AuthState with _$AuthState {
-  const factory AuthState.authenticated() = _Authenticated;
-  const factory AuthState.authenticatedUnverified() = _AuthenticatedUnverified;
-  const factory AuthState.notAuthenticated() = _NotAuthenticated;
-  const factory AuthState.loading() = _Loading;
-}
+// @freezed
+// sealed class AuthState with _$AuthState {
+//   const factory AuthState.authenticated() = _Authenticated;
+//   const factory AuthState.authenticatedUnverified() = _AuthenticatedUnverified;
+//   const factory AuthState.notAuthenticated() = _NotAuthenticated;
+//   const factory AuthState.loading() = _Loading;
+// }
