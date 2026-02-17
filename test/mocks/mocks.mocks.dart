@@ -6,11 +6,11 @@
 import 'dart:async' as _i4;
 
 import 'package:mercado_v2/app/core/result/result.dart' as _i2;
-import 'package:mercado_v2/features/auth/email_fb_authentication/domain/entities/auth_user/auth_user.dart'
+import 'package:mercado_v2/features/auth/new_fb_authentication/domain/entities/auth_user/new_auth_user.dart'
     as _i5;
-import 'package:mercado_v2/features/auth/email_fb_authentication/domain/repositories/iauth_repository.dart'
+import 'package:mercado_v2/features/auth/new_fb_authentication/domain/repositories/newiauth_repository.dart'
     as _i3;
-import 'package:mercado_v2/features/auth/email_fb_authentication/domain/value_objects/user/value_objects_export.dart'
+import 'package:mercado_v2/features/auth/new_fb_authentication/domain/value_objects/newvalue_objects_export.dart'
     as _i6;
 import 'package:mockito/mockito.dart' as _i1;
 
@@ -34,16 +34,17 @@ class _FakeResult_0<T> extends _i1.SmartFake implements _i2.Result<T> {
     : super(parent, parentInvocation);
 }
 
-/// A class which mocks [IAuthRepository].
+/// A class which mocks [NewIAuthRepository].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockIAuthRepository extends _i1.Mock implements _i3.IAuthRepository {
-  MockIAuthRepository() {
+class MockNewIAuthRepository extends _i1.Mock
+    implements _i3.NewIAuthRepository {
+  MockNewIAuthRepository() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i4.Future<_i2.Result<_i5.AuthUser>> trySignInWithEmailAndPassword(
+  _i4.Future<_i2.Result<_i5.NewAuthUser>> trySignInWithEmailAndPassword(
     String? email,
     String? password,
   ) =>
@@ -52,8 +53,8 @@ class MockIAuthRepository extends _i1.Mock implements _i3.IAuthRepository {
               email,
               password,
             ]),
-            returnValue: _i4.Future<_i2.Result<_i5.AuthUser>>.value(
-              _FakeResult_0<_i5.AuthUser>(
+            returnValue: _i4.Future<_i2.Result<_i5.NewAuthUser>>.value(
+              _FakeResult_0<_i5.NewAuthUser>(
                 this,
                 Invocation.method(#trySignInWithEmailAndPassword, [
                   email,
@@ -62,7 +63,7 @@ class MockIAuthRepository extends _i1.Mock implements _i3.IAuthRepository {
               ),
             ),
           )
-          as _i4.Future<_i2.Result<_i5.AuthUser>>);
+          as _i4.Future<_i2.Result<_i5.NewAuthUser>>);
 
   @override
   _i4.Future<_i2.Result<void>> trySendPasswordResetEmail(String? email) =>
@@ -79,8 +80,8 @@ class MockIAuthRepository extends _i1.Mock implements _i3.IAuthRepository {
 
   @override
   _i4.Future<_i2.Result<void>> tryCreateUserWithEmailAndPassword(
-    _i6.Email? email,
-    _i6.Password? password,
+    _i6.NewEmail? email,
+    _i6.NewPassword? password,
   ) =>
       (super.noSuchMethod(
             Invocation.method(#tryCreateUserWithEmailAndPassword, [
@@ -109,27 +110,30 @@ class MockIAuthRepository extends _i1.Mock implements _i3.IAuthRepository {
           as _i4.Future<void>);
 
   @override
-  _i4.Future<_i2.Result<bool>> tryVerifyEmail() =>
+  _i4.Future<_i2.Result<bool>> tryIsEmailVerified() =>
       (super.noSuchMethod(
-            Invocation.method(#tryVerifyEmail, []),
+            Invocation.method(#tryIsEmailVerified, []),
             returnValue: _i4.Future<_i2.Result<bool>>.value(
-              _FakeResult_0<bool>(this, Invocation.method(#tryVerifyEmail, [])),
+              _FakeResult_0<bool>(
+                this,
+                Invocation.method(#tryIsEmailVerified, []),
+              ),
             ),
           )
           as _i4.Future<_i2.Result<bool>>);
 
   @override
-  _i4.Future<_i2.Result<_i5.AuthUser?>> tryGetCurrentUser() =>
+  _i4.Future<_i2.Result<_i5.NewAuthUser?>> tryGetCurrentUser() =>
       (super.noSuchMethod(
             Invocation.method(#tryGetCurrentUser, []),
-            returnValue: _i4.Future<_i2.Result<_i5.AuthUser?>>.value(
-              _FakeResult_0<_i5.AuthUser?>(
+            returnValue: _i4.Future<_i2.Result<_i5.NewAuthUser?>>.value(
+              _FakeResult_0<_i5.NewAuthUser?>(
                 this,
                 Invocation.method(#tryGetCurrentUser, []),
               ),
             ),
           )
-          as _i4.Future<_i2.Result<_i5.AuthUser?>>);
+          as _i4.Future<_i2.Result<_i5.NewAuthUser?>>);
 
   @override
   _i4.Future<_i2.Result<void>> tryRefreshCurrentUser() =>
@@ -145,17 +149,17 @@ class MockIAuthRepository extends _i1.Mock implements _i3.IAuthRepository {
           as _i4.Future<_i2.Result<void>>);
 
   @override
-  _i4.Future<_i2.Result<_i5.AuthUser?>> tryGetRefreshedCurrentUser() =>
+  _i4.Future<_i2.Result<_i5.NewAuthUser?>> tryGetRefreshedCurrentUser() =>
       (super.noSuchMethod(
             Invocation.method(#tryGetRefreshedCurrentUser, []),
-            returnValue: _i4.Future<_i2.Result<_i5.AuthUser?>>.value(
-              _FakeResult_0<_i5.AuthUser?>(
+            returnValue: _i4.Future<_i2.Result<_i5.NewAuthUser?>>.value(
+              _FakeResult_0<_i5.NewAuthUser?>(
                 this,
                 Invocation.method(#tryGetRefreshedCurrentUser, []),
               ),
             ),
           )
-          as _i4.Future<_i2.Result<_i5.AuthUser?>>);
+          as _i4.Future<_i2.Result<_i5.NewAuthUser?>>);
 
   @override
   _i4.Future<_i2.Result<void>> trySignOut() =>
@@ -168,12 +172,12 @@ class MockIAuthRepository extends _i1.Mock implements _i3.IAuthRepository {
           as _i4.Future<_i2.Result<void>>);
 
   @override
-  _i4.Stream<_i5.AuthUser?> onStateChanges() =>
+  _i4.Stream<_i5.NewAuthUser?> onStateChanges() =>
       (super.noSuchMethod(
             Invocation.method(#onStateChanges, []),
-            returnValue: _i4.Stream<_i5.AuthUser?>.empty(),
+            returnValue: _i4.Stream<_i5.NewAuthUser?>.empty(),
           )
-          as _i4.Stream<_i5.AuthUser?>);
+          as _i4.Stream<_i5.NewAuthUser?>);
 
   @override
   _i4.Future<_i2.Result<void>> tryUpdateDisplayName(

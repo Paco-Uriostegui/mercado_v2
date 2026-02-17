@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mercado_v2/features/auth/new_fb_authentication/domain/repositories/newiauth_gate.dart';
-import 'package:mercado_v2/features/home_app_shell/presentation/screens/app_shell_prov.dart';
+import 'package:mercado_v2/features/home_app_shell/presentation/screens/home_app_shell_prov.dart';
 
 class GateKeeper extends StatefulWidget {
   final NewIAuthGateStream _iAuthGateStream;
