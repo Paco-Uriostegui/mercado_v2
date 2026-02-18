@@ -10,6 +10,8 @@ import 'package:mercado_v2/features/auth/email_fb_authentication/domain/entities
     as _i6;
 import 'package:mercado_v2/features/auth/email_fb_authentication/domain/repositories/iauth_repository.dart'
     as _i3;
+import 'package:mercado_v2/features/auth/email_fb_authentication/domain/usecases/authenticate_usecase.dart'
+    as _i7;
 import 'package:mercado_v2/features/auth/email_fb_authentication/domain/value_objects/value_objects_export.dart'
     as _i5;
 import 'package:mockito/mockito.dart' as _i1;
@@ -202,4 +204,22 @@ class MockIAuthRepository extends _i1.Mock implements _i3.IAuthRepository {
             ),
           )
           as _i4.Future<_i2.Result<void>>);
+}
+
+/// A class which mocks [AuthenticationUseCase].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockAuthenticationUseCase extends _i1.Mock
+    implements _i7.AuthenticationUseCase {
+  MockAuthenticationUseCase() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i4.Stream<_i7.AuthUserStatus> call() =>
+      (super.noSuchMethod(
+            Invocation.method(#call, []),
+            returnValue: _i4.Stream<_i7.AuthUserStatus>.empty(),
+          )
+          as _i4.Stream<_i7.AuthUserStatus>);
 }

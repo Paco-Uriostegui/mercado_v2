@@ -6,13 +6,13 @@ class AuthenticationUseCase {
   AuthenticationUseCase({required IAuthRepository authRepository})
     : _authRepository = authRepository;
 
-  Stream<AuthUserStatus> execute() {
+  Stream<AuthUserStatus> call() {
     return _authRepository.onStateChanges().map((authUser) {
       if (authUser != null) {
         if (authUser.isEmailVerified) {
-          return AuthUserCompleted();
+          return AuthUserComplete();
         } else {
-          return AuthUserUnverified();
+          return AuthUserNotVerified();
         }
       } else {
         return AuthUserUnlogged();
@@ -23,8 +23,8 @@ class AuthenticationUseCase {
 
 sealed class AuthUserStatus {}
 
-class AuthUserCompleted extends AuthUserStatus {}
+class AuthUserComplete extends AuthUserStatus {}
 
-class AuthUserUnverified extends AuthUserStatus {}
+class AuthUserNotVerified extends AuthUserStatus {}
 
 class AuthUserUnlogged extends AuthUserStatus {}
