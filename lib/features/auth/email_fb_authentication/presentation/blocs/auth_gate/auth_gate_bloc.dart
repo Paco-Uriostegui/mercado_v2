@@ -26,7 +26,7 @@ class AuthGateBloc extends Bloc<AuthGateEvent, AuthGateState>
     AuthGateEvent event,
     Emitter<AuthGateState> emit,
   ) async {
-    _subscription = _usecase.call().listen((response) {
+    _subscription = _usecase.execute().listen((response) {
       switch (response) {
         case AuthUserComplete():
           _controller.sink.add(AuthenticationSuccess());

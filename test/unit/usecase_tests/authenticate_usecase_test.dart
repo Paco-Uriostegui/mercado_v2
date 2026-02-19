@@ -28,7 +28,7 @@ void main() {
       // Arrange
 
       // Act
-      final result = usecase();
+      final result = usecase.execute();
 
       // Assert
       expect(result, isA<Stream<AuthUserStatus>>());
@@ -48,7 +48,7 @@ void main() {
       ).thenAnswer((_) => Stream<AuthUser?>.value(fakeUser));
 
       // Act
-      final result = usecase();
+      final result = usecase.execute();
 
       // Assert
       expect(result, isA<Stream<AuthUserStatus>>());
@@ -63,7 +63,7 @@ void main() {
       ).thenAnswer((_) => Stream<AuthUser?>.value(null));
 
       // Act
-      final result = usecase();
+      final result = usecase.execute();
 
       // Assert
       expect(result, isA<Stream<AuthUserStatus>>());

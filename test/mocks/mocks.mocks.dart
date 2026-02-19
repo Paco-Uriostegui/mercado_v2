@@ -216,9 +216,9 @@ class MockAuthenticationUseCase extends _i1.Mock
   }
 
   @override
-  _i4.Stream<_i7.AuthUserStatus> call() =>
+  _i4.Stream<_i7.AuthUserStatus> execute() =>
       (super.noSuchMethod(
-            Invocation.method(#call, []),
+            Invocation.method(#execute, []),
             returnValue: _i4.Stream<_i7.AuthUserStatus>.empty(),
           )
           as _i4.Stream<_i7.AuthUserStatus>);
