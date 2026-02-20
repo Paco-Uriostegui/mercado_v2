@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:firebase_auth/firebase_auth.dart' as fb;
 import 'package:mercado_v2/app/core/result/failure.dart';
 import 'package:mercado_v2/features/auth/email_fb_authentication/data/datasources/iauth_remote_datasource.dart';
@@ -114,41 +116,25 @@ class FirebaseAuthDataSourceImpl implements IAuthRemoteDataSource {
 
   @override
   Stream<AuthUser?> authStateChanges() {
-
-    // TODO:
-// Stream<AuthUser?> authStateChanges() {
-//   return _firebaseAuth.authStateChanges().transform(
-//     StreamTransformer<fb.User?, AuthUser?>.fromHandlers(
-//       handleData: (firebaseUser, sink) {
-//         sink.add(firebaseUser == null
-//             ? null
-//             : AuthUser(
-//                 uid: firebaseUser.uid,
-//                 isEmailVerified: firebaseUser.emailVerified,
-//                 name: firebaseUser.displayName,
-//               ));
-//       },
-//       handleError: (error, stackTrace, sink) {
-//         // 1. Reportar a Crashlytics
-//         // FirebaseCrashlytics.instance.recordError(error, stackTrace);
-        
-//         // 2. Emitir null al listener en vez del error
-//         sink.add(null);
-//       },
-//     ),
-//   );
-// }
-
-
-    return _firebaseAuth.authStateChanges().map((firebaseUser) {
-      return firebaseUser == null
-          ? null
-          : AuthUser(
-              uid: firebaseUser.uid,
-              isEmailVerified: firebaseUser.emailVerified,
-              name: firebaseUser.displayName,
-            );
-    });
+    return _firebaseAuth.authStateChanges().transform(
+      StreamTransformer<fb.User?, AuthUser?>.fromHandlers(
+        handleData: (firebaseUser, sink) {
+          sink.add(
+            firebaseUser == null
+                ? null
+                : AuthUser(
+                    uid: firebaseUser.uid,
+                    name: firebaseUser.displayName,
+                    isEmailVerified: firebaseUser.emailVerified,
+                  ),
+          );
+        },
+        handleError: (error, stackTrace, sink) {
+          // TODO report error y strackTRace
+          sink.add(null);
+        },
+      ),
+    );
   }
 
   @override

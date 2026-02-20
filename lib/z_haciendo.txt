@@ -2,7 +2,8 @@
 Hecho: 
     - 
 En: 
-    - Agregar el transform al authstatusChanges
+    - Releer conversación con Qwen sobre failures, luego implementar los 
+    failures en el pattern matching del bloc pero también mandarlos desde el CreateAccountUseCase
 Seguir:
     - 
 

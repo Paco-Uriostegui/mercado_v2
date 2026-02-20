@@ -14,7 +14,6 @@ import '../../mocks/mocks.mocks.dart';
 void main() {
   late MockAuthenticationUseCase mockUseCase;
   late AuthenticationStatus? capturedStatus;
-  late StreamSubscription<AuthenticationStatus> streamSubs;
   group("AuthGate bloc tests", () {
     setUp(() {
       capturedStatus = null;
@@ -68,7 +67,7 @@ void main() {
 
       act: (bloc) async {
         final completer = Completer<AuthenticationStatus>();
-        streamSubs = bloc.authenticationGateStream.listen((value) {
+        bloc.authenticationGateStream.listen((value) {
           if (!completer.isCompleted) completer.complete(value);
         });
         bloc.add(InitStream());
