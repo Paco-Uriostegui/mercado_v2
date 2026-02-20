@@ -114,6 +114,32 @@ class FirebaseAuthDataSourceImpl implements IAuthRemoteDataSource {
 
   @override
   Stream<AuthUser?> authStateChanges() {
+
+    // TODO:
+// Stream<AuthUser?> authStateChanges() {
+//   return _firebaseAuth.authStateChanges().transform(
+//     StreamTransformer<fb.User?, AuthUser?>.fromHandlers(
+//       handleData: (firebaseUser, sink) {
+//         sink.add(firebaseUser == null
+//             ? null
+//             : AuthUser(
+//                 uid: firebaseUser.uid,
+//                 isEmailVerified: firebaseUser.emailVerified,
+//                 name: firebaseUser.displayName,
+//               ));
+//       },
+//       handleError: (error, stackTrace, sink) {
+//         // 1. Reportar a Crashlytics
+//         // FirebaseCrashlytics.instance.recordError(error, stackTrace);
+        
+//         // 2. Emitir null al listener en vez del error
+//         sink.add(null);
+//       },
+//     ),
+//   );
+// }
+
+
     return _firebaseAuth.authStateChanges().map((firebaseUser) {
       return firebaseUser == null
           ? null

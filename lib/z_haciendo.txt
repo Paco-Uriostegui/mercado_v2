@@ -2,11 +2,9 @@
 Hecho: 
     - 
 En: 
--
+    - Agregar el transform al authstatusChanges
 Seguir:
-    - haciendo el event sendverificacion email. Buscar si puede devolver excepciones desde firebase
-    para saber cómo manejarlas.
-
+    - 
 
 Por hacer: 
     - Investigar diferencia entre navegar y return screen()

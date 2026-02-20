@@ -38,7 +38,7 @@ class AuthGateBloc extends Bloc<AuthGateEvent, AuthGateState>
           emit(.goToLogin());
           break;
       }
-    });
+    }, onError: (_) => emit(AuthGateState.goToLogin()));
   }
 
   @override

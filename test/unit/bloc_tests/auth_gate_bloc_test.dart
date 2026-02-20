@@ -82,6 +82,12 @@ void main() {
       },
     );
 
+    // blocTest("Test 5: Emits [GoToLogin] when error is recieved", 
+    // setUp: () {
+    //   when(mockUseCase.execute())
+    // },
+    // build: build)
+
     //
   });
 }
