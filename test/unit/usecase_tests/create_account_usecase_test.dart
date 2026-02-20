@@ -72,7 +72,7 @@ void main() {
 
       // Assert
       if (result case FailureResult(:final failure)) {
-        expect(failure, isA<InvalidEmailFormat>());
+        expect(failure, isA<InvalidEmailFormatFailure>());
         verifyNever(
           mockIAuthRepository.tryCreateUserWithEmailAndPassword(any, any),
         );
@@ -97,7 +97,7 @@ void main() {
 
       // Assert
       if (result case FailureResult(:final failure)) {
-        expect(failure, isA<InvalidPasswordTooShort>());
+        expect(failure, isA<PasswordTooShortFailure>());
         verifyNever(
           mockIAuthRepository.tryCreateUserWithEmailAndPassword(any, any),
         );
@@ -192,7 +192,7 @@ void main() {
       // Arrange
       when(
         mockIAuthRepository.tryCreateUserWithEmailAndPassword(any, any),
-      ).thenAnswer((_) async => Result.failure(AuthException()));
+      ).thenAnswer((_) async => Result.failure(AuthFailure()));
 
       // Act
       final result = await usecase(
@@ -203,7 +203,7 @@ void main() {
         // secondLastNameString: validSecondLastName,
       );
       if (result case FailureResult(:final failure)) {
-        expect(failure, isA<AuthException>());
+        expect(failure, isA<AuthFailure>());
         verifyNever(mockIAuthRepository.trySendEmailVerification());
         //verifyNever(mockIAuthRepository.tryUpdateDisplayName(any, any, any));
       } else {

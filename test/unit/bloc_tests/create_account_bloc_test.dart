@@ -57,7 +57,7 @@ void main() {
             emailString: anyNamed("emailString"),
             passwordString: anyNamed("passwordString"),
           ),
-        ).thenAnswer((_) async => Result.failure(AuthException()));
+        ).thenAnswer((_) async => Result.failure(AuthFailure()));
       },
       build: () => CreateAccountBloc(usecase: mockCreateAccountUseCase),
 
@@ -70,7 +70,7 @@ void main() {
 
       expect: () => <CreateAccountState>[
         CreateAccountState.loading(),
-        CreateAccountState.error(AuthException()),
+        CreateAccountState.error(AuthFailure()),
       ],
       verify: (_) {
         verify(

@@ -33,7 +33,7 @@ import 'package:mockito/mockito.dart' as _i1;
 // ignore_for_file: subtype_of_sealed_class
 // ignore_for_file: invalid_use_of_internal_member
 
-class _FakeResult_0<T> extends _i1.SmartFake implements _i2.Result<T> {
+class _FakeResult_0<S, F> extends _i1.SmartFake implements _i2.Result<S, F> {
   _FakeResult_0(Object parent, Invocation parentInvocation)
     : super(parent, parentInvocation);
 }
@@ -47,7 +47,7 @@ class MockIAuthRepository extends _i1.Mock implements _i3.IAuthRepository {
   }
 
   @override
-  _i4.Future<_i2.Result<void>> trySignInWithEmailAndPassword(
+  _i4.Future<_i2.Result<dynamic, dynamic>> trySignInWithEmailAndPassword(
     _i5.Email? email,
     _i5.Password? password,
   ) =>
@@ -56,8 +56,8 @@ class MockIAuthRepository extends _i1.Mock implements _i3.IAuthRepository {
               email,
               password,
             ]),
-            returnValue: _i4.Future<_i2.Result<void>>.value(
-              _FakeResult_0<void>(
+            returnValue: _i4.Future<_i2.Result<dynamic, dynamic>>.value(
+              _FakeResult_0<dynamic, dynamic>(
                 this,
                 Invocation.method(#trySignInWithEmailAndPassword, [
                   email,
@@ -66,23 +66,25 @@ class MockIAuthRepository extends _i1.Mock implements _i3.IAuthRepository {
               ),
             ),
           )
-          as _i4.Future<_i2.Result<void>>);
+          as _i4.Future<_i2.Result<dynamic, dynamic>>);
 
   @override
-  _i4.Future<_i2.Result<void>> trySendPasswordResetEmail(_i5.Email? email) =>
+  _i4.Future<_i2.Result<dynamic, dynamic>> trySendPasswordResetEmail(
+    _i5.Email? email,
+  ) =>
       (super.noSuchMethod(
             Invocation.method(#trySendPasswordResetEmail, [email]),
-            returnValue: _i4.Future<_i2.Result<void>>.value(
-              _FakeResult_0<void>(
+            returnValue: _i4.Future<_i2.Result<dynamic, dynamic>>.value(
+              _FakeResult_0<dynamic, dynamic>(
                 this,
                 Invocation.method(#trySendPasswordResetEmail, [email]),
               ),
             ),
           )
-          as _i4.Future<_i2.Result<void>>);
+          as _i4.Future<_i2.Result<dynamic, dynamic>>);
 
   @override
-  _i4.Future<_i2.Result<void>> tryCreateUserWithEmailAndPassword(
+  _i4.Future<_i2.Result<dynamic, dynamic>> tryCreateUserWithEmailAndPassword(
     _i5.Email? email,
     _i5.Password? password,
   ) =>
@@ -91,8 +93,8 @@ class MockIAuthRepository extends _i1.Mock implements _i3.IAuthRepository {
               email,
               password,
             ]),
-            returnValue: _i4.Future<_i2.Result<void>>.value(
-              _FakeResult_0<void>(
+            returnValue: _i4.Future<_i2.Result<dynamic, dynamic>>.value(
+              _FakeResult_0<dynamic, dynamic>(
                 this,
                 Invocation.method(#tryCreateUserWithEmailAndPassword, [
                   email,
@@ -101,7 +103,7 @@ class MockIAuthRepository extends _i1.Mock implements _i3.IAuthRepository {
               ),
             ),
           )
-          as _i4.Future<_i2.Result<void>>);
+          as _i4.Future<_i2.Result<dynamic, dynamic>>);
 
   @override
   _i4.Future<void> trySendEmailVerification() =>
@@ -113,66 +115,69 @@ class MockIAuthRepository extends _i1.Mock implements _i3.IAuthRepository {
           as _i4.Future<void>);
 
   @override
-  _i4.Future<_i2.Result<bool>> tryIsEmailVerified() =>
+  _i4.Future<_i2.Result<dynamic, dynamic>> tryIsEmailVerified() =>
       (super.noSuchMethod(
             Invocation.method(#tryIsEmailVerified, []),
-            returnValue: _i4.Future<_i2.Result<bool>>.value(
-              _FakeResult_0<bool>(
+            returnValue: _i4.Future<_i2.Result<dynamic, dynamic>>.value(
+              _FakeResult_0<dynamic, dynamic>(
                 this,
                 Invocation.method(#tryIsEmailVerified, []),
               ),
             ),
           )
-          as _i4.Future<_i2.Result<bool>>);
+          as _i4.Future<_i2.Result<dynamic, dynamic>>);
 
   @override
-  _i4.Future<_i2.Result<_i6.AuthUser?>> tryGetCurrentUser() =>
+  _i4.Future<_i2.Result<dynamic, dynamic>> tryGetCurrentUser() =>
       (super.noSuchMethod(
             Invocation.method(#tryGetCurrentUser, []),
-            returnValue: _i4.Future<_i2.Result<_i6.AuthUser?>>.value(
-              _FakeResult_0<_i6.AuthUser?>(
+            returnValue: _i4.Future<_i2.Result<dynamic, dynamic>>.value(
+              _FakeResult_0<dynamic, dynamic>(
                 this,
                 Invocation.method(#tryGetCurrentUser, []),
               ),
             ),
           )
-          as _i4.Future<_i2.Result<_i6.AuthUser?>>);
+          as _i4.Future<_i2.Result<dynamic, dynamic>>);
 
   @override
-  _i4.Future<_i2.Result<void>> tryRefreshCurrentUser() =>
+  _i4.Future<_i2.Result<dynamic, dynamic>> tryRefreshCurrentUser() =>
       (super.noSuchMethod(
             Invocation.method(#tryRefreshCurrentUser, []),
-            returnValue: _i4.Future<_i2.Result<void>>.value(
-              _FakeResult_0<void>(
+            returnValue: _i4.Future<_i2.Result<dynamic, dynamic>>.value(
+              _FakeResult_0<dynamic, dynamic>(
                 this,
                 Invocation.method(#tryRefreshCurrentUser, []),
               ),
             ),
           )
-          as _i4.Future<_i2.Result<void>>);
+          as _i4.Future<_i2.Result<dynamic, dynamic>>);
 
   @override
-  _i4.Future<_i2.Result<_i6.AuthUser?>> tryGetRefreshedCurrentUser() =>
+  _i4.Future<_i2.Result<dynamic, dynamic>> tryGetRefreshedCurrentUser() =>
       (super.noSuchMethod(
             Invocation.method(#tryGetRefreshedCurrentUser, []),
-            returnValue: _i4.Future<_i2.Result<_i6.AuthUser?>>.value(
-              _FakeResult_0<_i6.AuthUser?>(
+            returnValue: _i4.Future<_i2.Result<dynamic, dynamic>>.value(
+              _FakeResult_0<dynamic, dynamic>(
                 this,
                 Invocation.method(#tryGetRefreshedCurrentUser, []),
               ),
             ),
           )
-          as _i4.Future<_i2.Result<_i6.AuthUser?>>);
+          as _i4.Future<_i2.Result<dynamic, dynamic>>);
 
   @override
-  _i4.Future<_i2.Result<void>> trySignOut() =>
+  _i4.Future<_i2.Result<dynamic, dynamic>> trySignOut() =>
       (super.noSuchMethod(
             Invocation.method(#trySignOut, []),
-            returnValue: _i4.Future<_i2.Result<void>>.value(
-              _FakeResult_0<void>(this, Invocation.method(#trySignOut, [])),
+            returnValue: _i4.Future<_i2.Result<dynamic, dynamic>>.value(
+              _FakeResult_0<dynamic, dynamic>(
+                this,
+                Invocation.method(#trySignOut, []),
+              ),
             ),
           )
-          as _i4.Future<_i2.Result<void>>);
+          as _i4.Future<_i2.Result<dynamic, dynamic>>);
 
   @override
   _i4.Stream<_i6.AuthUser?> onStateChanges() =>
@@ -183,7 +188,7 @@ class MockIAuthRepository extends _i1.Mock implements _i3.IAuthRepository {
           as _i4.Stream<_i6.AuthUser?>);
 
   @override
-  _i4.Future<_i2.Result<void>> tryUpdateDisplayName(
+  _i4.Future<_i2.Result<dynamic, dynamic>> tryUpdateDisplayName(
     _i5.FirstName? firstName,
     _i5.LastName? lastName,
     _i5.SecondLastName? secondLastName,
@@ -194,8 +199,8 @@ class MockIAuthRepository extends _i1.Mock implements _i3.IAuthRepository {
               lastName,
               secondLastName,
             ]),
-            returnValue: _i4.Future<_i2.Result<void>>.value(
-              _FakeResult_0<void>(
+            returnValue: _i4.Future<_i2.Result<dynamic, dynamic>>.value(
+              _FakeResult_0<dynamic, dynamic>(
                 this,
                 Invocation.method(#tryUpdateDisplayName, [
                   firstName,
@@ -205,7 +210,7 @@ class MockIAuthRepository extends _i1.Mock implements _i3.IAuthRepository {
               ),
             ),
           )
-          as _i4.Future<_i2.Result<void>>);
+          as _i4.Future<_i2.Result<dynamic, dynamic>>);
 }
 
 /// A class which mocks [AuthenticationUseCase].
@@ -236,7 +241,7 @@ class MockCreateAccountUsecase extends _i1.Mock
   }
 
   @override
-  _i4.Future<_i2.Result<void>> call({
+  _i4.Future<_i2.Result<dynamic, dynamic>> call({
     required String? emailString,
     required String? passwordString,
   }) =>
@@ -245,8 +250,8 @@ class MockCreateAccountUsecase extends _i1.Mock
               #emailString: emailString,
               #passwordString: passwordString,
             }),
-            returnValue: _i4.Future<_i2.Result<void>>.value(
-              _FakeResult_0<void>(
+            returnValue: _i4.Future<_i2.Result<dynamic, dynamic>>.value(
+              _FakeResult_0<dynamic, dynamic>(
                 this,
                 Invocation.method(#call, [], {
                   #emailString: emailString,
@@ -255,5 +260,5 @@ class MockCreateAccountUsecase extends _i1.Mock
               ),
             ),
           )
-          as _i4.Future<_i2.Result<void>>);
+          as _i4.Future<_i2.Result<dynamic, dynamic>>);
 }

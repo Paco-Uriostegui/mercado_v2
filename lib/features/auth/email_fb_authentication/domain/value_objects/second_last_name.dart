@@ -10,21 +10,21 @@ class SecondLastName extends Equatable {
   factory SecondLastName(String value) {
     final trimmedValue = value.trim();
     if (trimmedValue.length <= 1) {
-      throw InvalidSecondLastNameTooShort();
+      throw SecondLastNameTooShortFailure();
     }
     if (!RegExp(r'^[a-zA-Z\s\-]+$').hasMatch(trimmedValue)) {
-      throw InvalidSecondLastNameInvalidChars();
+      throw SecondLastNameInvalidCharsFailure();
     }
     return SecondLastName._(trimmedValue);
   }
 
-  static Result<SecondLastName> create(String value) {
+  static Result<SecondLastName, ValueObjectsFailure> create(String value) {
     final trimmedValue = value.trim();
     if (trimmedValue.length <= 1) {
-      return Result.failure(InvalidSecondLastNameTooShort());
+      return Result.failure(SecondLastNameTooShortFailure());
     }
     if (!RegExp(r'^[a-zA-Z\s\-]+$').hasMatch(trimmedValue)) {
-      return Result.failure(InvalidSecondLastNameInvalidChars());
+      return Result.failure(SecondLastNameInvalidCharsFailure());
     }
     return Result.success(SecondLastName._(trimmedValue));
   }

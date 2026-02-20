@@ -25,15 +25,9 @@ class CreateAccountBloc extends Bloc<CreateAccountEvent, CreateAccountState> {
     result.when(
       success: (value) => emit(CreateAccountState.success()),
       failure: (failure) {
-        emit(
-          failure.when(
-            weakPassword: (_) => CreateAccountState.weakPassword(),
-            emailInvalid: (_) => CreateAccountState.emailInvalid(),
-            emailAlreadyInUse: (_) => CreateAccountState.emailAlreadyInUse(),
-            connectionError: (_) => CreateAccountState.connectionError(),
-            genericError: (_) => CreateAccountState.genericError(),
-          ),
-        );
+        emit(switch (failure) {
+   
+        });
       },
     );
   }

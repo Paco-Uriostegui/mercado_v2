@@ -1,14 +1,13 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:mercado_v2/app/core/result/failure.dart';
 export 'result_extensions.dart';
 export 'failure.dart';
 
 part 'result.freezed.dart';
 
 @freezed
-class Result<T> with _$Result<T> {
-  factory Result.success(T value) = Success<T>;
-  factory Result.failure(Failure failure) = FailureResult<T>;
+class Result<S, F> with _$Result<S, F> {
+  factory Result.success(S value) = Success<S, F>;
+  factory Result.failure(F failure) = FailureResult<S, F>;
 }
 
 

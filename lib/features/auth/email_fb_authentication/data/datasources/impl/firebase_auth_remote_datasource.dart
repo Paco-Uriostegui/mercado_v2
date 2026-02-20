@@ -29,7 +29,7 @@ class FirebaseAuthDataSourceImpl implements IAuthRemoteDataSource {
 
       final user = userCredential.user;
       if (user == null) {
-        throw AuthException();
+        throw AuthFailure();
       }
       return _mapper.fromFirebase(user);
     } catch (e) {
@@ -55,11 +55,11 @@ class FirebaseAuthDataSourceImpl implements IAuthRemoteDataSource {
       );
       final user = userCredential.user;
       if (user == null) {
-        throw AuthException();
+        throw AuthFailure();
       }
       return _mapper.fromFirebase(user);
     } catch (e) {
-      throw AuthException();
+      throw AuthFailure();
     }
   }
 
@@ -79,7 +79,7 @@ class FirebaseAuthDataSourceImpl implements IAuthRemoteDataSource {
       await _firebaseAuth.currentUser?.reload();
       return _firebaseAuth.currentUser?.emailVerified ?? false;
     } catch (e) {
-      throw IsEmailVerifiedException();
+      throw IsEmailVerifiedFailure();
     }
   }
 
@@ -92,7 +92,7 @@ class FirebaseAuthDataSourceImpl implements IAuthRemoteDataSource {
       }
       return _mapper.fromFirebase(user);
     } catch (e) {
-      throw AuthException();
+      throw AuthFailure();
     }
   }
 
@@ -101,7 +101,7 @@ class FirebaseAuthDataSourceImpl implements IAuthRemoteDataSource {
     try {
       await _firebaseAuth.currentUser?.getIdToken(true);
     } catch (e) {
-      throw AuthException();
+      throw AuthFailure();
     }
   }
 
@@ -110,7 +110,7 @@ class FirebaseAuthDataSourceImpl implements IAuthRemoteDataSource {
     try {
       await _firebaseAuth.signOut();
     } catch (e) {
-      throw AuthException();
+      throw AuthFailure();
     }
   }
 

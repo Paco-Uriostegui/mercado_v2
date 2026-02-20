@@ -2,8 +2,8 @@
 Hecho: 
     - 
 En: 
-    - Releer conversación con Qwen sobre failures, luego implementar los 
-    failures en el pattern matching del bloc pero también mandarlos desde el CreateAccountUseCase
+    - Rehacer el authRepository, eliminar el datasouce y fusionarlo con el repository. Es innecesario tenerlo separado.
+    Una vez fusionado. Atrapar errores, mapearlos, reportarlos y emitir errores de dominio.
 Seguir:
     - 
 

@@ -5,7 +5,7 @@ import 'package:mercado_v2/features/auth/email_fb_authentication/domain/entities
 class AuthUserMapper {
   AuthUser fromFirebase(fb.User firebaseUser) {
     if (firebaseUser.uid.isEmpty) {
-      throw AuthException();
+      throw AuthFailure();
     }
     return AuthUser(
       uid: firebaseUser.uid,

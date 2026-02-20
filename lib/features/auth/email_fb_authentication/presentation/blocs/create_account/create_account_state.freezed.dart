@@ -55,14 +55,17 @@ extension CreateAccountStatePatterns on CreateAccountState {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( Initial value)?  initial,TResult Function( Error value)?  error,TResult Function( Loading value)?  loading,TResult Function( Success value)?  success,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( Initial value)?  initial,TResult Function( Loading value)?  loading,TResult Function( Success value)?  success,TResult Function( WeakPassword value)?  weakPassword,TResult Function( InvalidEmail value)?  invalidEmail,TResult Function( EmailAlreadyInUse value)?  emailAlreadyInUse,TResult Function( NetworkError value)?  networkError,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case Initial() when initial != null:
-return initial(_that);case Error() when error != null:
-return error(_that);case Loading() when loading != null:
+return initial(_that);case Loading() when loading != null:
 return loading(_that);case Success() when success != null:
-return success(_that);case _:
+return success(_that);case WeakPassword() when weakPassword != null:
+return weakPassword(_that);case InvalidEmail() when invalidEmail != null:
+return invalidEmail(_that);case EmailAlreadyInUse() when emailAlreadyInUse != null:
+return emailAlreadyInUse(_that);case NetworkError() when networkError != null:
+return networkError(_that);case _:
   return orElse();
 
 }
@@ -80,14 +83,17 @@ return success(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( Initial value)  initial,required TResult Function( Error value)  error,required TResult Function( Loading value)  loading,required TResult Function( Success value)  success,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( Initial value)  initial,required TResult Function( Loading value)  loading,required TResult Function( Success value)  success,required TResult Function( WeakPassword value)  weakPassword,required TResult Function( InvalidEmail value)  invalidEmail,required TResult Function( EmailAlreadyInUse value)  emailAlreadyInUse,required TResult Function( NetworkError value)  networkError,}){
 final _that = this;
 switch (_that) {
 case Initial():
-return initial(_that);case Error():
-return error(_that);case Loading():
+return initial(_that);case Loading():
 return loading(_that);case Success():
-return success(_that);}
+return success(_that);case WeakPassword():
+return weakPassword(_that);case InvalidEmail():
+return invalidEmail(_that);case EmailAlreadyInUse():
+return emailAlreadyInUse(_that);case NetworkError():
+return networkError(_that);}
 }
 /// A variant of `map` that fallback to returning `null`.
 ///
@@ -101,14 +107,17 @@ return success(_that);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( Initial value)?  initial,TResult? Function( Error value)?  error,TResult? Function( Loading value)?  loading,TResult? Function( Success value)?  success,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( Initial value)?  initial,TResult? Function( Loading value)?  loading,TResult? Function( Success value)?  success,TResult? Function( WeakPassword value)?  weakPassword,TResult? Function( InvalidEmail value)?  invalidEmail,TResult? Function( EmailAlreadyInUse value)?  emailAlreadyInUse,TResult? Function( NetworkError value)?  networkError,}){
 final _that = this;
 switch (_that) {
 case Initial() when initial != null:
-return initial(_that);case Error() when error != null:
-return error(_that);case Loading() when loading != null:
+return initial(_that);case Loading() when loading != null:
 return loading(_that);case Success() when success != null:
-return success(_that);case _:
+return success(_that);case WeakPassword() when weakPassword != null:
+return weakPassword(_that);case InvalidEmail() when invalidEmail != null:
+return invalidEmail(_that);case EmailAlreadyInUse() when emailAlreadyInUse != null:
+return emailAlreadyInUse(_that);case NetworkError() when networkError != null:
+return networkError(_that);case _:
   return null;
 
 }
@@ -125,13 +134,16 @@ return success(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function( Failure failure)?  error,TResult Function()?  loading,TResult Function()?  success,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loading,TResult Function()?  success,TResult Function()?  weakPassword,TResult Function()?  invalidEmail,TResult Function()?  emailAlreadyInUse,TResult Function()?  networkError,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case Initial() when initial != null:
-return initial();case Error() when error != null:
-return error(_that.failure);case Loading() when loading != null:
+return initial();case Loading() when loading != null:
 return loading();case Success() when success != null:
-return success();case _:
+return success();case WeakPassword() when weakPassword != null:
+return weakPassword();case InvalidEmail() when invalidEmail != null:
+return invalidEmail();case EmailAlreadyInUse() when emailAlreadyInUse != null:
+return emailAlreadyInUse();case NetworkError() when networkError != null:
+return networkError();case _:
   return orElse();
 
 }
@@ -149,13 +161,16 @@ return success();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function( Failure failure)  error,required TResult Function()  loading,required TResult Function()  success,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loading,required TResult Function()  success,required TResult Function()  weakPassword,required TResult Function()  invalidEmail,required TResult Function()  emailAlreadyInUse,required TResult Function()  networkError,}) {final _that = this;
 switch (_that) {
 case Initial():
-return initial();case Error():
-return error(_that.failure);case Loading():
+return initial();case Loading():
 return loading();case Success():
-return success();}
+return success();case WeakPassword():
+return weakPassword();case InvalidEmail():
+return invalidEmail();case EmailAlreadyInUse():
+return emailAlreadyInUse();case NetworkError():
+return networkError();}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -169,13 +184,16 @@ return success();}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function( Failure failure)?  error,TResult? Function()?  loading,TResult? Function()?  success,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loading,TResult? Function()?  success,TResult? Function()?  weakPassword,TResult? Function()?  invalidEmail,TResult? Function()?  emailAlreadyInUse,TResult? Function()?  networkError,}) {final _that = this;
 switch (_that) {
 case Initial() when initial != null:
-return initial();case Error() when error != null:
-return error(_that.failure);case Loading() when loading != null:
+return initial();case Loading() when loading != null:
 return loading();case Success() when success != null:
-return success();case _:
+return success();case WeakPassword() when weakPassword != null:
+return weakPassword();case InvalidEmail() when invalidEmail != null:
+return invalidEmail();case EmailAlreadyInUse() when emailAlreadyInUse != null:
+return emailAlreadyInUse();case NetworkError() when networkError != null:
+return networkError();case _:
   return null;
 
 }
@@ -214,72 +232,6 @@ String toString() {
 
 
 
-
-/// @nodoc
-
-
-class Error implements CreateAccountState {
-  const Error(this.failure);
-  
-
- final  Failure failure;
-
-/// Create a copy of CreateAccountState
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-$ErrorCopyWith<Error> get copyWith => _$ErrorCopyWithImpl<Error>(this, _$identity);
-
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is Error&&(identical(other.failure, failure) || other.failure == failure));
-}
-
-
-@override
-int get hashCode => Object.hash(runtimeType,failure);
-
-@override
-String toString() {
-  return 'CreateAccountState.error(failure: $failure)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class $ErrorCopyWith<$Res> implements $CreateAccountStateCopyWith<$Res> {
-  factory $ErrorCopyWith(Error value, $Res Function(Error) _then) = _$ErrorCopyWithImpl;
-@useResult
-$Res call({
- Failure failure
-});
-
-
-
-
-}
-/// @nodoc
-class _$ErrorCopyWithImpl<$Res>
-    implements $ErrorCopyWith<$Res> {
-  _$ErrorCopyWithImpl(this._self, this._then);
-
-  final Error _self;
-  final $Res Function(Error) _then;
-
-/// Create a copy of CreateAccountState
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? failure = null,}) {
-  return _then(Error(
-null == failure ? _self.failure : failure // ignore: cast_nullable_to_non_nullable
-as Failure,
-  ));
-}
-
-
-}
 
 /// @nodoc
 
@@ -337,6 +289,134 @@ int get hashCode => runtimeType.hashCode;
 @override
 String toString() {
   return 'CreateAccountState.success()';
+}
+
+
+}
+
+
+
+
+/// @nodoc
+
+
+class WeakPassword implements CreateAccountState {
+  const WeakPassword();
+  
+
+
+
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is WeakPassword);
+}
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'CreateAccountState.weakPassword()';
+}
+
+
+}
+
+
+
+
+/// @nodoc
+
+
+class InvalidEmail implements CreateAccountState {
+  const InvalidEmail();
+  
+
+
+
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is InvalidEmail);
+}
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'CreateAccountState.invalidEmail()';
+}
+
+
+}
+
+
+
+
+/// @nodoc
+
+
+class EmailAlreadyInUse implements CreateAccountState {
+  const EmailAlreadyInUse();
+  
+
+
+
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is EmailAlreadyInUse);
+}
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'CreateAccountState.emailAlreadyInUse()';
+}
+
+
+}
+
+
+
+
+/// @nodoc
+
+
+class NetworkError implements CreateAccountState {
+  const NetworkError();
+  
+
+
+
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is NetworkError);
+}
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'CreateAccountState.networkError()';
 }
 
 

@@ -10,21 +10,21 @@ class FirstName extends Equatable {
   factory FirstName(String value) {
     final trimmedValue = value.trim();
     if (trimmedValue.length <= 1) {
-      throw InvalidFirstNameTooShort();
+      throw FirstNameTooShortFailure();
     }
     if (!RegExp(r'^[a-zA-Z\s\-]+$').hasMatch(trimmedValue)) {
-      throw InvalidFirstNameInvalidChars();
+      throw FirstNameInvalidCharsFailure();
     }
     return FirstName._(trimmedValue);
   }
 
-  static Result<FirstName> create(String value) {
+  static Result<FirstName, ValueObjectsFailure> create(String value) {
     final trimmedValue = value.trim();
     if (trimmedValue.length <= 1) {
-      return Result.failure(InvalidFirstNameTooShort());
+      return Result.failure(FirstNameTooShortFailure());
     }
     if (!RegExp(r'^[a-zA-Z\s\-]+$').hasMatch(trimmedValue)) {
-      return Result.failure(InvalidFirstNameInvalidChars());
+      return Result.failure(FirstNameInvalidCharsFailure());
     }
     return Result.success(FirstName._(trimmedValue));
   }

@@ -8,7 +8,7 @@ class CreateAccountUsecase {
   CreateAccountUsecase({required IAuthRepository authRepository})
     : _authRepository = authRepository;
 
-  Future<Result<void>> call({
+  Future<Result<void, CreateAccountFailure>> call({
     required String emailString,
     required String passwordString,
   }) async {
@@ -21,8 +21,8 @@ class CreateAccountUsecase {
       case Success(:final value):
         email = value;
         break;
-      case FailureResult(:final failure):
-        return Result.failure(failure);
+      case FailureResult():
+        return Result.failure(InvalidEmailFailure());
     }
 
     final passwordResult = Password.create(passwordString);
@@ -30,15 +30,19 @@ class CreateAccountUsecase {
       case Success(:final value):
         pass = value;
         break;
-      case FailureResult(:final failure):
-        return Result.failure(failure);
+      case FailureResult():
+        return Result.failure(WeakPasswordFailure());
     }
 
     // --------------------------------------------------------------- create account
-    final Result<void> createAccountResult = await _authRepository
+    final createAccountResult = await _authRepository
         .tryCreateUserWithEmailAndPassword(email, pass);
     if (createAccountResult case FailureResult(failure: Failure failure)) {
-      return Result.failure(failure);
+      switch (failure) {
+
+      }
+
+      return Result.failure();
     }
     await _authRepository.trySendEmailVerification();
     return Result.success(null);

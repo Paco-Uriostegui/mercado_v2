@@ -14,47 +14,26 @@ class LocalException extends Failure {
   const LocalException();
 }
 
-class AuthException extends Failure {
-  const AuthException();
-}
+// -------------------------------------------------------- value object failures
 
-// -------------------------------------------------------- value object exceptions
+class ValueObjectsFailure extends Failure {}
 
-class InvalidEmailFormat extends Failure {
-  const InvalidEmailFormat();
-}
+class InvalidEmailFormatFailure extends ValueObjectsFailure {}
 
-class InvalidPasswordTooShort extends Failure {
-  const InvalidPasswordTooShort();
-}
+class PasswordTooShortFailure extends ValueObjectsFailure {}
 
-class InvalidFirstNameTooShort extends Failure {
-  const InvalidFirstNameTooShort();
-}
+class FirstNameTooShortFailure extends ValueObjectsFailure {}
 
-class InvalidFirstNameInvalidChars extends Failure {
-  const InvalidFirstNameInvalidChars();
-}
+class FirstNameInvalidCharsFailure extends ValueObjectsFailure {}
 
-class InvalidLastNameTooShort extends Failure {
-  const InvalidLastNameTooShort();
-}
+class LastNameTooShortFailure extends ValueObjectsFailure {}
 
-class InvalidLastNameInvalidChars extends Failure {
-  const InvalidLastNameInvalidChars();
-}
+class LastNameInvalidCharsFailure extends ValueObjectsFailure {}
 
-class InvalidSecondLastNameTooShort extends Failure {
-  const InvalidSecondLastNameTooShort();
-}
+class SecondLastNameTooShortFailure extends ValueObjectsFailure {}
 
-class InvalidSecondLastNameInvalidChars extends Failure {
-  const InvalidSecondLastNameInvalidChars();
-}
+class SecondLastNameInvalidCharsFailure extends ValueObjectsFailure {}
 
-class UnknownException extends Failure {
-  const UnknownException();
-}
 
 class LocalUserException extends Failure {
   final String errorMessage;
@@ -86,16 +65,29 @@ class UpdateDisplayNameException extends RemoteAuthException {
   const UpdateDisplayNameException();
 }
 
-// ------------------------------------------------------------------------ EmailVerify
-class IsEmailVerifiedException extends AuthException {
-  const IsEmailVerifiedException();
+// ------------------------------------------------------------------------ AuthFailure
+
+class AuthFailure extends Failure {
+  const AuthFailure();
 }
 
-class SendEmailVerificationException extends AuthException {
-  const SendEmailVerificationException();
-}
+class IsEmailVerifiedFailure extends AuthFailure {}
 
-// ---------------------------------------------------------------------- sign in
-class SignInException extends AuthException {
-  const SignInException();
-}
+class SendEmailVerificationFailure extends AuthFailure {}
+
+class SignInException extends AuthFailure {}
+
+// ------------------------------------------------------------------------ CreateAccount Failures
+class CreateAccountFailure extends Failure {}
+
+class WeakPasswordFailure extends CreateAccountFailure {}
+class EmailAlreadyInUseFailure extends CreateAccountFailure {}
+class InvalidEmailFailure extends CreateAccountFailure {}
+class NetworkFailure extends CreateAccountFailure {}
+
+
+
+
+
+class UnknownException extends Failure {}
+

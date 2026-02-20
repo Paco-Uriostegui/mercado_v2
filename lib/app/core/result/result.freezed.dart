@@ -12,7 +12,7 @@ part of 'result.dart';
 // dart format off
 T _$identity<T>(T value) => value;
 /// @nodoc
-mixin _$Result<T> {
+mixin _$Result<S,F> {
 
 
 
@@ -20,7 +20,7 @@ mixin _$Result<T> {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is Result<T>);
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Result<S, F>);
 }
 
 
@@ -29,20 +29,20 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'Result<$T>()';
+  return 'Result<$S, $F>()';
 }
 
 
 }
 
 /// @nodoc
-class $ResultCopyWith<T,$Res>  {
-$ResultCopyWith(Result<T> _, $Res Function(Result<T>) __);
+class $ResultCopyWith<S,F,$Res>  {
+$ResultCopyWith(Result<S, F> _, $Res Function(Result<S, F>) __);
 }
 
 
 /// Adds pattern-matching-related methods to [Result].
-extension ResultPatterns<T> on Result<T> {
+extension ResultPatterns<S,F> on Result<S, F> {
 /// A variant of `map` that fallback to returning `orElse`.
 ///
 /// It is equivalent to doing:
@@ -55,7 +55,7 @@ extension ResultPatterns<T> on Result<T> {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( Success<T> value)?  success,TResult Function( FailureResult<T> value)?  failure,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( Success<S, F> value)?  success,TResult Function( FailureResult<S, F> value)?  failure,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case Success() when success != null:
@@ -78,7 +78,7 @@ return failure(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( Success<T> value)  success,required TResult Function( FailureResult<T> value)  failure,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( Success<S, F> value)  success,required TResult Function( FailureResult<S, F> value)  failure,}){
 final _that = this;
 switch (_that) {
 case Success():
@@ -100,7 +100,7 @@ return failure(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( Success<T> value)?  success,TResult? Function( FailureResult<T> value)?  failure,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( Success<S, F> value)?  success,TResult? Function( FailureResult<S, F> value)?  failure,}){
 final _that = this;
 switch (_that) {
 case Success() when success != null:
@@ -122,7 +122,7 @@ return failure(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( T value)?  success,TResult Function( Failure failure)?  failure,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( S value)?  success,TResult Function( F failure)?  failure,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case Success() when success != null:
 return success(_that.value);case FailureResult() when failure != null:
@@ -144,7 +144,7 @@ return failure(_that.failure);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( T value)  success,required TResult Function( Failure failure)  failure,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( S value)  success,required TResult Function( F failure)  failure,}) {final _that = this;
 switch (_that) {
 case Success():
 return success(_that.value);case FailureResult():
@@ -165,7 +165,7 @@ return failure(_that.failure);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( T value)?  success,TResult? Function( Failure failure)?  failure,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( S value)?  success,TResult? Function( F failure)?  failure,}) {final _that = this;
 switch (_that) {
 case Success() when success != null:
 return success(_that.value);case FailureResult() when failure != null:
@@ -180,23 +180,23 @@ return failure(_that.failure);case _:
 /// @nodoc
 
 
-class Success<T> implements Result<T> {
+class Success<S,F> implements Result<S, F> {
    Success(this.value);
   
 
- final  T value;
+ final  S value;
 
 /// Create a copy of Result
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-$SuccessCopyWith<T, Success<T>> get copyWith => _$SuccessCopyWithImpl<T, Success<T>>(this, _$identity);
+$SuccessCopyWith<S, F, Success<S, F>> get copyWith => _$SuccessCopyWithImpl<S, F, Success<S, F>>(this, _$identity);
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is Success<T>&&const DeepCollectionEquality().equals(other.value, value));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Success<S, F>&&const DeepCollectionEquality().equals(other.value, value));
 }
 
 
@@ -205,18 +205,18 @@ int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(
 
 @override
 String toString() {
-  return 'Result<$T>.success(value: $value)';
+  return 'Result<$S, $F>.success(value: $value)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class $SuccessCopyWith<T,$Res> implements $ResultCopyWith<T, $Res> {
-  factory $SuccessCopyWith(Success<T> value, $Res Function(Success<T>) _then) = _$SuccessCopyWithImpl;
+abstract mixin class $SuccessCopyWith<S,F,$Res> implements $ResultCopyWith<S, F, $Res> {
+  factory $SuccessCopyWith(Success<S, F> value, $Res Function(Success<S, F>) _then) = _$SuccessCopyWithImpl;
 @useResult
 $Res call({
- T value
+ S value
 });
 
 
@@ -224,19 +224,19 @@ $Res call({
 
 }
 /// @nodoc
-class _$SuccessCopyWithImpl<T,$Res>
-    implements $SuccessCopyWith<T, $Res> {
+class _$SuccessCopyWithImpl<S,F,$Res>
+    implements $SuccessCopyWith<S, F, $Res> {
   _$SuccessCopyWithImpl(this._self, this._then);
 
-  final Success<T> _self;
-  final $Res Function(Success<T>) _then;
+  final Success<S, F> _self;
+  final $Res Function(Success<S, F>) _then;
 
 /// Create a copy of Result
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') $Res call({Object? value = freezed,}) {
-  return _then(Success<T>(
+  return _then(Success<S, F>(
 freezed == value ? _self.value : value // ignore: cast_nullable_to_non_nullable
-as T,
+as S,
   ));
 }
 
@@ -246,43 +246,43 @@ as T,
 /// @nodoc
 
 
-class FailureResult<T> implements Result<T> {
+class FailureResult<S,F> implements Result<S, F> {
    FailureResult(this.failure);
   
 
- final  Failure failure;
+ final  F failure;
 
 /// Create a copy of Result
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-$FailureResultCopyWith<T, FailureResult<T>> get copyWith => _$FailureResultCopyWithImpl<T, FailureResult<T>>(this, _$identity);
+$FailureResultCopyWith<S, F, FailureResult<S, F>> get copyWith => _$FailureResultCopyWithImpl<S, F, FailureResult<S, F>>(this, _$identity);
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is FailureResult<T>&&(identical(other.failure, failure) || other.failure == failure));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is FailureResult<S, F>&&const DeepCollectionEquality().equals(other.failure, failure));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,failure);
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(failure));
 
 @override
 String toString() {
-  return 'Result<$T>.failure(failure: $failure)';
+  return 'Result<$S, $F>.failure(failure: $failure)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class $FailureResultCopyWith<T,$Res> implements $ResultCopyWith<T, $Res> {
-  factory $FailureResultCopyWith(FailureResult<T> value, $Res Function(FailureResult<T>) _then) = _$FailureResultCopyWithImpl;
+abstract mixin class $FailureResultCopyWith<S,F,$Res> implements $ResultCopyWith<S, F, $Res> {
+  factory $FailureResultCopyWith(FailureResult<S, F> value, $Res Function(FailureResult<S, F>) _then) = _$FailureResultCopyWithImpl;
 @useResult
 $Res call({
- Failure failure
+ F failure
 });
 
 
@@ -290,19 +290,19 @@ $Res call({
 
 }
 /// @nodoc
-class _$FailureResultCopyWithImpl<T,$Res>
-    implements $FailureResultCopyWith<T, $Res> {
+class _$FailureResultCopyWithImpl<S,F,$Res>
+    implements $FailureResultCopyWith<S, F, $Res> {
   _$FailureResultCopyWithImpl(this._self, this._then);
 
-  final FailureResult<T> _self;
-  final $Res Function(FailureResult<T>) _then;
+  final FailureResult<S, F> _self;
+  final $Res Function(FailureResult<S, F>) _then;
 
 /// Create a copy of Result
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? failure = null,}) {
-  return _then(FailureResult<T>(
-null == failure ? _self.failure : failure // ignore: cast_nullable_to_non_nullable
-as Failure,
+@pragma('vm:prefer-inline') $Res call({Object? failure = freezed,}) {
+  return _then(FailureResult<S, F>(
+freezed == failure ? _self.failure : failure // ignore: cast_nullable_to_non_nullable
+as F,
   ));
 }
 

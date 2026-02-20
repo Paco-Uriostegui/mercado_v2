@@ -2,8 +2,6 @@ import 'package:mercado_v2/app/core/result/result.dart';
 import 'package:mercado_v2/features/auth/email_fb_authentication/data/datasources/iauth_remote_datasource.dart';
 import 'package:mercado_v2/features/auth/email_fb_authentication/domain/entities/auth_user/auth_user.dart';
 import 'package:mercado_v2/features/auth/email_fb_authentication/domain/repositories/iauth_repository.dart';
-import 'package:mercado_v2/features/auth/email_fb_authentication/domain/value_objects/email.dart';
-import 'package:mercado_v2/features/auth/email_fb_authentication/domain/value_objects/password.dart';
 import 'package:mercado_v2/features/auth/email_fb_authentication/domain/value_objects/value_objects_export.dart';
 
 class FirebaseAuthRepositoryImpl implements IAuthRepository {
@@ -14,7 +12,7 @@ class FirebaseAuthRepositoryImpl implements IAuthRepository {
   }) : _authRemoteDataSource = authRemoteDataSource;
 
   @override
-  Future<Result<void>> tryCreateUserWithEmailAndPassword(
+  Future<Result<void, AuthFailure>> tryCreateUserWithEmailAndPassword(
     Email email,
     Password password,
   ) {
@@ -23,7 +21,7 @@ class FirebaseAuthRepositoryImpl implements IAuthRepository {
   }
 
   @override
-  Future<Result<AuthUser?>> tryGetCurrentUser() async {
+  Future<Result<AuthUser?, AuthFailure>> tryGetCurrentUser() async {
     final user = _authRemoteDataSource.getCurrentUser();
 
     try {
@@ -32,12 +30,12 @@ class FirebaseAuthRepositoryImpl implements IAuthRepository {
       }
       return Result.success(user);
     } catch (e) {
-      return Result.failure(GetCurrentUserException());
+      return Result.failure(AuthFailure());
     }
   }
 
   @override
-  Future<Result<void>> tryRefreshCurrentUser() {
+  Future<Result<void, AuthFailure>> tryRefreshCurrentUser() {
     // TODO: implement tryRefreshCurrentUser
     throw UnimplementedError();
   }
@@ -48,13 +46,13 @@ class FirebaseAuthRepositoryImpl implements IAuthRepository {
   }
 
   @override
-  Future<Result<void>> trySendPasswordResetEmail(Email email) {
+  Future<Result<void, AuthFailure>> trySendPasswordResetEmail(Email email) {
     // TODO: implement trySendPasswordResetEmail
     throw UnimplementedError();
   }
 
   @override
-  Future<Result<void>> trySignInWithEmailAndPassword(
+  Future<Result<void, AuthFailure>> trySignInWithEmailAndPassword(
     Email email,
     Password password,
   ) async {
@@ -67,28 +65,28 @@ class FirebaseAuthRepositoryImpl implements IAuthRepository {
       return Result.success(null);
 
     } catch (e) {
-      return Result.failure(e as Failure);
+      return Result.failure(AuthFailure());
     }
   }
 
   @override
-  Future<Result<void>> trySignOut() {
+  Future<Result<void, AuthFailure>> trySignOut() {
     // TODO: implement trySignOut
     throw UnimplementedError();
   }
 
   @override
-  Future<Result<bool>> tryIsEmailVerified() async {
+  Future<Result<bool, AuthFailure>> tryIsEmailVerified() async {
     try {
       final response = await _authRemoteDataSource.isEmailVerified();
       return Result.success(response);
     } catch (e) {
-      return Result.failure(e as Failure);
+      return Result.failure(AuthFailure());
     }
   }
 
   @override
-  Future<Result<AuthUser?>> tryGetRefreshedCurrentUser() async {
+  Future<Result<AuthUser?, AuthFailure>> tryGetRefreshedCurrentUser() async {
     try {
       final AuthUser? authUser = _authRemoteDataSource.getCurrentUser();
       if (authUser == null) {
@@ -98,7 +96,7 @@ class FirebaseAuthRepositoryImpl implements IAuthRepository {
       return Result.success(authUser);
     } catch (e) {
       // TODO reportar a crashlytics
-      return Result.failure(GetCurrentUserException());
+      return Result.failure(AuthFailure());
     }
   }
 
@@ -108,16 +106,16 @@ class FirebaseAuthRepositoryImpl implements IAuthRepository {
       return _authRemoteDataSource.authStateChanges().handleError((e) {
         // TODO reportar a crashlytics
         // investigar si el error viaja y llega como data hasta el bloc
-        throw AuthException();
+        throw AuthFailure();
       });
     } catch (e) {
       // TODO reportar a crashlytics
-      throw AuthException();
+      throw AuthFailure();
     }
   }
 
   @override
-  Future<Result<void>> tryUpdateDisplayName(
+  Future<Result<void, AuthFailure>> tryUpdateDisplayName(
     FirstName firstName,
     LastName lastName,
     SecondLastName secondLastName,
@@ -128,7 +126,7 @@ class FirebaseAuthRepositoryImpl implements IAuthRepository {
       await _authRemoteDataSource.updateDisplayName(name);
       return Result.success(null);
     } catch (e) {
-      return Result.failure(UpdateDisplayNameException());
+      return Result.failure(AuthFailure());
     }
   }
 }

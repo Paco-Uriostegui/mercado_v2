@@ -10,22 +10,22 @@ class LastName extends Equatable {
   factory LastName(String value) {
     final trimmedValue = value.trim();
     if (trimmedValue.length <= 1) {
-      throw InvalidLastNameTooShort();
+      throw LastNameTooShortFailure();
     }
     if (!RegExp(r'^[a-zA-Z\s\-]+$').hasMatch(trimmedValue)) {
-      throw InvalidLastNameInvalidChars();
+      throw LastNameInvalidCharsFailure();
     }
 
     return LastName._(trimmedValue);
   }
 
-  static Result<LastName> create(String value) {
+  static Result<LastName, ValueObjectsFailure> create(String value) {
     final trimmedValue = value.trim();
     if (trimmedValue.length <= 1) {
-      return Result.failure(InvalidLastNameTooShort());
+      return Result.failure(LastNameTooShortFailure());
     }
     if (!RegExp(r'^[a-zA-Z\s\-]+$').hasMatch(trimmedValue)) {
-      return Result.failure(InvalidLastNameInvalidChars());
+      return Result.failure(LastNameInvalidCharsFailure());
     }
     return Result.success(LastName._(trimmedValue));
   }
