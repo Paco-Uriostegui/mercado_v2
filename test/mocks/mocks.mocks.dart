@@ -8,7 +8,7 @@ import 'dart:async' as _i4;
 import 'package:mercado_v2/app/core/result/result.dart' as _i2;
 import 'package:mercado_v2/features/auth/email_fb_authentication/domain/entities/auth_user/auth_user.dart'
     as _i6;
-import 'package:mercado_v2/features/auth/email_fb_authentication/domain/repositories/iauth_repository.dart'
+import 'package:mercado_v2/features/auth/email_fb_authentication/domain/repositories/i_auth_repository.dart'
     as _i3;
 import 'package:mercado_v2/features/auth/email_fb_authentication/domain/usecases/authenticate_usecase.dart'
     as _i7;

@@ -1,7 +1,7 @@
 import 'package:mercado_v2/app/core/result/result.dart';
-import 'package:mercado_v2/features/auth/email_fb_authentication/data/datasources/iauth_remote_datasource.dart';
+import 'package:mercado_v2/features/auth/email_fb_authentication/data/datasources/i_auth_remote_datasource.dart';
 import 'package:mercado_v2/features/auth/email_fb_authentication/domain/entities/auth_user/auth_user.dart';
-import 'package:mercado_v2/features/auth/email_fb_authentication/domain/repositories/iauth_repository.dart';
+import 'package:mercado_v2/features/auth/email_fb_authentication/domain/repositories/i_auth_repository.dart';
 import 'package:mercado_v2/features/auth/email_fb_authentication/domain/value_objects/value_objects_export.dart';
 
 class FirebaseAuthRepositoryImpl implements IAuthRepository {

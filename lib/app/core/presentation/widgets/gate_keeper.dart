@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mercado_v2/features/auth/email_fb_authentication/domain/repositories/iauth_gate.dart';
+import 'package:mercado_v2/features/auth/email_fb_authentication/domain/repositories/i_auth_gate.dart';
 import 'package:mercado_v2/features/home_app_shell/presentation/screens/home_app_shell_prov.dart';
 
 class GateKeeper extends StatefulWidget {

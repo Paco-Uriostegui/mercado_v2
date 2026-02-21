@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:mercado_v2/app/core/result/failure.dart';
+import 'package:mercado_v2/app/core/data/failure.dart';
 
 part 'login_state.freezed.dart';
 

@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mercado_v2/app/core/result/result.dart';
-import 'package:mercado_v2/features/auth/email_fb_authentication/domain/repositories/iauth_gate.dart';
+import 'package:mercado_v2/features/auth/email_fb_authentication/domain/repositories/i_auth_gate.dart';
 import 'package:mercado_v2/features/auth/email_fb_authentication/domain/usecases/confirm_email_verification_usecase.dart';
 import 'package:mercado_v2/features/auth/email_fb_authentication/domain/usecases/resend_verification_email_usecase.dart';
 import 'package:mercado_v2/features/auth/email_fb_authentication/presentation/blocs/verify_email/verify_email_event.dart';
