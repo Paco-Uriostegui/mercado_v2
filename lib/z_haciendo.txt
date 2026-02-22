@@ -2,10 +2,12 @@
 Hecho: 
     - 
 En: 
-    - Rehacer el authRepository, eliminar el datasouce y fusionarlo con el repository. Es innecesario tenerlo separado.
-    Una vez fusionado. Atrapar errores, mapearlos, reportarlos y emitir errores de dominio.
+    -
 Seguir:
-    - 
+    - Investigar exceptions de firebase auth y filtrarlas en cada método del authRepository
+    para que lance excepciones de dominio que atrapará el repo y convertirá a failures.
+    Para esto crear un authExceptionHandler que gestione las excepciones de firebase auth, recibe
+    una excepción y devuelve una appException, haciendo "return authExceptionHandler(firebaseauthexception);
 
 Por hacer: 
     - Investigar diferencia entre navegar y return screen()

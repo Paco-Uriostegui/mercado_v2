@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 export 'result_extensions.dart';
-export '../data/failure.dart';
+export '../error/failure.dart';
 
 part 'result.freezed.dart';
 

@@ -1,41 +1,50 @@
 import 'dart:async';
 
 import 'package:firebase_auth/firebase_auth.dart' as fb;
-import 'package:mercado_v2/app/core/data/failure.dart';
+import 'package:mercado_v2/app/core/error/app_exceptions.dart';
+import 'package:mercado_v2/app/core/error/failure.dart';
 import 'package:mercado_v2/features/auth/email_fb_authentication/data/datasources/i_auth_remote_datasource.dart';
 import 'package:mercado_v2/features/auth/email_fb_authentication/data/mappers/auth_user_mapper.dart';
+import 'package:mercado_v2/features/auth/email_fb_authentication/data/mappers/firebase_error_handler.dart';
 import 'package:mercado_v2/features/auth/email_fb_authentication/domain/entities/auth_user/auth_user.dart';
 
 class FirebaseAuthDataSourceImpl implements IAuthRemoteDataSource {
+  final FirebaseErrorHandler _errorHandler;
   final fb.FirebaseAuth _firebaseAuth;
-  final AuthUserMapper _mapper;
+  final AuthUserMapper _userMapper;
 
   FirebaseAuthDataSourceImpl({
+    required FirebaseErrorHandler errorHandler,
     required fb.FirebaseAuth firebaseAuth,
-    required AuthUserMapper mapper,
-  }) : _mapper = mapper,
-       _firebaseAuth = firebaseAuth;
+    required AuthUserMapper userMapper,
+  }) : _errorHandler = errorHandler,
+       _firebaseAuth = firebaseAuth,
+       _userMapper = userMapper;
 
   @override
   Future<AuthUser> signInWithEmailAndPassword({
     required String email,
     required String password,
   }) async {
-    try {
+    return _guard(() async {
       final userCredential = await _firebaseAuth.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
 
-      final user = userCredential.user;
-      if (user == null) {
-        throw AuthFailure();
+      final firebaseUser = userCredential.user;
+      if (firebaseUser == null) {
+        throw BackendUserIsNullException();
       }
-      return _mapper.fromFirebase(user);
-    } catch (e) {
-      // TODO crashlytics
-      throw SignInException();
-    }
+      return _userMapper.fromFirebase(firebaseUser);
+    }, "SignIn");
+
+    // try {
+
+    // } on fb.FirebaseAuthException catch (e) {
+    //   //
+    //   throw _exceptionMapper.mapToAppException(e);
+    // }
   }
 
   @override
@@ -48,19 +57,17 @@ class FirebaseAuthDataSourceImpl implements IAuthRemoteDataSource {
     required String email,
     required String password,
   }) async {
-    try {
+    return _guard(() async {
       final userCredential = await _firebaseAuth.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
-      final user = userCredential.user;
-      if (user == null) {
-        throw AuthFailure();
+      final firebaseUser = userCredential.user;
+      if (firebaseUser == null) {
+        throw BackendUserIsNullException();
       }
-      return _mapper.fromFirebase(user);
-    } catch (e) {
-      throw AuthFailure();
-    }
+      return _userMapper.fromFirebase(firebaseUser);
+    }, "CreateUser");
   }
 
   @override
@@ -90,7 +97,7 @@ class FirebaseAuthDataSourceImpl implements IAuthRemoteDataSource {
       if (user == null) {
         return null;
       }
-      return _mapper.fromFirebase(user);
+      return _userMapper.fromFirebase(user);
     } catch (e) {
       throw AuthFailure();
     }
@@ -144,6 +151,14 @@ class FirebaseAuthDataSourceImpl implements IAuthRemoteDataSource {
     } catch (e) {
       // TODO reportar a crashlytics
       throw UpdateDisplayNameException();
+    }
+  }
+
+  Future<T> _guard<T>(Future<T> Function() action, String operation) async {
+    try {
+      return await action();
+    } catch (e, st) {
+      throw _errorHandler.handle(e, st, operation);
     }
   }
 }
