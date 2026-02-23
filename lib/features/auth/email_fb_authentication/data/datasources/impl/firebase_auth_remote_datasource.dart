@@ -21,6 +21,8 @@ class FirebaseAuthDataSourceImpl implements IAuthRemoteDataSource {
        _firebaseAuth = firebaseAuth,
        _userMapper = userMapper;
 
+    // ------------------------------------------------------------------------------- SignIn
+
   @override
   Future<AuthUser> signInWithEmailAndPassword({
     required String email,

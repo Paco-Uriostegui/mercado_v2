@@ -50,7 +50,7 @@ void main() {
 
       // Assert
       if (result case FailureResult(:final failure)) {
-        expect(failure, isA<InvalidEmailFormatFailure>());
+        expect(failure, isA<InvalidEmailVOFormatFailure>());
         verifyNever(
           mockIAuthRepository.trySignInWithEmailAndPassword(any, any),
         );
@@ -70,7 +70,7 @@ void main() {
 
       // Assert
       if (result case FailureResult(:final failure)) {
-        expect(failure, isA<PasswordTooShortFailure>());
+        expect(failure, isA<WeakPasswordVOFailure>());
         verifyNever(
           mockIAuthRepository.trySignInWithEmailAndPassword(any, any),
         );

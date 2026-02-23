@@ -11,7 +11,7 @@ class Password extends Equatable {
     if (p.length >= 8) {
       return Result.success(Password._(value));
     } else {
-      return Result.failure(PasswordTooShortFailure());
+      return Result.failure(WeakPasswordVOFailure());
     }
   }
 

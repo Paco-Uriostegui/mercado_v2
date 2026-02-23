@@ -14,13 +14,19 @@ class LocalException extends Failure {
   const LocalException();
 }
 
-// -------------------------------------------------------- value object failures
+// ------------------------------------------------------------------ value object failures
 
 class ValueObjectsFailure extends Failure {}
 
-class InvalidEmailFormatFailure extends ValueObjectsFailure {}
+// ------------------------------------------------------------------ emailVO failures
+sealed class EmailValueObjectFailure extends Failure {}
 
-class PasswordTooShortFailure extends ValueObjectsFailure {}
+class InvalidEmailVOFormatFaliure extends EmailValueObjectFailure {}
+
+// ------------------------------------------------------------------ passwordVO failures
+sealed class PasswordValueObjectFailure extends Failure {}
+
+class InvalidPasswordVOFormatFailure extends PasswordValueObjectFailure {}
 
 class FirstNameTooShortFailure extends ValueObjectsFailure {}
 
@@ -33,7 +39,6 @@ class LastNameInvalidCharsFailure extends ValueObjectsFailure {}
 class SecondLastNameTooShortFailure extends ValueObjectsFailure {}
 
 class SecondLastNameInvalidCharsFailure extends ValueObjectsFailure {}
-
 
 class LocalUserException extends Failure {
   final String errorMessage;
@@ -81,14 +86,36 @@ class SignInException extends AuthFailure {}
 sealed class CreateAccountFailure extends Failure {}
 
 class WeakPasswordFailure extends CreateAccountFailure {}
+
 class EmailAlreadyInUseFailure extends CreateAccountFailure {}
+
 class InvalidFormatEmailFailure extends CreateAccountFailure {}
+
 class NetworkFailure extends CreateAccountFailure {}
+
 class UnkownCreateAccountFailure extends CreateAccountFailure {}
 
+// ------------------------------------------------------------------------ Login Failures
+sealed class LoginFailure extends Failure {}
 
+class InvalidEmailFailure extends LoginFailure {}
 
+class UserDisabledFailure extends LoginFailure {}
 
+class UserNotFoundFailure extends LoginFailure {}
+
+class WrongPasswordFailure extends LoginFailure {}
+
+class InvalidPasswordFormatLoginFailure extends LoginFailure {}
+
+class TooManyRequestsFailure extends LoginFailure {}
+
+class UserTokenExpiredFailure extends LoginFailure {}
+
+class NetworkRequestLoginFailure extends LoginFailure {}
+
+class InvalidLoginCredentialsFailure extends LoginFailure {}
+
+class OperationNotAllowedLoginFailure extends LoginFailure {}
 
 class UnknownException extends Failure {}
-

@@ -10,18 +10,46 @@ class LoginUsecase {
     //required IUserRepository iuserRepository,
   }) : _authRepository = authRepository;
 
-  Future<Result<void>> call({
+  Future<Result<void, LoginFailure>> call({
     required String email,
     required String password,
   }) async {
+    Email validEmailVO;
+    Password validPassVO;
+
+    final emailResult = Email.create(email);
+    emailResult.when(
+      success: (emailVO) {
+        validEmailVO = emailVO;
+      },
+      failure: (failure) => Result.failure(InvalidEmailFailure()),
+    );
+
+    final passResult = Password.create(password);
+    passResult.when(
+      success: (passVO) {
+        validPassVO = passVO;
+      },
+      failure: (failure) => Result.failure(InvalidPasswordFormatLoginFailure()),
+    );
+
+    final signResult = _authRepository.trySignInWithEmailAndPassword(
+      validEmailVO,
+      validPassVO,
+    );
+
     // --------------------------------------------------------------- flatMapAsync -------------------
-    return Email.create(email).flatMapAsync((emailVO) {
-      return Password.create(password).flatMapAsync((passVO) {
-        return _authRepository.trySignInWithEmailAndPassword(
-          emailVO,
-          passVO,
-        );
-      });
-    });
+
+
+
+
+    //   return Email.create(email).flatMapAsync((emailVO) {
+    //     return Password.create(password).flatMapAsync((passVO) {
+    //       return _authRepository.trySignInWithEmailAndPassword(
+    //         emailVO,
+    //         passVO,
+    //       );
+    //     });
+    //   });
   }
 }

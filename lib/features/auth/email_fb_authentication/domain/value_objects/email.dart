@@ -4,19 +4,19 @@ import 'package:mercado_v2/app/core/result/result.dart';
 class Email extends Equatable {
   final String value;
 
-  static Result<Email, ValueObjectsFailure> create(String value) {
+  static Result<Email, EmailValueObjectFailure> create(String value) {
     final e = value.trim();
     if (_isValid(e)) {
       return Result.success(Email._(value));
     }
-    return Result.failure(InvalidEmailFormatFailure());
+    return Result.failure(InvalidEmailVOFormatFaliure());
   }
 
   factory Email.direct(String value) {
     final result = Email.create(value);
     return result.map(
       success: (success) => success.value,
-      failure: (failure) => throw InvalidEmailFormatFailure(),
+      failure: (failure) => throw InvalidEmailVOFormatFaliure(),
     );
   }
 

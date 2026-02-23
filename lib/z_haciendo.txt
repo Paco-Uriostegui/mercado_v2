@@ -2,7 +2,8 @@
 Hecho: 
     - 
 En: 
-    -
+    - Creando extensión .mapFailure() para poder transformar failures a otros y devolverlos como result.
+    Revisar conversación con Gemini, y confirmar que la extensión es correcta. Luego serguir.
 Seguir:
     - Mirar la nueva estructura de create account usecase y bloc y seguirla en login usecas y bloc
 
