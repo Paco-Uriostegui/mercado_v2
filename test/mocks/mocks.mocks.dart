@@ -241,7 +241,7 @@ class MockCreateAccountUsecase extends _i1.Mock
   }
 
   @override
-  _i4.Future<_i2.Result<dynamic, dynamic>> call({
+  _i4.Future<_i2.Result<void, _i2.CreateAccountFailure>> call({
     required String? emailString,
     required String? passwordString,
   }) =>
@@ -250,15 +250,16 @@ class MockCreateAccountUsecase extends _i1.Mock
               #emailString: emailString,
               #passwordString: passwordString,
             }),
-            returnValue: _i4.Future<_i2.Result<dynamic, dynamic>>.value(
-              _FakeResult_0<dynamic, dynamic>(
-                this,
-                Invocation.method(#call, [], {
-                  #emailString: emailString,
-                  #passwordString: passwordString,
-                }),
-              ),
-            ),
+            returnValue:
+                _i4.Future<_i2.Result<void, _i2.CreateAccountFailure>>.value(
+                  _FakeResult_0<void, _i2.CreateAccountFailure>(
+                    this,
+                    Invocation.method(#call, [], {
+                      #emailString: emailString,
+                      #passwordString: passwordString,
+                    }),
+                  ),
+                ),
           )
-          as _i4.Future<_i2.Result<dynamic, dynamic>>);
+          as _i4.Future<_i2.Result<void, _i2.CreateAccountFailure>>);
 }

@@ -4,12 +4,9 @@ Hecho:
 En: 
     -
 Seguir:
-    - Investigar exceptions de firebase auth y filtrarlas en cada método del authRepository
-    para que lance excepciones de dominio que atrapará el repo y convertirá a failures.
-    Para esto crear un authExceptionHandler que gestione las excepciones de firebase auth, recibe
-    una excepción y devuelve una appException, haciendo "return authExceptionHandler(firebaseauthexception);
+    - Mirar la nueva estructura de create account usecase y bloc y seguirla en login usecas y bloc
 
 Por hacer: 
-    - Investigar diferencia entre navegar y return screen()
+    - 
 
 También: 

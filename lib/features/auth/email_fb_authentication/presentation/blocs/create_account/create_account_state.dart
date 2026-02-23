@@ -12,5 +12,6 @@ sealed class CreateAccountState with _$CreateAccountState {
   const factory CreateAccountState.invalidEmail() = InvalidEmail;
   const factory CreateAccountState.emailAlreadyInUse() = EmailAlreadyInUse;
   const factory CreateAccountState.networkError() = NetworkError;
+  const factory CreateAccountState.unknown() = Unknown;
 
 }

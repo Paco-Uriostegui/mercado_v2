@@ -78,12 +78,13 @@ class SendEmailVerificationFailure extends AuthFailure {}
 class SignInException extends AuthFailure {}
 
 // ------------------------------------------------------------------------ CreateAccount Failures
-class CreateAccountFailure extends Failure {}
+sealed class CreateAccountFailure extends Failure {}
 
 class WeakPasswordFailure extends CreateAccountFailure {}
 class EmailAlreadyInUseFailure extends CreateAccountFailure {}
-class InvalidEmailFailure extends CreateAccountFailure {}
+class InvalidFormatEmailFailure extends CreateAccountFailure {}
 class NetworkFailure extends CreateAccountFailure {}
+class UnkownCreateAccountFailure extends CreateAccountFailure {}
 
 
 

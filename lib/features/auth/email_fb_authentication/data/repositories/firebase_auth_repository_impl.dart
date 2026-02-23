@@ -11,8 +11,9 @@ class FirebaseAuthRepositoryImpl implements IAuthRepository {
     required IAuthRemoteDataSource authRemoteDataSource,
   }) : _authRemoteDataSource = authRemoteDataSource;
 
+  // ---------------------------------------------------------------------------- createAccount
   @override
-  Future<Result<void, AuthFailure>> tryCreateUserWithEmailAndPassword(
+  Future<Result<void, CreateAccountFailure>> tryCreateUserWithEmailAndPassword(
     Email email,
     Password password,
   ) {
@@ -50,7 +51,7 @@ class FirebaseAuthRepositoryImpl implements IAuthRepository {
     // TODO: implement trySendPasswordResetEmail
     throw UnimplementedError();
   }
-
+  // ------------------------------------------------------------------------------- SignIn
   @override
   Future<Result<void, AuthFailure>> trySignInWithEmailAndPassword(
     Email email,

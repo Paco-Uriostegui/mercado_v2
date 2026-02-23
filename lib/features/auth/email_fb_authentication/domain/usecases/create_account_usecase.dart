@@ -22,7 +22,7 @@ class CreateAccountUsecase {
         email = value;
         break;
       case FailureResult():
-        return Result.failure(InvalidEmailFailure());
+        return Result.failure(InvalidFormatEmailFailure());
     }
 
     final passwordResult = Password.create(passwordString);
@@ -37,12 +37,20 @@ class CreateAccountUsecase {
     // --------------------------------------------------------------- create account
     final createAccountResult = await _authRepository
         .tryCreateUserWithEmailAndPassword(email, pass);
-    if (createAccountResult case FailureResult(failure: Failure failure)) {
+    if (createAccountResult case FailureResult(failure: CreateAccountFailure failure)) {
       switch (failure) {
-
+    
+        case WeakPasswordFailure():
+          return Result.failure(WeakPasswordFailure());
+        case EmailAlreadyInUseFailure():
+          return Result.failure(EmailAlreadyInUseFailure());
+        case InvalidFormatEmailFailure():
+          return Result.failure(InvalidFormatEmailFailure());
+        case NetworkFailure():
+          return Result.failure(NetworkFailure());
+        case UnkownCreateAccountFailure():
+          return Result.failure(UnkownCreateAccountFailure());
       }
-
-      return Result.failure();
     }
     await _authRepository.trySendEmailVerification();
     return Result.success(null);
