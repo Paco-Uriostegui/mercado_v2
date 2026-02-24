@@ -3,7 +3,7 @@ import 'package:mercado_v2/features/auth/email_fb_authentication/domain/entities
 import 'package:mercado_v2/features/auth/email_fb_authentication/domain/value_objects/value_objects_export.dart';
 
 abstract class IAuthRepository {
-  Future<Result<void>> trySignInWithEmailAndPassword(
+  Future<Result<void, AuthFailure>> trySignInWithEmailAndPassword(
     Email email,
     Password password,
   );

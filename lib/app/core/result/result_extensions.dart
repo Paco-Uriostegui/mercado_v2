@@ -24,8 +24,20 @@ extension ResultXFailure<S, F> on Result<S, F> {
   Result<S, T> mapFailure<T>(T Function(F failure) f) {
     return when(
       success: (value) => Result<S, T>.success(value),
-      failure: (failure) => Result<S, T>.failure(f(failure))
+      failure: (e) => Result<S, T>.failure(f(e)),
     );
+  }
+}
+
+extension ResultIsFailure<S, F> on Result<S, F> {
+  bool get isFailure {
+    return when(success: (_) => false, failure: (_) => true);
+  }
+}
+
+extension ResultGetSuccessValue<S, F> on Result<S, F> {
+  S? get getSuccess {
+    return when(success: (value) => value, failure: (_) => null);
   }
 }
 

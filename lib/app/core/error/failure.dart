@@ -72,7 +72,7 @@ class UpdateDisplayNameException extends RemoteAuthException {
 
 // ------------------------------------------------------------------------ AuthFailure
 
-class AuthFailure extends Failure {
+sealed class AuthFailure extends Failure {
   const AuthFailure();
 }
 

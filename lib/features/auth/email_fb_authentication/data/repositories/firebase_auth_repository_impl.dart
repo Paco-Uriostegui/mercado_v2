@@ -66,7 +66,7 @@ class FirebaseAuthRepositoryImpl implements IAuthRepository {
       return Result.success(null);
 
     } catch (e) {
-      return Result.failure(AuthFailure());
+      return Result.failure(SignInException());
     }
   }
 
