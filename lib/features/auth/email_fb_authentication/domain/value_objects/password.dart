@@ -6,12 +6,12 @@ class Password extends Equatable {
 
   const Password._(this.value);
 
-  static Result<Password, ValueObjectsFailure> create(String value) {
+  static Result<Password, PasswordValueObjectFailure> create(String value) {
     final p = value.trim();
     if (p.length >= 8) {
       return Result.success(Password._(value));
     } else {
-      return Result.failure(WeakPasswordVOFailure());
+      return Result.failure(InvalidPasswordVOFormatFailure());
     }
   }
 

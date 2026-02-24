@@ -17,28 +17,39 @@ class LoginUsecase {
     Email validEmailVO;
     Password validPassVO;
 
-    final emailResult = Email.create(email);
-    emailResult.when(
-      success: (emailVO) {
-        validEmailVO = emailVO;
-      },
-      failure: (failure) => Result.failure(InvalidEmailFailure()),
-    );
+    // final emailResult = Email.create(email);
+    // emailResult.when(
+    //   success: (emailVO) {
+    //     validEmailVO = emailVO;
+    //   },
+    //   failure: (failure) => Result.failure(InvalidEmailFailure()),
+    // );
 
-    final passResult = Password.create(password);
-    passResult.when(
-      success: (passVO) {
-        validPassVO = passVO;
-      },
-      failure: (failure) => Result.failure(InvalidPasswordFormatLoginFailure()),
-    );
+    // final passResult = Password.create(password);
+    // passResult.when(
+    //   success: (passVO) {
+    //     validPassVO = passVO;
+    //   },
+    //   failure: (failure) => Result.failure(InvalidPasswordFormatLoginFailure()),
+    // );
 
-    final signResult = _authRepository.trySignInWithEmailAndPassword(
-      validEmailVO,
-      validPassVO,
-    );
+   
 
     // --------------------------------------------------------------- flatMapAsync -------------------
+    // return Email.create(email).mapFailure((failure) {switch (failure) {
+    //   case InvalidEmailVOFormatFaliure():
+    //     return InvalidEmailFailure();
+    // }}).flatMap((emailVO) {
+    //   return Password.create(password).mapFailure((passfailure) { switch (passfailure) {
+        
+    //     case InvalidPasswordVOFormatFailure(): 
+    //     return InvalidPasswordFormatLoginFailure();
+    //   }});
+    // })
+    
+    // ;
+
+
 
 
 
