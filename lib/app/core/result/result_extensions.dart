@@ -20,6 +20,43 @@ extension ResultAsyncX<S, F> on Result<S, F> {
   }
 }
 
+extension ResultXFlatMapAsync<S, F> on Result<S, F> {
+  Future<Result<T, G>> newFlatMapAsync<T, G>(
+    Future<Result<T, G>> Function(S value) onSuccess,
+    G Function(F) mapFailure,
+  ) async {
+    return when(
+      success: onSuccess, 
+      failure: (f) => Future.value(Result.failure(mapFailure(f)))
+      );
+  }
+}
+
+/* 
+<T, G> = nuevos tipos genéricos:
+
+T = el nuevo tipo de Success que retornará
+G = el nuevo tipo de Failure (convertido desde F)
+onSuccess es una función que:
+Recibe S (el success anterior)
+Retorna Future<Result<T, G>> (una tarea asíncrona que da el nuevo resultado)
+mapFailure es una función que:
+Recibe F (el failure anterior, ej: EmailVOFailure)
+Retorna G (el nuevo failure, ej: InvalidEmailFailure)
+
+En el branch de success, ¿qué deberías hacer?
+
+Tienes s (el success anterior, tipo S)
+Tienes onSuccess (función que transforma S en Future<Result<T, G>>)
+¿Qué es lo obvio aquí?
+En el branch de failure, ¿qué deberías hacer?
+
+Tienes f (el failure anterior, tipo F)
+Tienes mapFailure (función que transforma F en G)
+Necesitas retornar Future<Result<T, G>>
+¿Cómo envuelves el failure convertido en un Result?
+*/
+
 extension ResultXFailure<S, F> on Result<S, F> {
   Result<S, T> mapFailure<T>(T Function(F failure) f) {
     return when(
