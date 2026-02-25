@@ -10,4 +10,7 @@ sealed class LoginState with _$LoginState {
   const factory LoginState.loading() = _Loading;
   const factory LoginState.success() = _Success;
   const factory LoginState.failure(Failure failure) = _Error;
+  // agregar state para contraseña incorrecta, fallo en red, demasiados intentos,
+  // operación no permitida
+
 }

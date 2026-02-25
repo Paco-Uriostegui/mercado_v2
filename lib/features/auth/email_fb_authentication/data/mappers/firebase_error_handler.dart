@@ -2,10 +2,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:logger/logger.dart';
 import 'package:mercado_v2/app/core/error/app_exceptions.dart';
 
-class FirebaseErrorHandler {
+class FirebaseAuthErrorHandler {
   final Logger _logger;
 
-  FirebaseErrorHandler({required Logger logger}) : _logger = logger;
+  FirebaseAuthErrorHandler({required Logger logger}) : _logger = logger;
 
   Exception handle(dynamic e, StackTrace st, String operation) {
     if (e is FirebaseAuthException) {
@@ -35,6 +35,15 @@ class FirebaseErrorHandler {
         return UserTokenExpiredException();
       case 'network-request-failed':
         return NetworkRequestFailedException();
+      case 'user-disabled':
+        return UserDisabledException();
+      case 'user-not-found':
+        return UserNotFoundException();
+      case 'wrong-password':
+        return WrongPasswordException();
+      case 'invalid-credential':
+      case 'invalid-login-credentials':
+        return InvalidLoginCredentialsException();
       default:
         return UnknownAuthException(normalizedCode);
     }
@@ -69,6 +78,8 @@ class FirebaseErrorHandler {
 }
 
 /*
+// eliminate repeated ones
+
 email-already-in-use:
   Thrown if there already exists an account with the given email address.
 invalid-email:
@@ -83,4 +94,19 @@ user-token-expired:
   Thrown if the user is no longer authenticated since his refresh token has been expired
 network-request-failed:
   Thrown if there was a network request error, for example the user doesn't have internet connection
+user-disabled:
+  Thrown if the user corresponding to the given email has been disabled.
+user-not-found:
+  Thrown if there is no user corresponding to the given email.
+wrong-password:
+  Thrown if the password is invalid for the given email, or the account corresponding to the email does not have a password set.
+too-many-requests:
+  Thrown if the user sent too many requests at the same time, for security the api will not allow too many attempts at the same time, user will have to wait for some time
+user-token-expired:
+  Thrown if the user is no longer authenticated since his refresh token has been expired
+network-request-failed:
+  Thrown if there was a network request error, for example the user doesn't have internet connection
+INVALID_LOGIN_CREDENTIALS or invalid-credential:
+  Thrown if the password is invalid for the given email, or the account corresponding to the email does not have a password set. Depending on if you are using firebase emulator or not the code is different
+
 */

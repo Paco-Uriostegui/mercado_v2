@@ -9,19 +9,19 @@ import 'package:mercado_v2/features/auth/email_fb_authentication/data/mappers/fi
 import 'package:mercado_v2/features/auth/email_fb_authentication/domain/entities/auth_user/auth_user.dart';
 
 class FirebaseAuthDataSourceImpl implements IAuthRemoteDataSource {
-  final FirebaseErrorHandler _errorHandler;
+  final FirebaseAuthErrorHandler _errorHandler;
   final fb.FirebaseAuth _firebaseAuth;
   final AuthUserMapper _userMapper;
 
   FirebaseAuthDataSourceImpl({
-    required FirebaseErrorHandler errorHandler,
+    required FirebaseAuthErrorHandler errorHandler,
     required fb.FirebaseAuth firebaseAuth,
     required AuthUserMapper userMapper,
   }) : _errorHandler = errorHandler,
        _firebaseAuth = firebaseAuth,
        _userMapper = userMapper;
 
-    // ------------------------------------------------------------------------------- SignIn
+  // ------------------------------------------------------------------------------- SignIn
 
   @override
   Future<AuthUser> signInWithEmailAndPassword({
@@ -53,6 +53,8 @@ class FirebaseAuthDataSourceImpl implements IAuthRemoteDataSource {
   Future<void> sendPasswordResetEmail({required String email}) async {
     await _firebaseAuth.sendPasswordResetEmail(email: email);
   }
+
+  // ------------------------------------------------------------------------------- CreateUser
 
   @override
   Future<AuthUser> createUserWithEmailAndPassword({

@@ -10,26 +10,56 @@ class LoginUsecase {
     //required IUserRepository iuserRepository,
   }) : _authRepository = authRepository;
 
-  Future<Result<void, LoginFailure>> call({
+  Future<Result<void, AuthFailure>> call({
     required String email,
     required String password,
   }) async {
-    Email validEmailVO;
-    Password validPassVO;
+    late final Email emailVO;
+    late final Password passwordVO;
+
+    // ------------------------------------------------------------------ Early return
+    switch (Email.create(email)) {
+      case Success(:final value):
+        emailVO = value;
+      case FailureResult():
+        return Result.failure(InvalidEmailFailure());
+    }
+
+    switch (Password.create(password)) {
+      case Success(:final value):
+        passwordVO = value;
+      case FailureResult():
+        return Result.failure(InvalidPasswordFormatFailure());
+    }
+
+    switch (await _authRepository.trySignInWithEmailAndPassword(
+      emailVO,
+      passwordVO,
+    )) {
+        case Success():
+          return Result.success(null);
+        case FailureResult(:final failure):
+          return switch (failure) {
+
+
+          }
+        }
+        
+    }
 
     // --------------------------------------------------------------- flatMapAsync + mapFailure -------------------
-    return await Email.create(email)
-        .mapFailure((_) => InvalidEmailFailure())
-        .flatMap((validEmailVO) => Password.create(password))
-        .mapFailure((_) => InvalidEmailFailure())
-        .flatMapAsync(
-          (validPassVO) => _authRepository.trySignInWithEmailAndPassword(
-            validEmailVO,
-            validPassVO,
-          ),
-        );
+    // final result = await Email.create(email).newFlatMapAsync(
+    //   (emailVO) => Password.create(password).newFlatMapAsync(
+    //     (passwordVO) =>
+    //         _authRepository.trySignInWithEmailAndPassword(emailVO, passwordVO),
+    //     (_) => InvalidPasswordFormatLoginFailure(),
+    //   ),
+    //   (_) => InvalidEmailFailure(),
+    // );
 
-    // --------------------------------------------------------------- old version -------------------
+    // result.when(success: (_) => Result.success(null), failure: (failure) {});
+
+    // --------------------------------------------------------------- old if version -------------------
     // final emailResult = Email.create(email);
     // if (emailResult.isFailure) {
     //   return Result.failure(InvalidEmailFailure());
@@ -61,14 +91,11 @@ class LoginUsecase {
     //   failure: (failure) {
     //     switch (failure) {
     //       case IsEmailVerifiedFailure():
-    //         // TODO: Handle this case.
-    //         throw UnimplementedError();
+
     //       case SendEmailVerificationFailure():
-    //         // TODO: Handle this case.
-    //         throw UnimplementedError();
+
     //       case SignInException():
-    //         // TODO: Handle this case.
-    //         throw UnimplementedError();
+
     //     }
     //   },
     // );

@@ -5,7 +5,7 @@ export '../error/failure.dart';
 part 'result.freezed.dart';
 
 @freezed
-class Result<S, F> with _$Result<S, F> {
+sealed class Result<S, F> with _$Result<S, F> {
   factory Result.success(S value) = Success<S, F>;
   factory Result.failure(F failure) = FailureResult<S, F>;
 }

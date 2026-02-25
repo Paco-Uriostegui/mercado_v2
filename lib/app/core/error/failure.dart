@@ -76,11 +76,26 @@ sealed class AuthFailure extends Failure {
   const AuthFailure();
 }
 
-class IsEmailVerifiedFailure extends AuthFailure {}
+class EmailAlreadyInUseFailure implements AuthFailure {}
 
-class SendEmailVerificationFailure extends AuthFailure {}
+class InvalidEmailFailure implements AuthFailure {}
 
-class SignInException extends AuthFailure {}
+class WeakPasswordFailure implements AuthFailure {}
+class OperationNotAllowedFailure implements AuthFailure {}
+class TooManyRequestsFailure implements AuthFailure {}
+class UserTokenExpiredFailure implements AuthFailure {}
+class BackendUserIsNullFailure implements AuthFailure {}
+class NetworkRequestFailedFailure implements AuthFailure {}
+class UserDisabledFailure implements AuthFailure {}
+class UserNotFoundFailure implements AuthFailure {}
+class WrongPasswordFailure implements AuthFailure {}
+class InvalidLoginCredentialsFailure implements AuthFailure {}
+class InvalidPasswordFormatFailure implements AuthFailure {}
+
+class UnknownAuthFailure implements AuthFailure {
+  final String message;
+  UnknownAuthFailure(this.message);
+}
 
 // ------------------------------------------------------------------------ CreateAccount Failures
 sealed class CreateAccountFailure extends Failure {}
@@ -98,7 +113,7 @@ class UnkownCreateAccountFailure extends CreateAccountFailure {}
 // ------------------------------------------------------------------------ Login Failures
 sealed class LoginFailure extends Failure {}
 
-class InvalidEmailFailure extends LoginFailure {}
+class InvalidEmailLoginFailure extends LoginFailure {}
 
 class UserDisabledFailure extends LoginFailure {}
 

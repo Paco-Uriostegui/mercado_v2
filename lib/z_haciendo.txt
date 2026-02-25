@@ -2,11 +2,13 @@
 Hecho: 
     - 
 En: 
-    - Creando extensión .mapFailure() para poder transformar failures a otros y devolverlos como result.
-    Revisar conversación con Gemini, y confirmar que la extensión es correcta. Luego serguir.
+    - Terminar de agrupar los AuthFailure, corregir errores en failure.dart
+    los usescases no darán errores específicos (loginfailure, creareaccountfailure), en cambio
+    todos devuelven AuthFailure, el mismo usecase devuelve AuthFailure, es el bloc quien decide
+    qué estado emitir dependiendo del failure recibido. Aprovechar el default del switch
+    
 Seguir:
-    - Mirar la nueva estructura de create account usecase y bloc y seguirla en login usecas y bloc
-
+    - 
 Por hacer: 
     - 
 
