@@ -7,7 +7,7 @@ class ConfirmEmailVerificationUseCase {
   ConfirmEmailVerificationUseCase({required IAuthRepository authRepository})
     : _authRepository = authRepository;
 
-  Future<Result<bool>> call() async {
+  Future<Result<bool, AuthFailure>> call() async {
     return await _authRepository.tryIsEmailVerified();
   }
 }

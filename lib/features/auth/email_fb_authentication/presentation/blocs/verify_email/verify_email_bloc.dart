@@ -27,7 +27,7 @@ class VerifyEmailBloc extends Bloc<VerifyEmailEvent, VerifyEmailState> {
     VerifyEmailEvent event,
     Emitter<VerifyEmailState> emit,
   ) async {
-    final Result<bool> result = await _confirmEmailVerificationUseCase();
+    final Result<bool, AuthFailure> result = await _confirmEmailVerificationUseCase();
     result.when(
       success: (value) {
         if (value) {

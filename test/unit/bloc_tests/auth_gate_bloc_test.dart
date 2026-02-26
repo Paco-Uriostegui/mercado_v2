@@ -25,7 +25,7 @@ void main() {
       setUp: () {
         when(
           mockUseCase.execute(),
-        ).thenAnswer((_) => Stream<AuthUserStatus>.value(AuthUserUnlogged()));
+        ).thenAnswer((_) => Stream<AuthUserStatus>.value(AuthUserNotAuthenticated()));
       },
       build: () => AuthGateBloc(mockUseCase),
 

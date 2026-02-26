@@ -34,7 +34,7 @@ class AuthGateBloc extends Bloc<AuthGateEvent, AuthGateState>
         case AuthUserNotVerified():
           emit(.goToVerifyEmail());
           break;
-        case AuthUserUnlogged():
+        case AuthUserNotAuthenticated():
           emit(.goToLogin());
           break;
       }

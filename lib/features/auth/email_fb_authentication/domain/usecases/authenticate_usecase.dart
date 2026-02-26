@@ -15,7 +15,7 @@ class AuthenticationUseCase {
           return AuthUserNotVerified();
         }
       } else {
-        return AuthUserUnlogged();
+        return AuthUserNotAuthenticated();
       }
     });
   }
@@ -27,4 +27,4 @@ class AuthUserComplete extends AuthUserStatus {}
 
 class AuthUserNotVerified extends AuthUserStatus {}
 
-class AuthUserUnlogged extends AuthUserStatus {}
+class AuthUserNotAuthenticated extends AuthUserStatus {}

@@ -27,11 +27,35 @@ class CreateAccountBloc extends Bloc<CreateAccountEvent, CreateAccountState> {
       failure: (failure) {
         emit(switch (failure) {
 
-          WeakPasswordFailure() => .weakPassword(),
-          EmailAlreadyInUseFailure() => .emailAlreadyInUse(),
-          InvalidFormatEmailFailure() => .invalidEmail(),
-          NetworkFailure() => .networkError(),
-          UnkownCreateAccountFailure() => .unknown(),
+ 
+          // TODO: Handle this case.
+          EmailAlreadyInUseFailure() => throw UnimplementedError(),
+          // TODO: Handle this case.
+          InvalidEmailFormatFailure() => throw UnimplementedError(),
+          // TODO: Handle this case.
+          WeakPasswordFailure() => throw UnimplementedError(),
+          // TODO: Handle this case.
+          OperationNotAllowedFailure() => throw UnimplementedError(),
+          // TODO: Handle this case.
+          TooManyRequestsFailure() => throw UnimplementedError(),
+          // TODO: Handle this case.
+          UserTokenExpiredFailure() => throw UnimplementedError(),
+          // TODO: Handle this case.
+          BackendUserIsNullFailure() => throw UnimplementedError(),
+          // TODO: Handle this case.
+          NetworkRequestFailedFailure() => throw UnimplementedError(),
+          // TODO: Handle this case.
+          UserDisabledFailure() => throw UnimplementedError(),
+          // TODO: Handle this case.
+          UserNotFoundFailure() => throw UnimplementedError(),
+          // TODO: Handle this case.
+          WrongPasswordFailure() => throw UnimplementedError(),
+          // TODO: Handle this case.
+          InvalidLoginCredentialsFailure() => throw UnimplementedError(),
+          // TODO: Handle this case.
+          InvalidPasswordFormatFailure() => throw UnimplementedError(),
+          // TODO: Handle this case.
+          UnknownAuthFailure() => throw UnimplementedError(),
         });
       },
     );

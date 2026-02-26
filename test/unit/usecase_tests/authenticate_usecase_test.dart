@@ -68,7 +68,7 @@ void main() {
       // Assert
       expect(result, isA<Stream<AuthUserStatus>>());
       verify(mockIAuthRepository.onStateChanges()).called(1);
-      expect(await result.first, isA<AuthUserUnlogged>());
+      expect(await result.first, isA<AuthUserNotAuthenticated>());
     });
 
     //

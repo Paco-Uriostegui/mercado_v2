@@ -13,7 +13,7 @@ class AuthUser with _$AuthUser {
 
   AuthUser({
     required this.uid,
-    required this.name,
+    this.name,
     required this.isEmailVerified,
   });
 }

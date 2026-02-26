@@ -22,7 +22,7 @@ class LoginUsecase {
       case Success(:final value):
         emailVO = value;
       case FailureResult():
-        return Result.failure(InvalidEmailFailure());
+        return Result.failure(InvalidEmailFormatFailure());
     }
 
     switch (Password.create(password)) {
@@ -32,18 +32,10 @@ class LoginUsecase {
         return Result.failure(InvalidPasswordFormatFailure());
     }
 
-    switch (await _authRepository.trySignInWithEmailAndPassword(
+    return await _authRepository.trySignInWithEmailAndPassword(
       emailVO,
       passwordVO,
-    )) {
-        case Success():
-          return Result.success(null);
-        case FailureResult(:final failure):
-          return switch (failure) {
-
-
-          }
-        }
+    );
         
     }
 
@@ -100,4 +92,4 @@ class LoginUsecase {
     //   },
     // );
   }
-}
+

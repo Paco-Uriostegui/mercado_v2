@@ -158,6 +158,8 @@ class FirebaseAuthDataSourceImpl implements IAuthRemoteDataSource {
     }
   }
 
+  // ------------------------------------------------------------------------------- Guard
+
   Future<T> _guard<T>(Future<T> Function() action, String operation) async {
     try {
       return await action();

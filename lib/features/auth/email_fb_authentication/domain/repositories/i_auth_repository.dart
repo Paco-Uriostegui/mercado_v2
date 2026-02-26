@@ -7,19 +7,19 @@ abstract class IAuthRepository {
     Email email,
     Password password,
   );
-  Future<Result<void>> trySendPasswordResetEmail(Email email);
-  Future<Result<void>> tryCreateUserWithEmailAndPassword(
+  Future<Result<void, AuthFailure>> trySendPasswordResetEmail(Email email);
+  Future<Result<void, AuthFailure>> tryCreateUserWithEmailAndPassword(
     Email email,
     Password password,
   );
   Future<void> trySendEmailVerification();
-  Future<Result<bool>> tryIsEmailVerified();
-  Future<Result<AuthUser?>> tryGetCurrentUser();
-  Future<Result<void>> tryRefreshCurrentUser();
-  Future<Result<AuthUser?>> tryGetRefreshedCurrentUser();
-  Future<Result<void>> trySignOut();
+  Future<Result<bool, AuthFailure>> tryIsEmailVerified();
+  Future<Result<AuthUser?, AuthFailure>> tryGetCurrentUser();
+  Future<Result<void, AuthFailure>> tryRefreshCurrentUser();
+  Future<Result<AuthUser?, AuthFailure>> tryGetRefreshedCurrentUser();
+  Future<Result<void, AuthFailure>> trySignOut();
   Stream<AuthUser?> onStateChanges();
-  Future<Result<void>> tryUpdateDisplayName(
+  Future<Result<void, AuthFailure>> tryUpdateDisplayName(
     FirstName firstName,
     LastName lastName,
     SecondLastName secondLastName,

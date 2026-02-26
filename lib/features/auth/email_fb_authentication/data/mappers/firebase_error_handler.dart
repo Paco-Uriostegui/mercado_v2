@@ -78,7 +78,6 @@ class FirebaseAuthErrorHandler {
 }
 
 /*
-// eliminate repeated ones
 
 email-already-in-use:
   Thrown if there already exists an account with the given email address.

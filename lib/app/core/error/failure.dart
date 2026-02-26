@@ -78,7 +78,7 @@ sealed class AuthFailure extends Failure {
 
 class EmailAlreadyInUseFailure implements AuthFailure {}
 
-class InvalidEmailFailure implements AuthFailure {}
+class InvalidEmailFormatFailure implements AuthFailure {}
 
 class WeakPasswordFailure implements AuthFailure {}
 class OperationNotAllowedFailure implements AuthFailure {}
@@ -98,39 +98,39 @@ class UnknownAuthFailure implements AuthFailure {
 }
 
 // ------------------------------------------------------------------------ CreateAccount Failures
-sealed class CreateAccountFailure extends Failure {}
+// sealed class CreateAccountFailure extends Failure {}
 
-class WeakPasswordFailure extends CreateAccountFailure {}
+// class WeakPasswordFailure extends CreateAccountFailure {}
 
-class EmailAlreadyInUseFailure extends CreateAccountFailure {}
+// class EmailAlreadyInUseFailure extends CreateAccountFailure {}
 
-class InvalidFormatEmailFailure extends CreateAccountFailure {}
+// class InvalidFormatEmailFailure extends CreateAccountFailure {}
 
-class NetworkFailure extends CreateAccountFailure {}
+// class NetworkFailure extends CreateAccountFailure {}
 
-class UnkownCreateAccountFailure extends CreateAccountFailure {}
+// class UnkownCreateAccountFailure extends CreateAccountFailure {}
 
-// ------------------------------------------------------------------------ Login Failures
-sealed class LoginFailure extends Failure {}
+// // ------------------------------------------------------------------------ Login Failures
+// sealed class LoginFailure extends Failure {}
 
-class InvalidEmailLoginFailure extends LoginFailure {}
+// class InvalidEmailLoginFailure extends LoginFailure {}
 
-class UserDisabledFailure extends LoginFailure {}
+// class UserDisabledFailure extends LoginFailure {}
 
-class UserNotFoundFailure extends LoginFailure {}
+// class UserNotFoundFailure extends LoginFailure {}
 
-class WrongPasswordFailure extends LoginFailure {}
+// class WrongPasswordFailure extends LoginFailure {}
 
-class InvalidPasswordFormatLoginFailure extends LoginFailure {}
+// class InvalidPasswordFormatLoginFailure extends LoginFailure {}
 
-class TooManyRequestsFailure extends LoginFailure {}
+// class TooManyRequestsFailure extends LoginFailure {}
 
-class UserTokenExpiredFailure extends LoginFailure {}
+// class UserTokenExpiredFailure extends LoginFailure {}
 
-class NetworkRequestLoginFailure extends LoginFailure {}
+// class NetworkRequestLoginFailure extends LoginFailure {}
 
-class InvalidLoginCredentialsFailure extends LoginFailure {}
+// class InvalidLoginCredentialsFailure extends LoginFailure {}
 
-class OperationNotAllowedLoginFailure extends LoginFailure {}
+// class OperationNotAllowedLoginFailure extends LoginFailure {}
 
 class UnknownException extends Failure {}
