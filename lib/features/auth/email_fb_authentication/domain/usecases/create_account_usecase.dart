@@ -35,11 +35,6 @@ class CreateAccountUsecase {
     }
 
     // --------------------------------------------------------------- create account
-    return await _authRepository
-        .tryCreateUserWithEmailAndPassword(email, pass);
-
-        
-    }
-
+    return await _authRepository.tryCreateUserWithEmailAndPassword(email, pass);
   }
-
+}

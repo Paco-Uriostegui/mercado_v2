@@ -1,24 +1,41 @@
+import 'package:mercado_v2/app/core/error/data_exceptions.dart';
 import 'package:mercado_v2/app/core/result/result.dart';
 import 'package:mercado_v2/features/auth/email_fb_authentication/data/datasources/i_auth_remote_datasource.dart';
+import 'package:mercado_v2/features/auth/email_fb_authentication/data/models/auth_user_model.dart';
 import 'package:mercado_v2/features/auth/email_fb_authentication/domain/entities/auth_user/auth_user.dart';
+import 'package:mercado_v2/features/auth/email_fb_authentication/domain/mappers/data_exception_mapper.dart';
 import 'package:mercado_v2/features/auth/email_fb_authentication/domain/repositories/i_auth_repository.dart';
 import 'package:mercado_v2/features/auth/email_fb_authentication/domain/value_objects/value_objects_export.dart';
 
 class FirebaseAuthRepositoryImpl implements IAuthRepository {
   final IAuthRemoteDataSource _authRemoteDataSource;
+  final DataExceptionMapper _dataExceptionMapper;
 
   FirebaseAuthRepositoryImpl({
     required IAuthRemoteDataSource authRemoteDataSource,
-  }) : _authRemoteDataSource = authRemoteDataSource;
+    required DataExceptionMapper dataExceptionMapper,
+  }) : _authRemoteDataSource = authRemoteDataSource,
+       _dataExceptionMapper = dataExceptionMapper;
 
   // ---------------------------------------------------------------------------- createAccount
   @override
   Future<Result<void, AuthFailure>> tryCreateUserWithEmailAndPassword(
     Email email,
     Password password,
-  ) {
-    final result = _authRemoteDataSource.createUserWithEmailAndPassword(email: email.value, password: password.value);
-    
+  ) async {
+    try {
+      await _authRemoteDataSource.createUserWithEmailAndPassword(
+        email: email.value,
+        password: password.value,
+      );
+      return Result.success(null);
+    } on AuthException catch (authException) {
+      return Result.failure(
+        _dataExceptionMapper.fromAuthException(authException),
+      );
+    } catch (e) {
+      return Result.failure(UnknownAuthFailure());
+    }
   }
 
   @override
@@ -30,8 +47,10 @@ class FirebaseAuthRepositoryImpl implements IAuthRepository {
         return Result.success(null);
       }
       return Result.success(user);
+    } on AuthException catch (authException) {
+      return _dataExceptionMapper.fromAuthException(authException);
     } catch (e) {
-      return Result.failure(e);
+      return Result.failure(UnknownAuthFailure());
     }
   }
 
@@ -51,6 +70,7 @@ class FirebaseAuthRepositoryImpl implements IAuthRepository {
     // TODO: implement trySendPasswordResetEmail
     throw UnimplementedError();
   }
+
   // ------------------------------------------------------------------------------- SignIn
   @override
   Future<Result<void, AuthFailure>> trySignInWithEmailAndPassword(
@@ -62,11 +82,13 @@ class FirebaseAuthRepositoryImpl implements IAuthRepository {
         email: email.value,
         password: password.value,
       );
-
       return Result.success(null);
-
+    } on AuthException catch (authException) {
+      return Result.failure(
+        _dataExceptionMapper.fromAuthException(authException),
+      );
     } catch (e) {
-      return Result.failure(SignInException());
+      return Result.failure(UnknownAuthFailure());
     }
   }
 

@@ -2,10 +2,9 @@
 Hecho: 
     - 
 En: 
-    - Terminar de agrupar los AuthFailure, corregir errores en failure.dart
-    los usescases no darán errores específicos (loginfailure, creareaccountfailure), en cambio
-    todos devuelven AuthFailure, el mismo usecase devuelve AuthFailure, es el bloc quien decide
-    qué estado emitir dependiendo del failure recibido. Aprovechar el default del switch
+    - Corrigiendo los failures de auth. Hechos login y create account, con corrección de authusermodel
+    y switch para mapear dataexceptions a failures y luego en bloc las failures a estados. Seguir
+    con el resto de blocs.
     
 Seguir:
     - 

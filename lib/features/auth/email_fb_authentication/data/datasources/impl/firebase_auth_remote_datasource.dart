@@ -1,11 +1,12 @@
 import 'dart:async';
 
 import 'package:firebase_auth/firebase_auth.dart' as fb;
-import 'package:mercado_v2/app/core/error/app_exceptions.dart';
+import 'package:mercado_v2/app/core/error/data_exceptions.dart';
 import 'package:mercado_v2/app/core/error/failure.dart';
 import 'package:mercado_v2/features/auth/email_fb_authentication/data/datasources/i_auth_remote_datasource.dart';
 import 'package:mercado_v2/features/auth/email_fb_authentication/data/mappers/auth_user_mapper.dart';
 import 'package:mercado_v2/features/auth/email_fb_authentication/data/mappers/firebase_error_handler.dart';
+import 'package:mercado_v2/features/auth/email_fb_authentication/data/models/auth_user_model.dart';
 import 'package:mercado_v2/features/auth/email_fb_authentication/domain/entities/auth_user/auth_user.dart';
 
 class FirebaseAuthDataSourceImpl implements IAuthRemoteDataSource {
@@ -24,7 +25,7 @@ class FirebaseAuthDataSourceImpl implements IAuthRemoteDataSource {
   // ------------------------------------------------------------------------------- SignIn
 
   @override
-  Future<AuthUser> signInWithEmailAndPassword({
+  Future<AuthUserModel> signInWithEmailAndPassword({
     required String email,
     required String password,
   }) async {
@@ -38,7 +39,7 @@ class FirebaseAuthDataSourceImpl implements IAuthRemoteDataSource {
       if (firebaseUser == null) {
         throw BackendUserIsNullException();
       }
-      return _userMapper.fromFirebase(firebaseUser);
+      return AuthUserModel.fromFirebase(firebaseUser);
     }, "SignIn");
 
     // try {
@@ -57,7 +58,7 @@ class FirebaseAuthDataSourceImpl implements IAuthRemoteDataSource {
   // ------------------------------------------------------------------------------- CreateUser
 
   @override
-  Future<AuthUser> createUserWithEmailAndPassword({
+  Future<AuthUserModel> createUserWithEmailAndPassword({
     required String email,
     required String password,
   }) async {
@@ -70,7 +71,7 @@ class FirebaseAuthDataSourceImpl implements IAuthRemoteDataSource {
       if (firebaseUser == null) {
         throw BackendUserIsNullException();
       }
-      return _userMapper.fromFirebase(firebaseUser);
+      return AuthUserModel.fromFirebase(firebaseUser);
     }, "CreateUser");
   }
 

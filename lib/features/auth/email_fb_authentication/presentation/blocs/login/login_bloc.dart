@@ -21,12 +21,24 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       password: event.password,
     );
     result.when(
-      success: (value) {
-        // TODO authUser válido. Guardarlo en el state global del user y navegar a splash screen. La splashScreen tendrá centralizada la búsqueda del User usando el AuthUser
-        // para así no duplicar código
+      success: (_) {
+        emit(.success());
       },
       failure: (failure) {
-        emit(.failure(failure));
+        emit( switch (failure) {
+
+          InvalidEmailFormatFailure() => .invalidEmailFormat(),
+          UserNotFoundFailure() => .userNotFound(),
+          OperationNotAllowedFailure() => .operationNotAllowed(),
+          TooManyRequestsFailure() => .tooManyAttempts(),
+          BackendUserIsNullFailure() => .unknown(),
+          NetworkRequestFailedFailure() => .networkError(),
+          UserDisabledFailure() => .userDisabled(),
+          InvalidLoginCredentialsFailure() => .invalidLoginCredentials(),
+          InvalidPasswordFormatFailure() => .invalidPasswordFormat(),
+          WrongPasswordFailure() => .wrongPassword(),
+          _ => .unknown(),
+        });
       },
     );
   }

@@ -26,36 +26,14 @@ class CreateAccountBloc extends Bloc<CreateAccountEvent, CreateAccountState> {
       success: (value) => emit(CreateAccountState.success()),
       failure: (failure) {
         emit(switch (failure) {
-
- 
-          // TODO: Handle this case.
-          EmailAlreadyInUseFailure() => throw UnimplementedError(),
-          // TODO: Handle this case.
-          InvalidEmailFormatFailure() => throw UnimplementedError(),
-          // TODO: Handle this case.
-          WeakPasswordFailure() => throw UnimplementedError(),
-          // TODO: Handle this case.
-          OperationNotAllowedFailure() => throw UnimplementedError(),
-          // TODO: Handle this case.
-          TooManyRequestsFailure() => throw UnimplementedError(),
-          // TODO: Handle this case.
-          UserTokenExpiredFailure() => throw UnimplementedError(),
-          // TODO: Handle this case.
-          BackendUserIsNullFailure() => throw UnimplementedError(),
-          // TODO: Handle this case.
-          NetworkRequestFailedFailure() => throw UnimplementedError(),
-          // TODO: Handle this case.
-          UserDisabledFailure() => throw UnimplementedError(),
-          // TODO: Handle this case.
-          UserNotFoundFailure() => throw UnimplementedError(),
-          // TODO: Handle this case.
-          WrongPasswordFailure() => throw UnimplementedError(),
-          // TODO: Handle this case.
-          InvalidLoginCredentialsFailure() => throw UnimplementedError(),
-          // TODO: Handle this case.
-          InvalidPasswordFormatFailure() => throw UnimplementedError(),
-          // TODO: Handle this case.
-          UnknownAuthFailure() => throw UnimplementedError(),
+          EmailAlreadyInUseFailure() => .emailAlreadyInUse(),
+          InvalidEmailFormatFailure() => .invalidEmailFormat(),
+          InvalidEmailFailure() => .invalidEmailFormat(),
+          TooManyRequestsFailure() => .tooManyRequests(),
+          NetworkRequestFailedFailure() => .networkError(),
+          InvalidPasswordFormatFailure() => .weakPassword(),
+          WeakPasswordFailure() => .weakPassword(),
+          _ => .unknown(),
         });
       },
     );

@@ -77,24 +77,26 @@ sealed class AuthFailure extends Failure {
 }
 
 class EmailAlreadyInUseFailure implements AuthFailure {}
+class InvalidEmailFormatFailure implements AuthFailure {} 
+class InvalidEmailFailure implements AuthFailure {} 
+class UserNotFoundFailure implements AuthFailure {}
 
-class InvalidEmailFormatFailure implements AuthFailure {}
 
-class WeakPasswordFailure implements AuthFailure {}
 class OperationNotAllowedFailure implements AuthFailure {}
 class TooManyRequestsFailure implements AuthFailure {}
 class UserTokenExpiredFailure implements AuthFailure {}
 class BackendUserIsNullFailure implements AuthFailure {}
 class NetworkRequestFailedFailure implements AuthFailure {}
 class UserDisabledFailure implements AuthFailure {}
-class UserNotFoundFailure implements AuthFailure {}
-class WrongPasswordFailure implements AuthFailure {}
 class InvalidLoginCredentialsFailure implements AuthFailure {}
+
 class InvalidPasswordFormatFailure implements AuthFailure {}
+class WrongPasswordFailure implements AuthFailure {}
+class WeakPasswordFailure implements AuthFailure {}
+
+
 
 class UnknownAuthFailure implements AuthFailure {
-  final String message;
-  UnknownAuthFailure(this.message);
 }
 
 // ------------------------------------------------------------------------ CreateAccount Failures

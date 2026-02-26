@@ -9,9 +9,9 @@ sealed class CreateAccountState with _$CreateAccountState {
   const factory CreateAccountState.loading() = Loading;
   const factory CreateAccountState.success() = Success;
   const factory CreateAccountState.weakPassword() = WeakPassword;
-  const factory CreateAccountState.invalidEmail() = InvalidEmail;
+  const factory CreateAccountState.invalidEmailFormat() = InvalidEmailFormat;
   const factory CreateAccountState.emailAlreadyInUse() = EmailAlreadyInUse;
   const factory CreateAccountState.networkError() = NetworkError;
   const factory CreateAccountState.unknown() = Unknown;
-
+  const factory CreateAccountState.tooManyRequests() = TooManyRequests;
 }

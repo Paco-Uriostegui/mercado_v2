@@ -61,14 +61,23 @@ extension LoginStatePatterns on LoginState {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Initial value)?  initial,TResult Function( _Loading value)?  loading,TResult Function( _Success value)?  success,TResult Function( _Error value)?  failure,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Initial value)?  initial,TResult Function( _Loading value)?  loading,TResult Function( _Success value)?  success,TResult Function( _InvalidEmailFormat value)?  invalidEmailFormat,TResult Function( _InvalidPasswordFormat value)?  invalidPasswordFormat,TResult Function( _WrongPassword value)?  wrongPassword,TResult Function( _NetworkError value)?  networkError,TResult Function( _TooManyAttempts value)?  tooManyAttempts,TResult Function( _OperationNotAllowed value)?  operationNotAllowed,TResult Function( _UserDisabled value)?  userDisabled,TResult Function( _UserNotFound value)?  userNotFound,TResult Function( _Unknown value)?  unknown,TResult Function( _InvalidLoginCredentials value)?  invalidLoginCredentials,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial(_that);case _Loading() when loading != null:
 return loading(_that);case _Success() when success != null:
-return success(_that);case _Error() when failure != null:
-return failure(_that);case _:
+return success(_that);case _InvalidEmailFormat() when invalidEmailFormat != null:
+return invalidEmailFormat(_that);case _InvalidPasswordFormat() when invalidPasswordFormat != null:
+return invalidPasswordFormat(_that);case _WrongPassword() when wrongPassword != null:
+return wrongPassword(_that);case _NetworkError() when networkError != null:
+return networkError(_that);case _TooManyAttempts() when tooManyAttempts != null:
+return tooManyAttempts(_that);case _OperationNotAllowed() when operationNotAllowed != null:
+return operationNotAllowed(_that);case _UserDisabled() when userDisabled != null:
+return userDisabled(_that);case _UserNotFound() when userNotFound != null:
+return userNotFound(_that);case _Unknown() when unknown != null:
+return unknown(_that);case _InvalidLoginCredentials() when invalidLoginCredentials != null:
+return invalidLoginCredentials(_that);case _:
   return orElse();
 
 }
@@ -86,14 +95,23 @@ return failure(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Initial value)  initial,required TResult Function( _Loading value)  loading,required TResult Function( _Success value)  success,required TResult Function( _Error value)  failure,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Initial value)  initial,required TResult Function( _Loading value)  loading,required TResult Function( _Success value)  success,required TResult Function( _InvalidEmailFormat value)  invalidEmailFormat,required TResult Function( _InvalidPasswordFormat value)  invalidPasswordFormat,required TResult Function( _WrongPassword value)  wrongPassword,required TResult Function( _NetworkError value)  networkError,required TResult Function( _TooManyAttempts value)  tooManyAttempts,required TResult Function( _OperationNotAllowed value)  operationNotAllowed,required TResult Function( _UserDisabled value)  userDisabled,required TResult Function( _UserNotFound value)  userNotFound,required TResult Function( _Unknown value)  unknown,required TResult Function( _InvalidLoginCredentials value)  invalidLoginCredentials,}){
 final _that = this;
 switch (_that) {
 case _Initial():
 return initial(_that);case _Loading():
 return loading(_that);case _Success():
-return success(_that);case _Error():
-return failure(_that);}
+return success(_that);case _InvalidEmailFormat():
+return invalidEmailFormat(_that);case _InvalidPasswordFormat():
+return invalidPasswordFormat(_that);case _WrongPassword():
+return wrongPassword(_that);case _NetworkError():
+return networkError(_that);case _TooManyAttempts():
+return tooManyAttempts(_that);case _OperationNotAllowed():
+return operationNotAllowed(_that);case _UserDisabled():
+return userDisabled(_that);case _UserNotFound():
+return userNotFound(_that);case _Unknown():
+return unknown(_that);case _InvalidLoginCredentials():
+return invalidLoginCredentials(_that);}
 }
 /// A variant of `map` that fallback to returning `null`.
 ///
@@ -107,14 +125,23 @@ return failure(_that);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Initial value)?  initial,TResult? Function( _Loading value)?  loading,TResult? Function( _Success value)?  success,TResult? Function( _Error value)?  failure,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Initial value)?  initial,TResult? Function( _Loading value)?  loading,TResult? Function( _Success value)?  success,TResult? Function( _InvalidEmailFormat value)?  invalidEmailFormat,TResult? Function( _InvalidPasswordFormat value)?  invalidPasswordFormat,TResult? Function( _WrongPassword value)?  wrongPassword,TResult? Function( _NetworkError value)?  networkError,TResult? Function( _TooManyAttempts value)?  tooManyAttempts,TResult? Function( _OperationNotAllowed value)?  operationNotAllowed,TResult? Function( _UserDisabled value)?  userDisabled,TResult? Function( _UserNotFound value)?  userNotFound,TResult? Function( _Unknown value)?  unknown,TResult? Function( _InvalidLoginCredentials value)?  invalidLoginCredentials,}){
 final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial(_that);case _Loading() when loading != null:
 return loading(_that);case _Success() when success != null:
-return success(_that);case _Error() when failure != null:
-return failure(_that);case _:
+return success(_that);case _InvalidEmailFormat() when invalidEmailFormat != null:
+return invalidEmailFormat(_that);case _InvalidPasswordFormat() when invalidPasswordFormat != null:
+return invalidPasswordFormat(_that);case _WrongPassword() when wrongPassword != null:
+return wrongPassword(_that);case _NetworkError() when networkError != null:
+return networkError(_that);case _TooManyAttempts() when tooManyAttempts != null:
+return tooManyAttempts(_that);case _OperationNotAllowed() when operationNotAllowed != null:
+return operationNotAllowed(_that);case _UserDisabled() when userDisabled != null:
+return userDisabled(_that);case _UserNotFound() when userNotFound != null:
+return userNotFound(_that);case _Unknown() when unknown != null:
+return unknown(_that);case _InvalidLoginCredentials() when invalidLoginCredentials != null:
+return invalidLoginCredentials(_that);case _:
   return null;
 
 }
@@ -131,13 +158,22 @@ return failure(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loading,TResult Function()?  success,TResult Function( Failure failure)?  failure,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loading,TResult Function()?  success,TResult Function()?  invalidEmailFormat,TResult Function()?  invalidPasswordFormat,TResult Function()?  wrongPassword,TResult Function()?  networkError,TResult Function()?  tooManyAttempts,TResult Function()?  operationNotAllowed,TResult Function()?  userDisabled,TResult Function()?  userNotFound,TResult Function()?  unknown,TResult Function()?  invalidLoginCredentials,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial();case _Loading() when loading != null:
 return loading();case _Success() when success != null:
-return success();case _Error() when failure != null:
-return failure(_that.failure);case _:
+return success();case _InvalidEmailFormat() when invalidEmailFormat != null:
+return invalidEmailFormat();case _InvalidPasswordFormat() when invalidPasswordFormat != null:
+return invalidPasswordFormat();case _WrongPassword() when wrongPassword != null:
+return wrongPassword();case _NetworkError() when networkError != null:
+return networkError();case _TooManyAttempts() when tooManyAttempts != null:
+return tooManyAttempts();case _OperationNotAllowed() when operationNotAllowed != null:
+return operationNotAllowed();case _UserDisabled() when userDisabled != null:
+return userDisabled();case _UserNotFound() when userNotFound != null:
+return userNotFound();case _Unknown() when unknown != null:
+return unknown();case _InvalidLoginCredentials() when invalidLoginCredentials != null:
+return invalidLoginCredentials();case _:
   return orElse();
 
 }
@@ -155,13 +191,22 @@ return failure(_that.failure);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loading,required TResult Function()  success,required TResult Function( Failure failure)  failure,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loading,required TResult Function()  success,required TResult Function()  invalidEmailFormat,required TResult Function()  invalidPasswordFormat,required TResult Function()  wrongPassword,required TResult Function()  networkError,required TResult Function()  tooManyAttempts,required TResult Function()  operationNotAllowed,required TResult Function()  userDisabled,required TResult Function()  userNotFound,required TResult Function()  unknown,required TResult Function()  invalidLoginCredentials,}) {final _that = this;
 switch (_that) {
 case _Initial():
 return initial();case _Loading():
 return loading();case _Success():
-return success();case _Error():
-return failure(_that.failure);}
+return success();case _InvalidEmailFormat():
+return invalidEmailFormat();case _InvalidPasswordFormat():
+return invalidPasswordFormat();case _WrongPassword():
+return wrongPassword();case _NetworkError():
+return networkError();case _TooManyAttempts():
+return tooManyAttempts();case _OperationNotAllowed():
+return operationNotAllowed();case _UserDisabled():
+return userDisabled();case _UserNotFound():
+return userNotFound();case _Unknown():
+return unknown();case _InvalidLoginCredentials():
+return invalidLoginCredentials();}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -175,13 +220,22 @@ return failure(_that.failure);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loading,TResult? Function()?  success,TResult? Function( Failure failure)?  failure,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loading,TResult? Function()?  success,TResult? Function()?  invalidEmailFormat,TResult? Function()?  invalidPasswordFormat,TResult? Function()?  wrongPassword,TResult? Function()?  networkError,TResult? Function()?  tooManyAttempts,TResult? Function()?  operationNotAllowed,TResult? Function()?  userDisabled,TResult? Function()?  userNotFound,TResult? Function()?  unknown,TResult? Function()?  invalidLoginCredentials,}) {final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial();case _Loading() when loading != null:
 return loading();case _Success() when success != null:
-return success();case _Error() when failure != null:
-return failure(_that.failure);case _:
+return success();case _InvalidEmailFormat() when invalidEmailFormat != null:
+return invalidEmailFormat();case _InvalidPasswordFormat() when invalidPasswordFormat != null:
+return invalidPasswordFormat();case _WrongPassword() when wrongPassword != null:
+return wrongPassword();case _NetworkError() when networkError != null:
+return networkError();case _TooManyAttempts() when tooManyAttempts != null:
+return tooManyAttempts();case _OperationNotAllowed() when operationNotAllowed != null:
+return operationNotAllowed();case _UserDisabled() when userDisabled != null:
+return userDisabled();case _UserNotFound() when userNotFound != null:
+return userNotFound();case _Unknown() when unknown != null:
+return unknown();case _InvalidLoginCredentials() when invalidLoginCredentials != null:
+return invalidLoginCredentials();case _:
   return null;
 
 }
@@ -306,73 +360,381 @@ String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
 /// @nodoc
 
 
-class _Error with DiagnosticableTreeMixin implements LoginState {
-  const _Error(this.failure);
+class _InvalidEmailFormat with DiagnosticableTreeMixin implements LoginState {
+  const _InvalidEmailFormat();
   
 
- final  Failure failure;
 
-/// Create a copy of LoginState
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-_$ErrorCopyWith<_Error> get copyWith => __$ErrorCopyWithImpl<_Error>(this, _$identity);
+
 
 
 @override
 void debugFillProperties(DiagnosticPropertiesBuilder properties) {
   properties
-    ..add(DiagnosticsProperty('type', 'LoginState.failure'))
-    ..add(DiagnosticsProperty('failure', failure));
+    ..add(DiagnosticsProperty('type', 'LoginState.invalidEmailFormat'))
+    ;
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Error&&(identical(other.failure, failure) || other.failure == failure));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _InvalidEmailFormat);
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,failure);
+int get hashCode => runtimeType.hashCode;
 
 @override
 String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
-  return 'LoginState.failure(failure: $failure)';
+  return 'LoginState.invalidEmailFormat()';
 }
 
 
 }
+
+
+
 
 /// @nodoc
-abstract mixin class _$ErrorCopyWith<$Res> implements $LoginStateCopyWith<$Res> {
-  factory _$ErrorCopyWith(_Error value, $Res Function(_Error) _then) = __$ErrorCopyWithImpl;
-@useResult
-$Res call({
- Failure failure
-});
 
 
+class _InvalidPasswordFormat with DiagnosticableTreeMixin implements LoginState {
+  const _InvalidPasswordFormat();
+  
+
+
+
+
+
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'LoginState.invalidPasswordFormat'))
+    ;
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _InvalidPasswordFormat);
+}
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'LoginState.invalidPasswordFormat()';
+}
 
 
 }
+
+
+
+
 /// @nodoc
-class __$ErrorCopyWithImpl<$Res>
-    implements _$ErrorCopyWith<$Res> {
-  __$ErrorCopyWithImpl(this._self, this._then);
 
-  final _Error _self;
-  final $Res Function(_Error) _then;
 
-/// Create a copy of LoginState
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? failure = null,}) {
-  return _then(_Error(
-null == failure ? _self.failure : failure // ignore: cast_nullable_to_non_nullable
-as Failure,
-  ));
+class _WrongPassword with DiagnosticableTreeMixin implements LoginState {
+  const _WrongPassword();
+  
+
+
+
+
+
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'LoginState.wrongPassword'))
+    ;
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _WrongPassword);
+}
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'LoginState.wrongPassword()';
 }
 
 
 }
+
+
+
+
+/// @nodoc
+
+
+class _NetworkError with DiagnosticableTreeMixin implements LoginState {
+  const _NetworkError();
+  
+
+
+
+
+
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'LoginState.networkError'))
+    ;
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _NetworkError);
+}
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'LoginState.networkError()';
+}
+
+
+}
+
+
+
+
+/// @nodoc
+
+
+class _TooManyAttempts with DiagnosticableTreeMixin implements LoginState {
+  const _TooManyAttempts();
+  
+
+
+
+
+
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'LoginState.tooManyAttempts'))
+    ;
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _TooManyAttempts);
+}
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'LoginState.tooManyAttempts()';
+}
+
+
+}
+
+
+
+
+/// @nodoc
+
+
+class _OperationNotAllowed with DiagnosticableTreeMixin implements LoginState {
+  const _OperationNotAllowed();
+  
+
+
+
+
+
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'LoginState.operationNotAllowed'))
+    ;
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _OperationNotAllowed);
+}
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'LoginState.operationNotAllowed()';
+}
+
+
+}
+
+
+
+
+/// @nodoc
+
+
+class _UserDisabled with DiagnosticableTreeMixin implements LoginState {
+  const _UserDisabled();
+  
+
+
+
+
+
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'LoginState.userDisabled'))
+    ;
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UserDisabled);
+}
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'LoginState.userDisabled()';
+}
+
+
+}
+
+
+
+
+/// @nodoc
+
+
+class _UserNotFound with DiagnosticableTreeMixin implements LoginState {
+  const _UserNotFound();
+  
+
+
+
+
+
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'LoginState.userNotFound'))
+    ;
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UserNotFound);
+}
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'LoginState.userNotFound()';
+}
+
+
+}
+
+
+
+
+/// @nodoc
+
+
+class _Unknown with DiagnosticableTreeMixin implements LoginState {
+  const _Unknown();
+  
+
+
+
+
+
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'LoginState.unknown'))
+    ;
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Unknown);
+}
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'LoginState.unknown()';
+}
+
+
+}
+
+
+
+
+/// @nodoc
+
+
+class _InvalidLoginCredentials with DiagnosticableTreeMixin implements LoginState {
+  const _InvalidLoginCredentials();
+  
+
+
+
+
+
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'LoginState.invalidLoginCredentials'))
+    ;
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _InvalidLoginCredentials);
+}
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'LoginState.invalidLoginCredentials()';
+}
+
+
+}
+
+
+
 
 // dart format on
