@@ -14,6 +14,8 @@ import 'package:mercado_v2/features/auth/email_fb_authentication/domain/usecases
     as _i8;
 import 'package:mercado_v2/features/auth/email_fb_authentication/domain/usecases/create_account_usecase.dart'
     as _i9;
+import 'package:mercado_v2/features/auth/email_fb_authentication/domain/usecases/login_usecase.dart'
+    as _i10;
 import 'package:mercado_v2/features/auth/email_fb_authentication/domain/value_objects/value_objects_export.dart'
     as _i5;
 import 'package:mockito/mockito.dart' as _i1;
@@ -162,6 +164,34 @@ class MockCreateAccountUsecase extends _i1.Mock
                 Invocation.method(#call, [], {
                   #emailString: emailString,
                   #passwordString: passwordString,
+                }),
+              ),
+            ),
+          )
+          as _i3.Future<_i4.Result<void, _i4.AuthFailure>>);
+}
+
+/// A class which mocks [LoginUsecase].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockLoginUsecase extends _i1.Mock implements _i10.LoginUsecase {
+  MockLoginUsecase() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i3.Future<_i4.Result<void, _i4.AuthFailure>> call({
+    required String? email,
+    required String? password,
+  }) =>
+      (super.noSuchMethod(
+            Invocation.method(#call, [], {#email: email, #password: password}),
+            returnValue: _i3.Future<_i4.Result<void, _i4.AuthFailure>>.value(
+              _i6.dummyValue<_i4.Result<void, _i4.AuthFailure>>(
+                this,
+                Invocation.method(#call, [], {
+                  #email: email,
+                  #password: password,
                 }),
               ),
             ),

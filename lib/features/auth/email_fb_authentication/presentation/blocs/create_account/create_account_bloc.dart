@@ -23,7 +23,7 @@ class CreateAccountBloc extends Bloc<CreateAccountEvent, CreateAccountState> {
       passwordString: event.password,
     );
     result.when(
-      success: (value) => emit(CreateAccountState.success()),
+      success: (value) => emit(CreateAccountState.created()),
       failure: (failure) {
         emit(switch (failure) {
           EmailAlreadyInUseFailure() => .emailAlreadyInUse(),

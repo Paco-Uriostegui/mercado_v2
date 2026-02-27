@@ -1,4 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
+//import 'package:mercado_v2/app/core/result/result.dart';
 import 'package:mercado_v2/features/auth/email_fb_authentication/domain/entities/auth_user/auth_user.dart';
 import 'package:mercado_v2/features/auth/email_fb_authentication/domain/usecases/authenticate_usecase.dart';
 import 'package:mockito/mockito.dart';
@@ -6,6 +7,8 @@ import 'package:mockito/mockito.dart';
 import '../../mocks/mocks.mocks.dart';
 
 void main() {
+  //provideDummy<Result<void, AuthFailure>>(Success(null));
+
   group("Authenticate usecase tests", () {
     late AuthenticationUseCase usecase;
     late MockIAuthRepository mockIAuthRepository;

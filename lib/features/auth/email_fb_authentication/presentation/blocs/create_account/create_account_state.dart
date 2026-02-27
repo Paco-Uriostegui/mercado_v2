@@ -7,7 +7,7 @@ sealed class CreateAccountState with _$CreateAccountState {
   const factory CreateAccountState.initial() = Initial;
   //const factory CreateAccountState.error(Failure failure) = Error;
   const factory CreateAccountState.loading() = Loading;
-  const factory CreateAccountState.success() = Success;
+  const factory CreateAccountState.created() = Created;
   const factory CreateAccountState.weakPassword() = WeakPassword;
   const factory CreateAccountState.invalidEmailFormat() = InvalidEmailFormat;
   const factory CreateAccountState.emailAlreadyInUse() = EmailAlreadyInUse;

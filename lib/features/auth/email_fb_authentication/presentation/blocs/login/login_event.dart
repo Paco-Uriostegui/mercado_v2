@@ -7,5 +7,5 @@ sealed class LoginEvent with _$LoginEvent {
   const factory LoginEvent.loginSubmitted({
     required String email,
     required String password,
-  }) = NewLoginSubmitted;
+  }) = LoginSubmitted;
 }

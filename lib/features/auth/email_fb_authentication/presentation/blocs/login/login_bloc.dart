@@ -8,11 +8,11 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   final LoginUsecase _loginUsecase;
 
   LoginBloc(this._loginUsecase) : super(LoginState.initial()) {
-    on<NewLoginSubmitted>(_loginSubmitted);
+    on<LoginSubmitted>(_loginSubmitted);
   }
 
   Future<void> _loginSubmitted(
-    NewLoginSubmitted event,
+    LoginSubmitted event,
     Emitter<LoginState> emit,
   ) async {
     emit(.loading());
@@ -25,8 +25,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         emit(.success());
       },
       failure: (failure) {
-        emit( switch (failure) {
-
+        emit(switch (failure) {
           InvalidEmailFormatFailure() => .invalidEmailFormat(),
           UserNotFoundFailure() => .userNotFound(),
           OperationNotAllowedFailure() => .operationNotAllowed(),

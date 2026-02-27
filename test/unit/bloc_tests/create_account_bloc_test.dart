@@ -9,6 +9,8 @@ import 'package:mockito/mockito.dart';
 import '../../mocks/mocks.mocks.dart';
 
 void main() {
+  provideDummy<Result<void, AuthFailure>>(Success(null));
+
   group("CreateAccount Bloc tests", () {
     late MockCreateAccountUsecase mockCreateAccountUseCase;
     late String validEmail;
@@ -37,7 +39,7 @@ void main() {
 
       expect: () => <CreateAccountState>[
         CreateAccountState.loading(),
-        CreateAccountState.success(),
+        CreateAccountState.created(),
       ],
 
       verify: (_) {
@@ -49,7 +51,7 @@ void main() {
         ).called(1);
       },
     );
-    
+
     // .error tests with all posible failure states
 
     // Test 3: emits .unknown when usecase returns unknown()

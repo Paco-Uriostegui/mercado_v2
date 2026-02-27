@@ -87,10 +87,10 @@ extension LoginEventPatterns on LoginEvent {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( NewLoginSubmitted value)?  loginSubmitted,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( LoginSubmitted value)?  loginSubmitted,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
-case NewLoginSubmitted() when loginSubmitted != null:
+case LoginSubmitted() when loginSubmitted != null:
 return loginSubmitted(_that);case _:
   return orElse();
 
@@ -109,10 +109,10 @@ return loginSubmitted(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( NewLoginSubmitted value)  loginSubmitted,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( LoginSubmitted value)  loginSubmitted,}){
 final _that = this;
 switch (_that) {
-case NewLoginSubmitted():
+case LoginSubmitted():
 return loginSubmitted(_that);}
 }
 /// A variant of `map` that fallback to returning `null`.
@@ -127,10 +127,10 @@ return loginSubmitted(_that);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( NewLoginSubmitted value)?  loginSubmitted,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( LoginSubmitted value)?  loginSubmitted,}){
 final _that = this;
 switch (_that) {
-case NewLoginSubmitted() when loginSubmitted != null:
+case LoginSubmitted() when loginSubmitted != null:
 return loginSubmitted(_that);case _:
   return null;
 
@@ -150,7 +150,7 @@ return loginSubmitted(_that);case _:
 
 @optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( String email,  String password)?  loginSubmitted,required TResult orElse(),}) {final _that = this;
 switch (_that) {
-case NewLoginSubmitted() when loginSubmitted != null:
+case LoginSubmitted() when loginSubmitted != null:
 return loginSubmitted(_that.email,_that.password);case _:
   return orElse();
 
@@ -171,7 +171,7 @@ return loginSubmitted(_that.email,_that.password);case _:
 
 @optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( String email,  String password)  loginSubmitted,}) {final _that = this;
 switch (_that) {
-case NewLoginSubmitted():
+case LoginSubmitted():
 return loginSubmitted(_that.email,_that.password);}
 }
 /// A variant of `when` that fallback to returning `null`
@@ -188,7 +188,7 @@ return loginSubmitted(_that.email,_that.password);}
 
 @optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( String email,  String password)?  loginSubmitted,}) {final _that = this;
 switch (_that) {
-case NewLoginSubmitted() when loginSubmitted != null:
+case LoginSubmitted() when loginSubmitted != null:
 return loginSubmitted(_that.email,_that.password);case _:
   return null;
 
@@ -200,8 +200,8 @@ return loginSubmitted(_that.email,_that.password);case _:
 /// @nodoc
 
 
-class NewLoginSubmitted implements LoginEvent {
-  const NewLoginSubmitted({required this.email, required this.password});
+class LoginSubmitted implements LoginEvent {
+  const LoginSubmitted({required this.email, required this.password});
   
 
 @override final  String email;
@@ -211,13 +211,13 @@ class NewLoginSubmitted implements LoginEvent {
 /// with the given fields replaced by the non-null parameter values.
 @override @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-$NewLoginSubmittedCopyWith<NewLoginSubmitted> get copyWith => _$NewLoginSubmittedCopyWithImpl<NewLoginSubmitted>(this, _$identity);
+$NewLoginSubmittedCopyWith<LoginSubmitted> get copyWith => _$NewLoginSubmittedCopyWithImpl<LoginSubmitted>(this, _$identity);
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is NewLoginSubmitted&&(identical(other.email, email) || other.email == email)&&(identical(other.password, password) || other.password == password));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is LoginSubmitted&&(identical(other.email, email) || other.email == email)&&(identical(other.password, password) || other.password == password));
 }
 
 
@@ -234,7 +234,7 @@ String toString() {
 
 /// @nodoc
 abstract mixin class $NewLoginSubmittedCopyWith<$Res> implements $LoginEventCopyWith<$Res> {
-  factory $NewLoginSubmittedCopyWith(NewLoginSubmitted value, $Res Function(NewLoginSubmitted) _then) = _$NewLoginSubmittedCopyWithImpl;
+  factory $NewLoginSubmittedCopyWith(LoginSubmitted value, $Res Function(LoginSubmitted) _then) = _$NewLoginSubmittedCopyWithImpl;
 @override @useResult
 $Res call({
  String email, String password
@@ -249,13 +249,13 @@ class _$NewLoginSubmittedCopyWithImpl<$Res>
     implements $NewLoginSubmittedCopyWith<$Res> {
   _$NewLoginSubmittedCopyWithImpl(this._self, this._then);
 
-  final NewLoginSubmitted _self;
-  final $Res Function(NewLoginSubmitted) _then;
+  final LoginSubmitted _self;
+  final $Res Function(LoginSubmitted) _then;
 
 /// Create a copy of LoginEvent
 /// with the given fields replaced by the non-null parameter values.
 @override @pragma('vm:prefer-inline') $Res call({Object? email = null,Object? password = null,}) {
-  return _then(NewLoginSubmitted(
+  return _then(LoginSubmitted(
 email: null == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
 as String,password: null == password ? _self.password : password // ignore: cast_nullable_to_non_nullable
 as String,

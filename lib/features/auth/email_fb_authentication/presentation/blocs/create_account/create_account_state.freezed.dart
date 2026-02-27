@@ -55,13 +55,13 @@ extension CreateAccountStatePatterns on CreateAccountState {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( Initial value)?  initial,TResult Function( Loading value)?  loading,TResult Function( Success value)?  success,TResult Function( WeakPassword value)?  weakPassword,TResult Function( InvalidEmailFormat value)?  invalidEmailFormat,TResult Function( EmailAlreadyInUse value)?  emailAlreadyInUse,TResult Function( NetworkError value)?  networkError,TResult Function( Unknown value)?  unknown,TResult Function( TooManyRequests value)?  tooManyRequests,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( Initial value)?  initial,TResult Function( Loading value)?  loading,TResult Function( Created value)?  created,TResult Function( WeakPassword value)?  weakPassword,TResult Function( InvalidEmailFormat value)?  invalidEmailFormat,TResult Function( EmailAlreadyInUse value)?  emailAlreadyInUse,TResult Function( NetworkError value)?  networkError,TResult Function( Unknown value)?  unknown,TResult Function( TooManyRequests value)?  tooManyRequests,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case Initial() when initial != null:
 return initial(_that);case Loading() when loading != null:
-return loading(_that);case Success() when success != null:
-return success(_that);case WeakPassword() when weakPassword != null:
+return loading(_that);case Created() when created != null:
+return created(_that);case WeakPassword() when weakPassword != null:
 return weakPassword(_that);case InvalidEmailFormat() when invalidEmailFormat != null:
 return invalidEmailFormat(_that);case EmailAlreadyInUse() when emailAlreadyInUse != null:
 return emailAlreadyInUse(_that);case NetworkError() when networkError != null:
@@ -85,13 +85,13 @@ return tooManyRequests(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( Initial value)  initial,required TResult Function( Loading value)  loading,required TResult Function( Success value)  success,required TResult Function( WeakPassword value)  weakPassword,required TResult Function( InvalidEmailFormat value)  invalidEmailFormat,required TResult Function( EmailAlreadyInUse value)  emailAlreadyInUse,required TResult Function( NetworkError value)  networkError,required TResult Function( Unknown value)  unknown,required TResult Function( TooManyRequests value)  tooManyRequests,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( Initial value)  initial,required TResult Function( Loading value)  loading,required TResult Function( Created value)  created,required TResult Function( WeakPassword value)  weakPassword,required TResult Function( InvalidEmailFormat value)  invalidEmailFormat,required TResult Function( EmailAlreadyInUse value)  emailAlreadyInUse,required TResult Function( NetworkError value)  networkError,required TResult Function( Unknown value)  unknown,required TResult Function( TooManyRequests value)  tooManyRequests,}){
 final _that = this;
 switch (_that) {
 case Initial():
 return initial(_that);case Loading():
-return loading(_that);case Success():
-return success(_that);case WeakPassword():
+return loading(_that);case Created():
+return created(_that);case WeakPassword():
 return weakPassword(_that);case InvalidEmailFormat():
 return invalidEmailFormat(_that);case EmailAlreadyInUse():
 return emailAlreadyInUse(_that);case NetworkError():
@@ -111,13 +111,13 @@ return tooManyRequests(_that);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( Initial value)?  initial,TResult? Function( Loading value)?  loading,TResult? Function( Success value)?  success,TResult? Function( WeakPassword value)?  weakPassword,TResult? Function( InvalidEmailFormat value)?  invalidEmailFormat,TResult? Function( EmailAlreadyInUse value)?  emailAlreadyInUse,TResult? Function( NetworkError value)?  networkError,TResult? Function( Unknown value)?  unknown,TResult? Function( TooManyRequests value)?  tooManyRequests,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( Initial value)?  initial,TResult? Function( Loading value)?  loading,TResult? Function( Created value)?  created,TResult? Function( WeakPassword value)?  weakPassword,TResult? Function( InvalidEmailFormat value)?  invalidEmailFormat,TResult? Function( EmailAlreadyInUse value)?  emailAlreadyInUse,TResult? Function( NetworkError value)?  networkError,TResult? Function( Unknown value)?  unknown,TResult? Function( TooManyRequests value)?  tooManyRequests,}){
 final _that = this;
 switch (_that) {
 case Initial() when initial != null:
 return initial(_that);case Loading() when loading != null:
-return loading(_that);case Success() when success != null:
-return success(_that);case WeakPassword() when weakPassword != null:
+return loading(_that);case Created() when created != null:
+return created(_that);case WeakPassword() when weakPassword != null:
 return weakPassword(_that);case InvalidEmailFormat() when invalidEmailFormat != null:
 return invalidEmailFormat(_that);case EmailAlreadyInUse() when emailAlreadyInUse != null:
 return emailAlreadyInUse(_that);case NetworkError() when networkError != null:
@@ -140,12 +140,12 @@ return tooManyRequests(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loading,TResult Function()?  success,TResult Function()?  weakPassword,TResult Function()?  invalidEmailFormat,TResult Function()?  emailAlreadyInUse,TResult Function()?  networkError,TResult Function()?  unknown,TResult Function()?  tooManyRequests,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loading,TResult Function()?  created,TResult Function()?  weakPassword,TResult Function()?  invalidEmailFormat,TResult Function()?  emailAlreadyInUse,TResult Function()?  networkError,TResult Function()?  unknown,TResult Function()?  tooManyRequests,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case Initial() when initial != null:
 return initial();case Loading() when loading != null:
-return loading();case Success() when success != null:
-return success();case WeakPassword() when weakPassword != null:
+return loading();case Created() when created != null:
+return created();case WeakPassword() when weakPassword != null:
 return weakPassword();case InvalidEmailFormat() when invalidEmailFormat != null:
 return invalidEmailFormat();case EmailAlreadyInUse() when emailAlreadyInUse != null:
 return emailAlreadyInUse();case NetworkError() when networkError != null:
@@ -169,12 +169,12 @@ return tooManyRequests();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loading,required TResult Function()  success,required TResult Function()  weakPassword,required TResult Function()  invalidEmailFormat,required TResult Function()  emailAlreadyInUse,required TResult Function()  networkError,required TResult Function()  unknown,required TResult Function()  tooManyRequests,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loading,required TResult Function()  created,required TResult Function()  weakPassword,required TResult Function()  invalidEmailFormat,required TResult Function()  emailAlreadyInUse,required TResult Function()  networkError,required TResult Function()  unknown,required TResult Function()  tooManyRequests,}) {final _that = this;
 switch (_that) {
 case Initial():
 return initial();case Loading():
-return loading();case Success():
-return success();case WeakPassword():
+return loading();case Created():
+return created();case WeakPassword():
 return weakPassword();case InvalidEmailFormat():
 return invalidEmailFormat();case EmailAlreadyInUse():
 return emailAlreadyInUse();case NetworkError():
@@ -194,12 +194,12 @@ return tooManyRequests();}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loading,TResult? Function()?  success,TResult? Function()?  weakPassword,TResult? Function()?  invalidEmailFormat,TResult? Function()?  emailAlreadyInUse,TResult? Function()?  networkError,TResult? Function()?  unknown,TResult? Function()?  tooManyRequests,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loading,TResult? Function()?  created,TResult? Function()?  weakPassword,TResult? Function()?  invalidEmailFormat,TResult? Function()?  emailAlreadyInUse,TResult? Function()?  networkError,TResult? Function()?  unknown,TResult? Function()?  tooManyRequests,}) {final _that = this;
 switch (_that) {
 case Initial() when initial != null:
 return initial();case Loading() when loading != null:
-return loading();case Success() when success != null:
-return success();case WeakPassword() when weakPassword != null:
+return loading();case Created() when created != null:
+return created();case WeakPassword() when weakPassword != null:
 return weakPassword();case InvalidEmailFormat() when invalidEmailFormat != null:
 return invalidEmailFormat();case EmailAlreadyInUse() when emailAlreadyInUse != null:
 return emailAlreadyInUse();case NetworkError() when networkError != null:
@@ -280,8 +280,8 @@ String toString() {
 /// @nodoc
 
 
-class Success implements CreateAccountState {
-  const Success();
+class Created implements CreateAccountState {
+  const Created();
   
 
 
@@ -291,7 +291,7 @@ class Success implements CreateAccountState {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is Success);
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Created);
 }
 
 
@@ -300,7 +300,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'CreateAccountState.success()';
+  return 'CreateAccountState.created()';
 }
 
 
