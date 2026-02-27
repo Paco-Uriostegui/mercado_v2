@@ -2,12 +2,10 @@
 Hecho: 
     - 
 En: 
-    - Corrigiendo los failures de auth. Hechos login y create account, con corrección de authusermodel
-    y switch para mapear dataexceptions a failures y luego en bloc las failures a estados. Seguir
-    con el resto de blocs.
+    - Corrigiendo los tests
     
 Seguir:
-    - Test para los blocs y use cases
+
 Por hacer: 
     - 
 

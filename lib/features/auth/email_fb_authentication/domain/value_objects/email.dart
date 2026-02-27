@@ -9,14 +9,14 @@ class Email extends Equatable {
     if (_isValid(e)) {
       return Result.success(Email._(value));
     }
-    return Result.failure(InvalidEmailVOFormatFaliure());
+    return Result.failure(InvalidEmailVOFormatFailure());
   }
 
   factory Email.direct(String value) {
     final result = Email.create(value);
     return result.map(
       success: (success) => success.value,
-      failure: (failure) => throw InvalidEmailVOFormatFaliure(),
+      failure: (failure) => throw InvalidEmailVOFormatFailure(),
     );
   }
 

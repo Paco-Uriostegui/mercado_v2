@@ -6,16 +6,16 @@ abstract class IAuthRemoteDataSource {
     required String email,
     required String password,
   });
-  Future<void> sendPasswordResetEmail({required String email});
+  // Future<void> sendPasswordResetEmail({required String email});
   Future<AuthUserModel> createUserWithEmailAndPassword({
     required String email,
     required String password,
   });
   Future<void> sendVerificationEmail();
   Future<bool> isEmailVerified();
-  AuthUser? getCurrentUser();
-  Future<void> refreshCurrentUser();
-  Future<void> signOut();
+  // AuthUser? getCurrentUser();
+  // Future<void> refreshCurrentUser();
+  // Future<void> signOut();
   Stream<AuthUser?> authStateChanges();
-  Future<void> updateDisplayName(String name);
+  // Future<void> updateDisplayName(String name);
 }

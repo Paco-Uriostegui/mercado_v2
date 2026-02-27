@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:ffi';
 
 import 'package:firebase_auth/firebase_auth.dart' as fb;
 import 'package:mercado_v2/app/core/error/data_exceptions.dart';
@@ -42,19 +41,13 @@ class FirebaseAuthDataSourceImpl implements IAuthRemoteDataSource {
       }
       return AuthUserModel.fromFirebase(firebaseUser);
     }, "SignIn");
-
-    // try {
-
-    // } on fb.FirebaseAuthException catch (e) {
-    //   //
-    //   throw _exceptionMapper.mapToAppException(e);
-    // }
   }
 
-  @override
-  Future<void> sendPasswordResetEmail({required String email}) async {
-    await _firebaseAuth.sendPasswordResetEmail(email: email);
-  }
+  // ------------------------------------------------------------------------------- reset password
+  // @override
+  // Future<void> sendPasswordResetEmail({required String email}) async {
+  //   await _firebaseAuth.sendPasswordResetEmail(email: email);
+  // }
 
   // ------------------------------------------------------------------------------- CreateUser
 
@@ -83,83 +76,90 @@ class FirebaseAuthDataSourceImpl implements IAuthRemoteDataSource {
       await _firebaseAuth.currentUser?.sendEmailVerification();
     }, "Send email verification");
   }
+
   // ---------------------------------------------------------------------------- email verified
   @override
   Future<bool> isEmailVerified() async {
-   return _guard(() async {
-    await _firebaseAuth.currentUser?.reload();
-    return _firebaseAuth.currentUser?.emailVerified ?? false;
-   }, "isEmailVerified");
-      
-
+    return _guard(() async {
+      await _firebaseAuth.currentUser?.reload();
+      return _firebaseAuth.currentUser?.emailVerified ?? false;
+    }, "isEmailVerified");
   }
+  // ---------------------------------------------------------------------------- get current user
+  // @override
+  // AuthUser? getCurrentUser() {
+  //   final user = _firebaseAuth.currentUser;
+  //   try {
+  //     if (user == null) {
+  //       return null;
+  //     }
+  //     return _userMapper.fromFirebase(user);
+  //   } catch (e) {
+  //     throw AuthFailure();
+  //   }
+  // }
 
-  @override
-  AuthUser? getCurrentUser() {
-    final user = _firebaseAuth.currentUser;
-    try {
-      if (user == null) {
-        return null;
-      }
-      return _userMapper.fromFirebase(user);
-    } catch (e) {
-      throw AuthFailure();
-    }
-  }
+  // ---------------------------------------------------------------------------- refresh user
+  // @override
+  // Future<void> refreshCurrentUser() async {
+  //   try {
+  //     await _firebaseAuth.currentUser?.getIdToken(true);
+  //   } catch (e) {
+  //     throw AuthFailure();
+  //   }
+  // }
 
-  @override
-  Future<void> refreshCurrentUser() async {
-    try {
-      await _firebaseAuth.currentUser?.getIdToken(true);
-    } catch (e) {
-      throw AuthFailure();
-    }
-  }
+  // ---------------------------------------------------------------------------- SignOut
+  // @override
+  // Future<void> signOut() async {
+  //   try {
+  //     await _firebaseAuth.signOut();
+  //   } catch (e) {
+  //     throw AuthFailure();
+  //   }
+  // }
 
-  @override
-  Future<void> signOut() async {
-    try {
-      await _firebaseAuth.signOut();
-    } catch (e) {
-      throw AuthFailure();
-    }
-  }
-
+  // ---------------------------------------------------------------------------- onStateChanges
   @override
   Stream<AuthUser?> authStateChanges() {
-    return _firebaseAuth.authStateChanges().transform(
-      StreamTransformer<fb.User?, AuthUser?>.fromHandlers(
-        handleData: (firebaseUser, sink) {
-          sink.add(
-            firebaseUser == null
-                ? null
-                : AuthUser(
-                    uid: firebaseUser.uid,
-                    name: firebaseUser.displayName,
-                    isEmailVerified: firebaseUser.emailVerified,
-                  ),
-          );
-        },
-        handleError: (error, stackTrace, sink) {
-          // TODO report error y strackTRace
-          sink.add(null);
-        },
-      ),
-    );
-  }
-
-  @override
-  Future<void> updateDisplayName(String name) async {
     try {
-      await _firebaseAuth.currentUser?.updateDisplayName(name);
-    } catch (e) {
-      // TODO reportar a crashlytics
-      throw UpdateDisplayNameException();
+      return _firebaseAuth.authStateChanges().transform(
+        StreamTransformer<fb.User?, AuthUser?>.fromHandlers(
+          handleData: (firebaseUser, sink) {
+            sink.add(
+              firebaseUser == null
+                  ? null
+                  : AuthUser(
+                      uid: firebaseUser.uid,
+                      name: firebaseUser.displayName,
+                      isEmailVerified: firebaseUser.emailVerified,
+                    ),
+            );
+          },
+          handleError: (error, stackTrace, sink) {
+            _errorHandler.handle(error, stackTrace, "OnStateChanges");
+            sink.add(null);
+          },
+        ),
+      );
+    } catch (e, st) {
+      _errorHandler.handle(e, st, "OnStateChanges");
+      return Stream<AuthUser?>.value(null);
+
     }
   }
+  // ---------------------------------------------------------------------------- update display name
+  // @override
+  // Future<void> updateDisplayName(String name) async {
+  //   try {
+  //     await _firebaseAuth.currentUser?.updateDisplayName(name);
+  //   } catch (e) {
+  //     // TODO reportar a crashlytics
+  //     throw UpdateDisplayNameException();
+  //   }
+  // }
 
   // ------------------------------------------------------------------------------- Guard
-
   Future<T> _guard<T>(Future<T> Function() action, String operation) async {
     try {
       return await action();

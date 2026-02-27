@@ -6,21 +6,17 @@ import 'package:mockito/mockito.dart';
 import '../../mocks/mocks.mocks.dart';
 
 void main() {
+  provideDummy<Result<void, AuthFailure>>(Success(null));
+
   group('create account use case', () {
     late CreateAccountUsecase usecase;
     late MockIAuthRepository mockIAuthRepository;
     late String validEmailString;
     late String validPassString;
-    // late String validName;
-    // late String validLastName;
-    // late String validSecondLastName;
 
     setUp(() {
       validEmailString = 'email@gmail.com';
       validPassString = 'abcdefghijk';
-      // validName = 'Name';
-      // validLastName = 'validLastName';
-      // validSecondLastName = 'validSecondLastName';
 
       mockIAuthRepository = MockIAuthRepository();
       usecase = CreateAccountUsecase(authRepository: mockIAuthRepository);
@@ -29,11 +25,11 @@ void main() {
       when(
         mockIAuthRepository.tryCreateUserWithEmailAndPassword(any, any),
       ).thenAnswer((_) async => Result.success(null));
-      //when(_mockIAuthRepository.trySendEmailVerification());
-      //   when(
-      //     mockIAuthRepository.tryUpdateDisplayName(any, any, any),
-      //   ).thenAnswer((_) async => Result.success(null));
+      when(mockIAuthRepository.trySendVerificationEmail()).thenAnswer(
+        (_) async => Result.success(null),
+       );
     });
+
 
     test('Test 2: New user account is created succesfully', () async {
       // Arrange
@@ -42,20 +38,27 @@ void main() {
       final result = await usecase(
         emailString: validEmailString,
         passwordString: validPassString,
-        // firstNameString: validName,
-        // lastNameString: validLastName,
-        // secondLastNameString: validSecondLastName,
       );
-      //final success = result as Success<void>;
 
       // Assert
-      if (result case Success()) {
-        //verify(mockIAuthRepository.tryUpdateDisplayName(any, any, any)).called(1);
-        verify(mockIAuthRepository.trySendVerificationEmail()).called(1);
-        verify(
-          mockIAuthRepository.tryCreateUserWithEmailAndPassword(any, any),
-        ).called(1);
+      switch (result) {
+        case Success():
+          verify(mockIAuthRepository.trySendVerificationEmail()).called(1);
+          verify(
+            mockIAuthRepository.tryCreateUserWithEmailAndPassword(any, any),
+          ).called(1);
+          break;
+        case FailureResult<void, AuthFailure>():
+          fail("Success was expected");
       }
+
+      // if (result case Success()) {
+      //   //verify(mockIAuthRepository.tryUpdateDisplayName(any, any, any)).called(1);
+      //   verify(mockIAuthRepository.trySendVerificationEmail()).called(1);
+      //   verify(
+      //     mockIAuthRepository.tryCreateUserWithEmailAndPassword(any, any),
+      //   ).called(1);
+      // }
     });
 
     test('Test 3: Returns failure when email is invalid', () async {
@@ -65,22 +68,30 @@ void main() {
       final result = await usecase(
         emailString: 'invalid-email',
         passwordString: validPassString,
-        // firstNameString: validName,
-        // lastNameString: validLastName,
-        // secondLastNameString: validSecondLastName,
       );
-
       // Assert
-      if (result case FailureResult(:final failure)) {
-        expect(failure, isA<InvalidEmailVOFormatFailure>());
-        verifyNever(
-          mockIAuthRepository.tryCreateUserWithEmailAndPassword(any, any),
-        );
-        //verifyNever(mockIAuthRepository.tryUpdateDisplayName(any, any, any));
-        verifyNever(mockIAuthRepository.trySendVerificationEmail());
-      } else {
-        fail('InvalidEmailFormat was expected');
+      switch (result) {
+        case FailureResult(:final failure):
+          expect(failure, isA<InvalidEmailFormatFailure>());
+          verifyNever(
+            mockIAuthRepository.tryCreateUserWithEmailAndPassword(any, any),
+          );
+          verifyNever(mockIAuthRepository.trySendVerificationEmail());
+          break;
+        case Success():
+          fail('InvalidEmailFormat was expected');
       }
+
+      // if (result case FailureResult(:final failure)) {
+      //   expect(failure, isA<InvalidEmailVOFormatFailure>());
+      //   verifyNever(
+      //     mockIAuthRepository.tryCreateUserWithEmailAndPassword(any, any),
+      //   );
+      //   //verifyNever(mockIAuthRepository.tryUpdateDisplayName(any, any, any));
+      //   verifyNever(mockIAuthRepository.trySendVerificationEmail());
+      // } else {
+      //   fail('InvalidEmailFormat was expected');
+      // }
     });
 
     test('Test 4: Returns failure when password is too short', () async {
@@ -90,22 +101,30 @@ void main() {
       final result = await usecase(
         emailString: validEmailString,
         passwordString: 'short',
-        // firstNameString: validName,
-        // lastNameString: validLastName,
-        // secondLastNameString: validSecondLastName,
       );
 
       // Assert
-      if (result case FailureResult(:final failure)) {
-        expect(failure, isA<WeakPasswordVOFailure>());
-        verifyNever(
-          mockIAuthRepository.tryCreateUserWithEmailAndPassword(any, any),
-        );
-        //verifyNever(mockIAuthRepository.tryUpdateDisplayName(any, any, any));
-        verifyNever(mockIAuthRepository.trySendVerificationEmail());
-      } else {
-        fail('PasswordTooShort was expected');
+      switch (result) {
+        case FailureResult(:final failure):
+          expect(failure, isA<WeakPasswordFailure>());
+          verifyNever(
+            mockIAuthRepository.tryCreateUserWithEmailAndPassword(any, any),
+          );
+          verifyNever(mockIAuthRepository.trySendVerificationEmail());
+          break;
+        case Success():
+          fail('PasswordTooShort was expected');
       }
+      // if (result case FailureResult(:final failure)) {
+      //   expect(failure, isA<WeakPasswordVOFailure>());
+      //   verifyNever(
+      //     mockIAuthRepository.tryCreateUserWithEmailAndPassword(any, any),
+      //   );
+      //   //verifyNever(mockIAuthRepository.tryUpdateDisplayName(any, any, any));
+      //   verifyNever(mockIAuthRepository.trySendVerificationEmail());
+      // } else {
+      //   fail('PasswordTooShort was expected');
+      // }
     });
 
     // test(
@@ -192,23 +211,30 @@ void main() {
       // Arrange
       when(
         mockIAuthRepository.tryCreateUserWithEmailAndPassword(any, any),
-      ).thenAnswer((_) async => Result.failure(AuthFailure()));
+      ).thenAnswer((_) async => Result.failure(UnknownAuthFailure()));
 
       // Act
       final result = await usecase(
         emailString: validEmailString,
         passwordString: validPassString,
-        // firstNameString: validName,
-        // lastNameString: validLastName,
-        // secondLastNameString: validSecondLastName,
       );
-      if (result case FailureResult(:final failure)) {
-        expect(failure, isA<AuthFailure>());
-        verifyNever(mockIAuthRepository.trySendVerificationEmail());
-        //verifyNever(mockIAuthRepository.tryUpdateDisplayName(any, any, any));
-      } else {
-        fail('AuthException was expected');
+
+      // Assert
+      switch (result) {
+        case FailureResult(:final failure):
+          expect(failure, isA<UnknownAuthFailure>());
+          verifyNever(mockIAuthRepository.trySendVerificationEmail());
+          break;
+        case Success():
+          fail('UnknownAuthFailure was expected');
       }
+      // if (result case FailureResult(:final failure)) {
+      //   expect(failure, isA<AuthFailure>());
+      //   verifyNever(mockIAuthRepository.trySendVerificationEmail());
+      //   //verifyNever(mockIAuthRepository.tryUpdateDisplayName(any, any, any));
+      // } else {
+      //   fail('AuthException was expected');
+      // }
     });
 
     //     test('Test 9: Account is created with incomplete profile', () async {

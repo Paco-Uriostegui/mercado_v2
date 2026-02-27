@@ -21,12 +21,17 @@ class ValueObjectsFailure extends Failure {}
 // ------------------------------------------------------------------ emailVO failures
 sealed class EmailValueObjectFailure extends Failure {}
 
-class InvalidEmailVOFormatFaliure extends EmailValueObjectFailure {}
+class InvalidEmailVOFormatFailure extends EmailValueObjectFailure {}
 
 // ------------------------------------------------------------------ passwordVO failures
 sealed class PasswordValueObjectFailure extends Failure {}
 
+
 class InvalidPasswordVOFormatFailure extends PasswordValueObjectFailure {}
+
+class PasswordTooShortFailure extends PasswordValueObjectFailure {}
+
+
 
 class FirstNameTooShortFailure extends ValueObjectsFailure {}
 
@@ -77,27 +82,34 @@ sealed class AuthFailure extends Failure {
 }
 
 class EmailAlreadyInUseFailure implements AuthFailure {}
-class InvalidEmailFormatFailure implements AuthFailure {} 
-class InvalidEmailFailure implements AuthFailure {} 
+
+class InvalidEmailFormatFailure implements AuthFailure {}
+
+class InvalidEmailFailure implements AuthFailure {}
+
 class UserNotFoundFailure implements AuthFailure {}
 
-
 class OperationNotAllowedFailure implements AuthFailure {}
+
 class TooManyRequestsFailure implements AuthFailure {}
+
 class UserTokenExpiredFailure implements AuthFailure {}
+
 class BackendUserIsNullFailure implements AuthFailure {}
+
 class NetworkRequestFailedFailure implements AuthFailure {}
+
 class UserDisabledFailure implements AuthFailure {}
+
 class InvalidLoginCredentialsFailure implements AuthFailure {}
 
 class InvalidPasswordFormatFailure implements AuthFailure {}
+
 class WrongPasswordFailure implements AuthFailure {}
+
 class WeakPasswordFailure implements AuthFailure {}
 
-
-
-class UnknownAuthFailure implements AuthFailure {
-}
+class UnknownAuthFailure implements AuthFailure {}
 
 // ------------------------------------------------------------------------ CreateAccount Failures
 // sealed class CreateAccountFailure extends Failure {}

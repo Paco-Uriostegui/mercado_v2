@@ -49,6 +49,10 @@ void main() {
         ).called(1);
       },
     );
+    
+    // .error tests with all posible failure states
+
+    // Test 3: emits .unknown when usecase returns unknown()
     blocTest(
       "Test 3: Emits [.error] when usecase returns error",
       setUp: () {
@@ -57,7 +61,7 @@ void main() {
             emailString: anyNamed("emailString"),
             passwordString: anyNamed("passwordString"),
           ),
-        ).thenAnswer((_) async => Result.failure(AuthFailure()));
+        ).thenAnswer((_) async => Result.failure(UnknownAuthFailure()));
       },
       build: () => CreateAccountBloc(usecase: mockCreateAccountUseCase),
 
@@ -70,7 +74,7 @@ void main() {
 
       expect: () => <CreateAccountState>[
         CreateAccountState.loading(),
-        CreateAccountState.error(AuthFailure()),
+        CreateAccountState.unknown(),
       ],
       verify: (_) {
         verify(
