@@ -7,7 +7,7 @@ En:
     con el resto de blocs.
     
 Seguir:
-    - 
+    - Test para los blocs y use cases
 Por hacer: 
     - 
 

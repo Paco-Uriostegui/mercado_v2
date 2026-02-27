@@ -55,13 +55,14 @@ extension VerifyEmailStatePatterns on VerifyEmailState {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( Initial value)?  inital,TResult Function( Loading value)?  loading,TResult Function( Error value)?  error,TResult Function( NotVerifiedYetMessage value)?  notVerifiedYetMessage,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( Initial value)?  initial,TResult Function( Loading value)?  loading,TResult Function( Error value)?  error,TResult Function( EmailSent value)?  emailSent,TResult Function( NotVerifiedYetMessage value)?  notVerifiedYetMessage,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
-case Initial() when inital != null:
-return inital(_that);case Loading() when loading != null:
+case Initial() when initial != null:
+return initial(_that);case Loading() when loading != null:
 return loading(_that);case Error() when error != null:
-return error(_that);case NotVerifiedYetMessage() when notVerifiedYetMessage != null:
+return error(_that);case EmailSent() when emailSent != null:
+return emailSent(_that);case NotVerifiedYetMessage() when notVerifiedYetMessage != null:
 return notVerifiedYetMessage(_that);case _:
   return orElse();
 
@@ -80,13 +81,14 @@ return notVerifiedYetMessage(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( Initial value)  inital,required TResult Function( Loading value)  loading,required TResult Function( Error value)  error,required TResult Function( NotVerifiedYetMessage value)  notVerifiedYetMessage,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( Initial value)  initial,required TResult Function( Loading value)  loading,required TResult Function( Error value)  error,required TResult Function( EmailSent value)  emailSent,required TResult Function( NotVerifiedYetMessage value)  notVerifiedYetMessage,}){
 final _that = this;
 switch (_that) {
 case Initial():
-return inital(_that);case Loading():
+return initial(_that);case Loading():
 return loading(_that);case Error():
-return error(_that);case NotVerifiedYetMessage():
+return error(_that);case EmailSent():
+return emailSent(_that);case NotVerifiedYetMessage():
 return notVerifiedYetMessage(_that);}
 }
 /// A variant of `map` that fallback to returning `null`.
@@ -101,13 +103,14 @@ return notVerifiedYetMessage(_that);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( Initial value)?  inital,TResult? Function( Loading value)?  loading,TResult? Function( Error value)?  error,TResult? Function( NotVerifiedYetMessage value)?  notVerifiedYetMessage,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( Initial value)?  initial,TResult? Function( Loading value)?  loading,TResult? Function( Error value)?  error,TResult? Function( EmailSent value)?  emailSent,TResult? Function( NotVerifiedYetMessage value)?  notVerifiedYetMessage,}){
 final _that = this;
 switch (_that) {
-case Initial() when inital != null:
-return inital(_that);case Loading() when loading != null:
+case Initial() when initial != null:
+return initial(_that);case Loading() when loading != null:
 return loading(_that);case Error() when error != null:
-return error(_that);case NotVerifiedYetMessage() when notVerifiedYetMessage != null:
+return error(_that);case EmailSent() when emailSent != null:
+return emailSent(_that);case NotVerifiedYetMessage() when notVerifiedYetMessage != null:
 return notVerifiedYetMessage(_that);case _:
   return null;
 
@@ -125,12 +128,13 @@ return notVerifiedYetMessage(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  inital,TResult Function()?  loading,TResult Function()?  error,TResult Function()?  notVerifiedYetMessage,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loading,TResult Function()?  error,TResult Function()?  emailSent,TResult Function()?  notVerifiedYetMessage,required TResult orElse(),}) {final _that = this;
 switch (_that) {
-case Initial() when inital != null:
-return inital();case Loading() when loading != null:
+case Initial() when initial != null:
+return initial();case Loading() when loading != null:
 return loading();case Error() when error != null:
-return error();case NotVerifiedYetMessage() when notVerifiedYetMessage != null:
+return error();case EmailSent() when emailSent != null:
+return emailSent();case NotVerifiedYetMessage() when notVerifiedYetMessage != null:
 return notVerifiedYetMessage();case _:
   return orElse();
 
@@ -149,12 +153,13 @@ return notVerifiedYetMessage();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  inital,required TResult Function()  loading,required TResult Function()  error,required TResult Function()  notVerifiedYetMessage,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loading,required TResult Function()  error,required TResult Function()  emailSent,required TResult Function()  notVerifiedYetMessage,}) {final _that = this;
 switch (_that) {
 case Initial():
-return inital();case Loading():
+return initial();case Loading():
 return loading();case Error():
-return error();case NotVerifiedYetMessage():
+return error();case EmailSent():
+return emailSent();case NotVerifiedYetMessage():
 return notVerifiedYetMessage();}
 }
 /// A variant of `when` that fallback to returning `null`
@@ -169,12 +174,13 @@ return notVerifiedYetMessage();}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  inital,TResult? Function()?  loading,TResult? Function()?  error,TResult? Function()?  notVerifiedYetMessage,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loading,TResult? Function()?  error,TResult? Function()?  emailSent,TResult? Function()?  notVerifiedYetMessage,}) {final _that = this;
 switch (_that) {
-case Initial() when inital != null:
-return inital();case Loading() when loading != null:
+case Initial() when initial != null:
+return initial();case Loading() when loading != null:
 return loading();case Error() when error != null:
-return error();case NotVerifiedYetMessage() when notVerifiedYetMessage != null:
+return error();case EmailSent() when emailSent != null:
+return emailSent();case NotVerifiedYetMessage() when notVerifiedYetMessage != null:
 return notVerifiedYetMessage();case _:
   return null;
 
@@ -206,7 +212,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'VerifyEmailState.inital()';
+  return 'VerifyEmailState.initial()';
 }
 
 
@@ -271,6 +277,38 @@ int get hashCode => runtimeType.hashCode;
 @override
 String toString() {
   return 'VerifyEmailState.error()';
+}
+
+
+}
+
+
+
+
+/// @nodoc
+
+
+class EmailSent implements VerifyEmailState {
+  const EmailSent();
+  
+
+
+
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is EmailSent);
+}
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'VerifyEmailState.emailSent()';
 }
 
 

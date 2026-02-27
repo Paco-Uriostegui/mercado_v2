@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:ffi';
 
 import 'package:firebase_auth/firebase_auth.dart' as fb;
 import 'package:mercado_v2/app/core/error/data_exceptions.dart';
@@ -74,25 +75,23 @@ class FirebaseAuthDataSourceImpl implements IAuthRemoteDataSource {
       return AuthUserModel.fromFirebase(firebaseUser);
     }, "CreateUser");
   }
+  // ---------------------------------------------------------------------------- send verification email
 
   @override
-  Future<void> sendEmailVerification() async {
-    try {
+  Future<void> sendVerificationEmail() async {
+    return _guard(() async {
       await _firebaseAuth.currentUser?.sendEmailVerification();
-    } catch (e) {
-      // TODO reportar a crashlytics
-      //throw SendEmailVerificationException();
-    }
+    }, "Send email verification");
   }
-
+  // ---------------------------------------------------------------------------- email verified
   @override
   Future<bool> isEmailVerified() async {
-    try {
-      await _firebaseAuth.currentUser?.reload();
-      return _firebaseAuth.currentUser?.emailVerified ?? false;
-    } catch (e) {
-      throw IsEmailVerifiedFailure();
-    }
+   return _guard(() async {
+    await _firebaseAuth.currentUser?.reload();
+    return _firebaseAuth.currentUser?.emailVerified ?? false;
+   }, "isEmailVerified");
+      
+
   }
 
   @override

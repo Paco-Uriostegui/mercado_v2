@@ -51,7 +51,7 @@ void main() {
       // Assert
       if (result case Success()) {
         //verify(mockIAuthRepository.tryUpdateDisplayName(any, any, any)).called(1);
-        verify(mockIAuthRepository.trySendEmailVerification()).called(1);
+        verify(mockIAuthRepository.trySendVerificationEmail()).called(1);
         verify(
           mockIAuthRepository.tryCreateUserWithEmailAndPassword(any, any),
         ).called(1);
@@ -77,7 +77,7 @@ void main() {
           mockIAuthRepository.tryCreateUserWithEmailAndPassword(any, any),
         );
         //verifyNever(mockIAuthRepository.tryUpdateDisplayName(any, any, any));
-        verifyNever(mockIAuthRepository.trySendEmailVerification());
+        verifyNever(mockIAuthRepository.trySendVerificationEmail());
       } else {
         fail('InvalidEmailFormat was expected');
       }
@@ -102,7 +102,7 @@ void main() {
           mockIAuthRepository.tryCreateUserWithEmailAndPassword(any, any),
         );
         //verifyNever(mockIAuthRepository.tryUpdateDisplayName(any, any, any));
-        verifyNever(mockIAuthRepository.trySendEmailVerification());
+        verifyNever(mockIAuthRepository.trySendVerificationEmail());
       } else {
         fail('PasswordTooShort was expected');
       }
@@ -204,7 +204,7 @@ void main() {
       );
       if (result case FailureResult(:final failure)) {
         expect(failure, isA<AuthFailure>());
-        verifyNever(mockIAuthRepository.trySendEmailVerification());
+        verifyNever(mockIAuthRepository.trySendVerificationEmail());
         //verifyNever(mockIAuthRepository.tryUpdateDisplayName(any, any, any));
       } else {
         fail('AuthException was expected');

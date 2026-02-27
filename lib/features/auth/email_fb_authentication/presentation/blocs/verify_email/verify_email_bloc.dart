@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mercado_v2/app/core/error/failure.dart';
 import 'package:mercado_v2/app/core/result/result.dart';
 import 'package:mercado_v2/features/auth/email_fb_authentication/domain/repositories/i_auth_gate.dart';
 import 'package:mercado_v2/features/auth/email_fb_authentication/domain/usecases/confirm_email_verification_usecase.dart';
@@ -18,7 +19,7 @@ class VerifyEmailBloc extends Bloc<VerifyEmailEvent, VerifyEmailState> {
   }) : _authGateStream = authGateStream,
        _confirmEmailVerificationUseCase = confirmEmailVerificationUseCase,
        _resendVerificationEmailUseCase = resendVerificationEmailUseCase,
-       super(VerifyEmailState.inital()) {
+       super(VerifyEmailState.initial()) {
     on<OnVerifiedPressed>(_onVerifiedPressed);
     on<ResendVerificationEmail>(_onResendVerificationEmail);
   }
@@ -27,19 +28,16 @@ class VerifyEmailBloc extends Bloc<VerifyEmailEvent, VerifyEmailState> {
     VerifyEmailEvent event,
     Emitter<VerifyEmailState> emit,
   ) async {
-    final Result<bool, AuthFailure> result = await _confirmEmailVerificationUseCase();
-    result.when(
-      success: (value) {
-        if (value) {
-          _authGateStream.manualAuthenticationSuccessStreamSinkAdd();
-        } else {
-          emit(.notVerifiedYetMessage());
-        }
-      },
-      failure: (failure) {
+    switch (await _confirmEmailVerificationUseCase()) {
+      case Success(:final value):
+        value
+            ? _authGateStream.manualAuthenticationSuccessStreamSinkAdd()
+            : emit(.notVerifiedYetMessage());
+        break;
+      case FailureResult():
         emit(.error());
-      },
-    );
+        break;
+    }
   }
 
   Future<void> _onResendVerificationEmail(
@@ -47,5 +45,6 @@ class VerifyEmailBloc extends Bloc<VerifyEmailEvent, VerifyEmailState> {
     Emitter<VerifyEmailState> emit,
   ) async {
     await _resendVerificationEmailUseCase();
+    emit(.emailSent());
   }
 }

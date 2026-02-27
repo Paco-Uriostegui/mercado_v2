@@ -100,13 +100,17 @@ class MockIAuthRepository extends _i1.Mock implements _i2.IAuthRepository {
           as _i3.Future<_i4.Result<void, _i4.AuthFailure>>);
 
   @override
-  _i3.Future<void> trySendEmailVerification() =>
+  _i3.Future<_i4.Result<void, _i4.AuthFailure>> trySendVerificationEmail() =>
       (super.noSuchMethod(
-            Invocation.method(#trySendEmailVerification, []),
-            returnValue: _i3.Future<void>.value(),
-            returnValueForMissingStub: _i3.Future<void>.value(),
+            Invocation.method(#trySendVerificationEmail, []),
+            returnValue: _i3.Future<_i4.Result<void, _i4.AuthFailure>>.value(
+              _i6.dummyValue<_i4.Result<void, _i4.AuthFailure>>(
+                this,
+                Invocation.method(#trySendVerificationEmail, []),
+              ),
+            ),
           )
-          as _i3.Future<void>);
+          as _i3.Future<_i4.Result<void, _i4.AuthFailure>>);
 
   @override
   _i3.Future<_i4.Result<bool, _i4.AuthFailure>> tryIsEmailVerified() =>

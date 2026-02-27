@@ -6,6 +6,6 @@ class ResendVerificationEmailUsecase {
   ResendVerificationEmailUsecase(this._authRepository);
 
   Future<void> call() async {
-    await _authRepository.trySendEmailVerification();
+    await _authRepository.trySendVerificationEmail();
   }
 }

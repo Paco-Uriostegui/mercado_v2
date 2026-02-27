@@ -12,7 +12,7 @@ abstract class IAuthRepository {
     Email email,
     Password password,
   );
-  Future<void> trySendEmailVerification();
+  Future<Result<void, AuthFailure>> trySendVerificationEmail();
   Future<Result<bool, AuthFailure>> tryIsEmailVerified();
   Future<Result<AuthUser?, AuthFailure>> tryGetCurrentUser();
   Future<Result<void, AuthFailure>> tryRefreshCurrentUser();

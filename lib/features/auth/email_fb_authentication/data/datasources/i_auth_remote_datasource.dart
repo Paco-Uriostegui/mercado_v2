@@ -11,7 +11,7 @@ abstract class IAuthRemoteDataSource {
     required String email,
     required String password,
   });
-  Future<void> sendEmailVerification();
+  Future<void> sendVerificationEmail();
   Future<bool> isEmailVerified();
   AuthUser? getCurrentUser();
   Future<void> refreshCurrentUser();

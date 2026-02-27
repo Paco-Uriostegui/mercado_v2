@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:mercado_v2/app/core/result/result.dart';
 import 'package:mercado_v2/features/auth/email_fb_authentication/domain/repositories/i_auth_repository.dart';
 import 'package:mercado_v2/features/auth/email_fb_authentication/domain/value_objects/value_objects_export.dart';
@@ -16,8 +18,7 @@ class CreateAccountUsecase {
     late final Password pass;
 
     // --------------------------------------------------- validating params
-    final emailResult = Email.create(emailString);
-    switch (emailResult) {
+    switch (Email.create(emailString)) {
       case Success(:final value):
         email = value;
         break;
@@ -25,8 +26,7 @@ class CreateAccountUsecase {
         return Result.failure(InvalidEmailFormatFailure());
     }
 
-    final passwordResult = Password.create(passwordString);
-    switch (passwordResult) {
+    switch (Password.create(passwordString)) {
       case Success(:final value):
         pass = value;
         break;
@@ -35,6 +35,16 @@ class CreateAccountUsecase {
     }
 
     // --------------------------------------------------------------- create account
-    return await _authRepository.tryCreateUserWithEmailAndPassword(email, pass);
+    switch (await _authRepository.tryCreateUserWithEmailAndPassword(
+      email,
+      pass,
+    )) {
+      case Success():
+        // --------------------------------------------------------------- verification email
+        unawaited(_authRepository.trySendVerificationEmail());
+        return Result.success(null);
+      case FailureResult(:final failure):
+        return Result.failure(failure);
+    }
   }
 }

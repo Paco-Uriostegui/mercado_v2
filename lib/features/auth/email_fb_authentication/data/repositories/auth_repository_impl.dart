@@ -60,9 +60,19 @@ class FirebaseAuthRepositoryImpl implements IAuthRepository {
     throw UnimplementedError();
   }
 
+  // ---------------------------------------------------------------------------- email verification
   @override
-  Future<void> trySendEmailVerification() async {
-    await _authRemoteDataSource.sendEmailVerification();
+  Future<Result<void, AuthFailure>> trySendVerificationEmail() async {
+    try {
+      await _authRemoteDataSource.sendVerificationEmail();
+      return Result.success(null);
+    } on AuthException catch (authException) {
+      return Result.failure(
+        _dataExceptionMapper.fromAuthException(authException),
+      );
+    } catch (e) {
+      return Result.failure(UnknownAuthFailure());
+    }
   }
 
   @override
@@ -98,13 +108,15 @@ class FirebaseAuthRepositoryImpl implements IAuthRepository {
     throw UnimplementedError();
   }
 
+  // ---------------------------------------------------------------------------- email verified
   @override
   Future<Result<bool, AuthFailure>> tryIsEmailVerified() async {
     try {
-      final response = await _authRemoteDataSource.isEmailVerified();
-      return Result.success(response);
+      return Result.success(await _authRemoteDataSource.isEmailVerified());
+    } on AuthFailure catch (authFailure) {
+      return Result.failure(authFailure);
     } catch (e) {
-      return Result.failure(AuthFailure());
+      return Result.failure(UnknownAuthFailure());
     }
   }
 
