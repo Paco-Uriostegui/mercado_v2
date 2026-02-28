@@ -7,7 +7,7 @@ class AuthenticationUseCase {
     : _authRepository = authRepository;
 
   Stream<AuthUserStatus> execute() {
-    return _authRepository.onStateChanges().map((authUser) {
+    return _authRepository.onStateChanges().map(( authUser) {
       if (authUser != null) {
         if (authUser.isEmailVerified) {
           return AuthUserComplete();

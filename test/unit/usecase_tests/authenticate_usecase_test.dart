@@ -1,6 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mercado_v2/features/auth/email_fb_authentication/data/models/auth_user_model.dart';
 //import 'package:mercado_v2/app/core/result/result.dart';
-import 'package:mercado_v2/features/auth/email_fb_authentication/domain/entities/auth_user/auth_user.dart';
+//import 'package:mercado_v2/features/auth/email_fb_authentication/domain/entities/auth_user/auth_user.dart';
 import 'package:mercado_v2/features/auth/email_fb_authentication/domain/usecases/authenticate_usecase.dart';
 import 'package:mockito/mockito.dart';
 
@@ -15,17 +16,17 @@ void main() {
     setUp(() {
       mockIAuthRepository = MockIAuthRepository();
       usecase = AuthenticationUseCase(authRepository: mockIAuthRepository);
-      AuthUser fakeUser = AuthUser(
+      AuthUserModel fakeUser = AuthUserModel(
         uid: "1234",
         name: "fakeUser",
         isEmailVerified: true,
       );
-      //Stream<AuthUser?> fakeStream = fakeUser;
+      //Stream<AuthUserModel?> fakeStream = fakeUser;
 
       // ----------------------------------------------------- stubs
       when(
         mockIAuthRepository.onStateChanges(),
-      ).thenAnswer((_) => Stream<AuthUser?>.value(fakeUser));
+      ).thenAnswer((_) => Stream<AuthUserModel?>.value(fakeUser));
     });
     test("Test 2: Stream returns valid user", () async {
       // Arrange
@@ -41,14 +42,14 @@ void main() {
 
     test("Test 3: Stream returns a non verified user", () async {
       // Arrange
-      AuthUser fakeUser = AuthUser(
+      AuthUserModel fakeUser = AuthUserModel(
         uid: "1234",
         name: "fakeUser",
         isEmailVerified: false,
       );
       when(
         mockIAuthRepository.onStateChanges(),
-      ).thenAnswer((_) => Stream<AuthUser?>.value(fakeUser));
+      ).thenAnswer((_) => Stream<AuthUserModel?>.value(fakeUser));
 
       // Act
       final result = usecase.execute();
@@ -63,7 +64,7 @@ void main() {
       // Arrange
       when(
         mockIAuthRepository.onStateChanges(),
-      ).thenAnswer((_) => Stream<AuthUser?>.value(null));
+      ).thenAnswer((_) => Stream<AuthUserModel?>.value(null));
 
       // Act
       final result = usecase.execute();

@@ -1,5 +1,5 @@
 import 'package:mercado_v2/features/auth/email_fb_authentication/data/models/auth_user_model.dart';
-import 'package:mercado_v2/features/auth/email_fb_authentication/domain/entities/auth_user/auth_user.dart';
+//import 'package:mercado_v2/features/auth/email_fb_authentication/domain/entities/auth_user/auth_user.dart';
 
 abstract class IAuthRemoteDataSource {
   Future<AuthUserModel> signInWithEmailAndPassword({
@@ -16,6 +16,6 @@ abstract class IAuthRemoteDataSource {
   // AuthUser? getCurrentUser();
   // Future<void> refreshCurrentUser();
   // Future<void> signOut();
-  Stream<AuthUser?> authStateChanges();
+  Stream<AuthUserModel?> authStateChanges();
   // Future<void> updateDisplayName(String name);
 }

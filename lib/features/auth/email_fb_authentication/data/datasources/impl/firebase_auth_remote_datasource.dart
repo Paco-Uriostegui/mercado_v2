@@ -2,25 +2,20 @@ import 'dart:async';
 
 import 'package:firebase_auth/firebase_auth.dart' as fb;
 import 'package:mercado_v2/app/core/error/data_exceptions.dart';
-import 'package:mercado_v2/app/core/error/failure.dart';
 import 'package:mercado_v2/features/auth/email_fb_authentication/data/datasources/i_auth_remote_datasource.dart';
-import 'package:mercado_v2/features/auth/email_fb_authentication/data/mappers/auth_user_mapper.dart';
 import 'package:mercado_v2/features/auth/email_fb_authentication/data/mappers/firebase_error_handler.dart';
 import 'package:mercado_v2/features/auth/email_fb_authentication/data/models/auth_user_model.dart';
-import 'package:mercado_v2/features/auth/email_fb_authentication/domain/entities/auth_user/auth_user.dart';
 
 class FirebaseAuthDataSourceImpl implements IAuthRemoteDataSource {
   final FirebaseAuthErrorHandler _errorHandler;
   final fb.FirebaseAuth _firebaseAuth;
-  final AuthUserMapper _userMapper;
 
   FirebaseAuthDataSourceImpl({
     required FirebaseAuthErrorHandler errorHandler,
     required fb.FirebaseAuth firebaseAuth,
-    required AuthUserMapper userMapper,
+
   }) : _errorHandler = errorHandler,
-       _firebaseAuth = firebaseAuth,
-       _userMapper = userMapper;
+       _firebaseAuth = firebaseAuth;
 
   // ------------------------------------------------------------------------------- SignIn
 
@@ -121,15 +116,15 @@ class FirebaseAuthDataSourceImpl implements IAuthRemoteDataSource {
 
   // ---------------------------------------------------------------------------- onStateChanges
   @override
-  Stream<AuthUser?> authStateChanges() {
+  Stream<AuthUserModel?> authStateChanges() {
     try {
       return _firebaseAuth.authStateChanges().transform(
-        StreamTransformer<fb.User?, AuthUser?>.fromHandlers(
+        StreamTransformer<fb.User?, AuthUserModel?>.fromHandlers(
           handleData: (firebaseUser, sink) {
             sink.add(
               firebaseUser == null
                   ? null
-                  : AuthUser(
+                  : AuthUserModel(
                       uid: firebaseUser.uid,
                       name: firebaseUser.displayName,
                       isEmailVerified: firebaseUser.emailVerified,
@@ -144,7 +139,7 @@ class FirebaseAuthDataSourceImpl implements IAuthRemoteDataSource {
       );
     } catch (e, st) {
       _errorHandler.handle(e, st, "OnStateChanges");
-      return Stream<AuthUser?>.value(null);
+      return Stream<AuthUserModel?>.value(null);
 
     }
   }

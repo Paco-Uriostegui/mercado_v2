@@ -2,7 +2,7 @@ import 'package:mercado_v2/app/core/error/data_exceptions.dart';
 import 'package:mercado_v2/app/core/result/result.dart';
 import 'package:mercado_v2/features/auth/email_fb_authentication/data/datasources/i_auth_remote_datasource.dart';
 import 'package:mercado_v2/features/auth/email_fb_authentication/data/models/auth_user_model.dart';
-import 'package:mercado_v2/features/auth/email_fb_authentication/domain/entities/auth_user/auth_user.dart';
+//import 'package:mercado_v2/features/auth/email_fb_authentication/domain/entities/auth_user/auth_user.dart';
 import 'package:mercado_v2/features/auth/email_fb_authentication/domain/mappers/data_exception_mapper.dart';
 import 'package:mercado_v2/features/auth/email_fb_authentication/domain/repositories/i_auth_repository.dart';
 import 'package:mercado_v2/features/auth/email_fb_authentication/domain/value_objects/value_objects_export.dart';
@@ -141,7 +141,7 @@ class FirebaseAuthRepositoryImpl implements IAuthRepository {
 
   // ---------------------------------------------------------------------------- onAuthStateChanges
   @override
-  Stream<AuthUser?> onStateChanges() {
+  Stream<AuthUserModel?> onStateChanges() {
     return _authRemoteDataSource.authStateChanges();
   }
 

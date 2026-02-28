@@ -1,0 +1,3 @@
+En feature auth. El AuthUserModel llega hasta la capa de domain sin transformarse en AuthUser. Se quedará así de 
+momento, mientras encuentro el punto (o motivo) por el que deba crearse el AuthUser "global" y dejar de depender
+de .currentUser (que por ahora es la fuente de verdad).

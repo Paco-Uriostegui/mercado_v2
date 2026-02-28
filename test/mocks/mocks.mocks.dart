@@ -6,7 +6,7 @@
 import 'dart:async' as _i3;
 
 import 'package:mercado_v2/app/core/result/result.dart' as _i4;
-import 'package:mercado_v2/features/auth/email_fb_authentication/domain/entities/auth_user/auth_user.dart'
+import 'package:mercado_v2/features/auth/email_fb_authentication/data/models/auth_user_model.dart'
     as _i7;
 import 'package:mercado_v2/features/auth/email_fb_authentication/domain/repositories/i_auth_gate.dart'
     as _i13;
@@ -119,12 +119,12 @@ class MockIAuthRepository extends _i1.Mock implements _i2.IAuthRepository {
           as _i3.Future<_i4.Result<bool, _i4.AuthFailure>>);
 
   @override
-  _i3.Stream<_i7.AuthUser?> onStateChanges() =>
+  _i3.Stream<_i7.AuthUserModel?> onStateChanges() =>
       (super.noSuchMethod(
             Invocation.method(#onStateChanges, []),
-            returnValue: _i3.Stream<_i7.AuthUser?>.empty(),
+            returnValue: _i3.Stream<_i7.AuthUserModel?>.empty(),
           )
-          as _i3.Stream<_i7.AuthUser?>);
+          as _i3.Stream<_i7.AuthUserModel?>);
 }
 
 /// A class which mocks [AuthenticationUseCase].
