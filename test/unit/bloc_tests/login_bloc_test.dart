@@ -34,7 +34,7 @@ void main() {
       },
       build: () => LoginBloc(mockLoginUsecase),
       act: (bloc) =>
-          bloc.add(LoginSubmitted(validEmail,  validPassword)),
+          bloc.add(LoginSubmitted(email: validEmail, password: validPassword)),
       expect: () => <LoginState>[LoginState.loading(), LoginState.success()],
       verify: (_) {
         verify(
@@ -56,7 +56,7 @@ void main() {
           ),
         ).thenAnswer((_) async => Result.failure(UnknownAuthFailure()));
       },
-      build: () => LoginBloc(usecase: mockLoginUsecase),
+      build: () => LoginBloc(mockLoginUsecase),
       act: (bloc) =>
           bloc.add(LoginSubmitted(email: validEmail, password: validPassword)),
       expect: () => <LoginState>[LoginState.loading(), LoginState.unknown()],

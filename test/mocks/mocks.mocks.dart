@@ -8,14 +8,20 @@ import 'dart:async' as _i3;
 import 'package:mercado_v2/app/core/result/result.dart' as _i4;
 import 'package:mercado_v2/features/auth/email_fb_authentication/domain/entities/auth_user/auth_user.dart'
     as _i7;
+import 'package:mercado_v2/features/auth/email_fb_authentication/domain/repositories/i_auth_gate.dart'
+    as _i13;
 import 'package:mercado_v2/features/auth/email_fb_authentication/domain/repositories/i_auth_repository.dart'
     as _i2;
 import 'package:mercado_v2/features/auth/email_fb_authentication/domain/usecases/authenticate_usecase.dart'
     as _i8;
+import 'package:mercado_v2/features/auth/email_fb_authentication/domain/usecases/confirm_email_verification_usecase.dart'
+    as _i11;
 import 'package:mercado_v2/features/auth/email_fb_authentication/domain/usecases/create_account_usecase.dart'
     as _i9;
 import 'package:mercado_v2/features/auth/email_fb_authentication/domain/usecases/login_usecase.dart'
     as _i10;
+import 'package:mercado_v2/features/auth/email_fb_authentication/domain/usecases/resend_verification_email_usecase.dart'
+    as _i12;
 import 'package:mercado_v2/features/auth/email_fb_authentication/domain/value_objects/value_objects_export.dart'
     as _i5;
 import 'package:mockito/mockito.dart' as _i1;
@@ -197,4 +203,75 @@ class MockLoginUsecase extends _i1.Mock implements _i10.LoginUsecase {
             ),
           )
           as _i3.Future<_i4.Result<void, _i4.AuthFailure>>);
+}
+
+/// A class which mocks [ConfirmEmailVerificationUseCase].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockConfirmEmailVerificationUseCase extends _i1.Mock
+    implements _i11.ConfirmEmailVerificationUseCase {
+  MockConfirmEmailVerificationUseCase() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i3.Future<_i4.Result<bool, _i4.AuthFailure>> call() =>
+      (super.noSuchMethod(
+            Invocation.method(#call, []),
+            returnValue: _i3.Future<_i4.Result<bool, _i4.AuthFailure>>.value(
+              _i6.dummyValue<_i4.Result<bool, _i4.AuthFailure>>(
+                this,
+                Invocation.method(#call, []),
+              ),
+            ),
+          )
+          as _i3.Future<_i4.Result<bool, _i4.AuthFailure>>);
+}
+
+/// A class which mocks [ResendVerificationEmailUsecase].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockResendVerificationEmailUsecase extends _i1.Mock
+    implements _i12.ResendVerificationEmailUsecase {
+  MockResendVerificationEmailUsecase() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i3.Future<void> call() =>
+      (super.noSuchMethod(
+            Invocation.method(#call, []),
+            returnValue: _i3.Future<void>.value(),
+            returnValueForMissingStub: _i3.Future<void>.value(),
+          )
+          as _i3.Future<void>);
+}
+
+/// A class which mocks [IAuthGateStream].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockIAuthGateStream extends _i1.Mock implements _i13.IAuthGateStream {
+  MockIAuthGateStream() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i3.Stream<_i13.AuthenticationStatus> get authenticationGateStream =>
+      (super.noSuchMethod(
+            Invocation.getter(#authenticationGateStream),
+            returnValue: _i3.Stream<_i13.AuthenticationStatus>.empty(),
+          )
+          as _i3.Stream<_i13.AuthenticationStatus>);
+
+  @override
+  void initialize() => super.noSuchMethod(
+    Invocation.method(#initialize, []),
+    returnValueForMissingStub: null,
+  );
+
+  @override
+  void manualAuthenticationSuccessStreamSinkAdd() => super.noSuchMethod(
+    Invocation.method(#manualAuthenticationSuccessStreamSinkAdd, []),
+    returnValueForMissingStub: null,
+  );
 }

@@ -211,7 +211,7 @@ class LoginSubmitted implements LoginEvent {
 /// with the given fields replaced by the non-null parameter values.
 @override @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-$NewLoginSubmittedCopyWith<LoginSubmitted> get copyWith => _$NewLoginSubmittedCopyWithImpl<LoginSubmitted>(this, _$identity);
+$LoginSubmittedCopyWith<LoginSubmitted> get copyWith => _$LoginSubmittedCopyWithImpl<LoginSubmitted>(this, _$identity);
 
 
 
@@ -233,8 +233,8 @@ String toString() {
 }
 
 /// @nodoc
-abstract mixin class $NewLoginSubmittedCopyWith<$Res> implements $LoginEventCopyWith<$Res> {
-  factory $NewLoginSubmittedCopyWith(LoginSubmitted value, $Res Function(LoginSubmitted) _then) = _$NewLoginSubmittedCopyWithImpl;
+abstract mixin class $LoginSubmittedCopyWith<$Res> implements $LoginEventCopyWith<$Res> {
+  factory $LoginSubmittedCopyWith(LoginSubmitted value, $Res Function(LoginSubmitted) _then) = _$LoginSubmittedCopyWithImpl;
 @override @useResult
 $Res call({
  String email, String password
@@ -245,9 +245,9 @@ $Res call({
 
 }
 /// @nodoc
-class _$NewLoginSubmittedCopyWithImpl<$Res>
-    implements $NewLoginSubmittedCopyWith<$Res> {
-  _$NewLoginSubmittedCopyWithImpl(this._self, this._then);
+class _$LoginSubmittedCopyWithImpl<$Res>
+    implements $LoginSubmittedCopyWith<$Res> {
+  _$LoginSubmittedCopyWithImpl(this._self, this._then);
 
   final LoginSubmitted _self;
   final $Res Function(LoginSubmitted) _then;
